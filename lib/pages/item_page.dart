@@ -168,7 +168,7 @@ class _GrammarItemPageState extends State<GrammarItemPage> {
                             ),
                           ),
                           Container(
-                            color: themeConfig['background'],
+                            color: themeConfig['backgroundColor'],
                             padding: const EdgeInsets.only(left: 10, top: 15),
                             child: Row(
                               children: [
