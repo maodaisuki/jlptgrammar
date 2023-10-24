@@ -78,11 +78,12 @@ class _GrammarItemPageState extends State<GrammarItemPage> {
                           context: context,
                           builder: (BuildContext context) {
                             return AlertDialog(
-                              title: const Text("提示"),
+                              backgroundColor: themeConfig['backgroundColor'],
+                              title: Text("提示", style: TextStyle(color: themeConfig['textColor'])),
                               shape: const RoundedRectangleBorder(
                                 borderRadius: BorderRadius.all(Radius.circular(4))
                               ),
-                              content: Text("确认删除 ${widget.list[widget.index].name}？", style: const TextStyle(fontSize: 18)),
+                              content: Text("确认删除此条目？", style: TextStyle(fontSize: 18, color: themeConfig['textColor'])),
                               actions: <Widget>[
                                 MaterialButton(
                                   child: const Text("确认", style: TextStyle(color: Colors.red)),
@@ -97,7 +98,7 @@ class _GrammarItemPageState extends State<GrammarItemPage> {
                                   },
                                 ),
                                 MaterialButton(
-                                  child: const Text("取消"),
+                                  child: Text("取消", style: TextStyle(color: themeConfig['textColor'])),
                                   onPressed: () {
                                     Navigator.pop(context);
                                   },

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jlptgrammar/common/global.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AboutPage extends StatefulWidget {
@@ -106,9 +107,17 @@ class _AboutPageState extends State<AboutPage> {
                 color: themeConfig['lineColor'],
               ),
               ListTile(
-                title: Text("恢复初始设置", style: TextStyle(fontSize: 18, color: themeConfig['textColor'])),
-                onTap: () {
+                title: Text("恢复初始设置", style: TextStyle(fontSize: 18, color: /* themeConfig['textColor'] */ Colors.grey)),
+                onTap: () async {
                   print("恢复初始设置");
+                  SharedPreferences prefs = await SharedPreferences.getInstance();
+                  // TODO
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('开发中'),
+                      duration: Duration(seconds: 1),
+                    ),
+                  );
                 },
                 trailing: Icon(Icons.keyboard_arrow_right, color: themeConfig['drawerIconColor']),
               ),

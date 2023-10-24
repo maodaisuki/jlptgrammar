@@ -155,17 +155,29 @@ class _MenuDrawerState extends State<MenuDrawer> {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.outbox, color: themeConfig['drawerIconColor']),
-              title: Text("导出数据", style: TextStyle(color: themeConfig['textColor'])),
+              leading: Icon(Icons.outbox, color: /* themeConfig['drawerIconColor'] */ Colors.grey),
+              title: Text("导出数据", style: TextStyle(color: /* themeConfig['textColor'] */ Colors.grey)),
               onTap: () {
-
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('开发中'),
+                    duration: Duration(seconds: 1),
+                  ),
+                );
               },
             ),
             ListTile(
-              leading: Icon(Icons.sd_card, color: themeConfig['drawerIconColor']),
-              title: Text("导入数据", style: TextStyle(color: themeConfig['textColor'])),
+              leading: Icon(Icons.sd_card, color: /* themeConfig['drawerIconColor'] */ Colors.grey),
+              title: Text("导入数据", style: TextStyle(color: /* themeConfig['textColor'] */ Colors.grey)),
               onTap: () {
-
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('开发中'),
+                    duration: Duration(seconds: 1),
+                  ),
+                );
               },
             ),
             ListTile(
