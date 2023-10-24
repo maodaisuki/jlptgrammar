@@ -72,7 +72,7 @@ class _AboutPageState extends State<AboutPage> {
                               backgroundColor: themeConfig['backgroundColor'],
                               body: LicensePage(
                                 applicationName: '日本語文法',
-                                applicationVersion: 'v1.0.0',
+                                applicationVersion: 'v1.1.0',
                                 applicationIcon: Container(
                                   margin: const EdgeInsets.only(top: 10, bottom: 10),
                                   child: Image.asset(
