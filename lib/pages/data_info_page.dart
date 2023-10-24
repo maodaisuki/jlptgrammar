@@ -22,9 +22,10 @@ class _DataInfoPageState extends State<DataInfoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: themeConfig['backgroundColor'],
       appBar: AppBar(
-        title: Text("数据来源说明", style: TextStyle(color: titleColors[0])),
-        backgroundColor: Colors.deepPurple,
+        title: Text("数据来源说明", style: TextStyle(color: themeConfig['titleColor'])),
+        backgroundColor: themeConfig['themeColor'],
         leading: Builder(builder: (context) {
           return IconButton(
             icon: const Icon(Icons.arrow_back),
@@ -33,12 +34,12 @@ class _DataInfoPageState extends State<DataInfoPage> {
                   context
               );
             },
-            color: Colors.white,
+            color: themeConfig['iconColor'],
           );
         }),
       ),
       body: Container(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -56,7 +57,7 @@ class _DataInfoPageState extends State<DataInfoPage> {
                   textAlign: TextAlign.left,
                   text: TextSpan(
                     text: '本软件初始内容所有语法体条目及及其详细内容均来自网站',
-                    style: TextStyle(color: textColors[0], fontSize: 18, height: 1.5),
+                    style: TextStyle(color: themeConfig['textColor'], fontSize: 18, height: 1.5),
                     children: <TextSpan>[
                       TextSpan(
                         text: '毎日のんびり日本語教師',

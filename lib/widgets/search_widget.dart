@@ -14,14 +14,14 @@ class GrammarSearchDelegate extends SearchDelegate {
   ThemeData appBarTheme(BuildContext context) {
     return ThemeData(
         appBarTheme: AppBarTheme(
-          backgroundColor: themes[0],
+          backgroundColor: themeConfig['themeColor']
         ),
         inputDecorationTheme: const InputDecorationTheme(
           border: InputBorder.none,
           hintStyle: TextStyle(color: Colors.white70),
         ),
         textTheme: Theme.of(context).textTheme.copyWith(
-              titleLarge: TextStyle(color: textColors[1]),
+              titleLarge: const TextStyle(color: Colors.white),
             ),
         textSelectionTheme: const TextSelectionThemeData(
           selectionColor: Colors.blue,
@@ -34,6 +34,7 @@ class GrammarSearchDelegate extends SearchDelegate {
     return Theme(
       data: appBarTheme(context),
       child: Scaffold(
+        backgroundColor: themeConfig['backgroundColor'],
         appBar: AppBar(
           title: const Text("Search"),
         ),
@@ -50,7 +51,7 @@ class GrammarSearchDelegate extends SearchDelegate {
   List<Widget> buildActions(BuildContext context) {
     return [
       IconButton(
-        icon: const Icon(Icons.clear, color: Colors.white),
+        icon: Icon(Icons.clear, color: themeConfig['iconColor']),
         onPressed: () {
           query = '';
         },
@@ -61,7 +62,7 @@ class GrammarSearchDelegate extends SearchDelegate {
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
-      icon: const Icon(Icons.arrow_back, color: Colors.white),
+      icon: Icon(Icons.arrow_back, color: themeConfig['iconColor']),
       onPressed: () {
         close(context, null);
       },
@@ -86,10 +87,13 @@ class GrammarSearchDelegate extends SearchDelegate {
       }
     }
     if(tempResult.isEmpty) {
-      return const Center(
-        child: Text(
-          '没有匹配结果',
-          style: TextStyle(fontSize: 18),
+      return Container(
+        color: themeConfig['backgroundColor'],
+        child: Center(
+          child: Text(
+            '没有匹配结果',
+            style: TextStyle(fontSize: 18, color: themeConfig['textColor']),
+          ),
         ),
       );
     }
@@ -97,8 +101,9 @@ class GrammarSearchDelegate extends SearchDelegate {
         valueListenable: g,
         builder: (BuildContext context, int value, Widget? child) {
           print("重构搜索结果");
-          return Center(
-            child: ListView.builder(
+          return Scaffold(
+            backgroundColor: themeConfig['backgroundColor'],
+            body: ListView.builder(
                 itemCount: tempResult.length,
                 itemBuilder: (context, index) {
                   return GrammarListItem(
@@ -137,8 +142,10 @@ class GrammarSearchDelegate extends SearchDelegate {
     //         );
     //       }),
     // );
-    return const Center(
-      child: Text("回车键搜索", style: TextStyle(fontSize: 18)),
-    );
+    return Container(
+      color: themeConfig['backgroundColor'],
+      child: Center(
+        child: Text("回车键搜索", style: TextStyle(fontSize: 18, color: themeConfig['textColor'])),
+    ));
   }
 }

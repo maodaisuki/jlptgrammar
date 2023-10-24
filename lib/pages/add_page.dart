@@ -19,7 +19,7 @@ class _GrammarItemAddPageState extends State<GrammarItemAddPage> {
   TextEditingController textEditingController3 = TextEditingController();
   TextEditingController textEditingController4 = TextEditingController();
   TextEditingController textEditingController5 = TextEditingController();
-  // 添加其他文本框的TextEditingController
+
 
   @override
   void dispose() {
@@ -36,28 +36,31 @@ class _GrammarItemAddPageState extends State<GrammarItemAddPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: themeConfig['backgroundColor'],
       appBar: AppBar(
-        title: Text(widget.title, style: const TextStyle(color: Colors.white)),
-        backgroundColor: Colors.deepPurple,
+        title: Text(widget.title, style: TextStyle(color: themeConfig['titleColor'])),
+        backgroundColor: themeConfig['themeColor'],
         leading: Builder(builder: (context) {
           return IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
               Navigator.pop(context);
             },
-            color: Colors.white,
+            color: themeConfig['iconColor'],
           );
         }),
         actions: [
           DropdownButton(
-            style: TextStyle(color: textColors[0]),
-            icon: Icon(Icons.arrow_drop_down_rounded, color: titleColors[0],),
+            style: TextStyle(color: themeConfig['textColor']),
+            dropdownColor: themeConfig['backgroundColor'],
+            icon: Icon(Icons.arrow_drop_down_rounded, color: themeConfig['iconColor']),
             value: setLevel,
             items: levelArray.map((String item) => DropdownMenuItem<String>(
               key: Key(item),
               value: item,
               child: Text(item, style: TextStyle(
-                color: item == setLevel ? themes[0] : textColors[0]
+                // TODO 这里需要一种选择色
+                color: item == setLevel ? themeConfig['textColor'] : themeConfig['textColor']
               )),
             )).toList(),
             // 自定义选中项显示
@@ -66,7 +69,7 @@ class _GrammarItemAddPageState extends State<GrammarItemAddPage> {
                 return Center(
                   child: Text(
                     item,
-                    style: TextStyle(color: titleColors[0]),
+                    style: TextStyle(color: themeConfig['titleColor']),
                   ),
                 );
               }).toList();
@@ -91,17 +94,28 @@ class _GrammarItemAddPageState extends State<GrammarItemAddPage> {
                     margin: const EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 20),
                     child: TextField(
                       controller: textEditingController1,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         labelText: '文型',
                         labelStyle: TextStyle(
-                          fontSize: 18,
+                          fontSize: double.parse(setFontSize),
+                          color: themeConfig['labelColor']
                         ),
-                        border: OutlineInputBorder(),
+                        floatingLabelStyle: TextStyle(
+                          fontSize: 18,
+                          color: themeConfig['floatingLabelColor']
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: themeConfig['enabledBorderColor'], width: 1)
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: themeConfig['focusedBorderColor'], width: 2)
+                        )
                       ),
                       maxLines: 1,
                       style: TextStyle(
                         fontSize: double.parse(setFontSize),
                         height: 1.5,  // 1.5 倍行高
+                        color: themeConfig['textColor']
                       ),
                     ),
                   ),
@@ -126,17 +140,28 @@ class _GrammarItemAddPageState extends State<GrammarItemAddPage> {
                         margin: const EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 20),
                         child: TextField(
                           controller: textEditingController2,
-                          decoration: const InputDecoration(
-                            labelText: '接続',
-                            labelStyle: TextStyle(
-                              fontSize: 18,
-                            ),
-                            border: OutlineInputBorder(),
+                          decoration: InputDecoration(
+                              labelText: '接続',
+                              labelStyle: TextStyle(
+                                  fontSize: double.parse(setFontSize),
+                                  color: themeConfig['labelColor']
+                              ),
+                              floatingLabelStyle: TextStyle(
+                                  fontSize: 18,
+                                  color: themeConfig['floatingLabelColor']
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: themeConfig['enabledBorderColor'], width: 1)
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: themeConfig['focusedBorderColor'], width: 2)
+                              )
                           ),
                           maxLines: lines < maxLines ? null : maxLines,
                           style: TextStyle(
-                            fontSize: double.parse(setFontSize),
-                            height: 1.5,  // 1.5 倍行高
+                              fontSize: double.parse(setFontSize),
+                              height: 1.5,  // 1.5 倍行高
+                              color: themeConfig['textColor']
                           ),
                         ),
                       );
@@ -163,17 +188,28 @@ class _GrammarItemAddPageState extends State<GrammarItemAddPage> {
                         margin: const EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 20),
                         child: TextField(
                           controller: textEditingController3,
-                          decoration: const InputDecoration(
-                            labelText: '意味',
-                            labelStyle: TextStyle(
-                              fontSize: 18,
-                            ),
-                            border: OutlineInputBorder(),
+                          decoration: InputDecoration(
+                              labelText: '意味',
+                              labelStyle: TextStyle(
+                                  fontSize: double.parse(setFontSize),
+                                  color: themeConfig['labelColor']
+                              ),
+                              floatingLabelStyle: TextStyle(
+                                  fontSize: 18,
+                                  color: themeConfig['floatingLabelColor']
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: themeConfig['enabledBorderColor'], width: 1)
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: themeConfig['focusedBorderColor'], width: 2)
+                              )
                           ),
                           maxLines: lines < maxLines ? null : maxLines,
                           style: TextStyle(
-                            fontSize: double.parse(setFontSize),
-                            height: 1.5,  // 1.5 倍行高
+                              fontSize: double.parse(setFontSize),
+                              height: 1.5,  // 1.5 倍行高
+                              color: themeConfig['textColor']
                           ),
                         ),
                       );
@@ -200,17 +236,28 @@ class _GrammarItemAddPageState extends State<GrammarItemAddPage> {
                         margin: const EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 20),
                         child: TextField(
                           controller: textEditingController4,
-                          decoration: const InputDecoration(
-                            labelText: '例文',
-                            labelStyle: TextStyle(
-                              fontSize: 18,
-                            ),
-                            border: OutlineInputBorder(),
+                          decoration: InputDecoration(
+                              labelText: '例文',
+                              labelStyle: TextStyle(
+                                  fontSize: double.parse(setFontSize),
+                                  color: themeConfig['labelColor']
+                              ),
+                              floatingLabelStyle: TextStyle(
+                                  fontSize: 18,
+                                  color: themeConfig['floatingLabelColor']
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: themeConfig['enabledBorderColor'], width: 1)
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: themeConfig['focusedBorderColor'], width: 2)
+                              )
                           ),
                           maxLines: lines < maxLines ? null : maxLines,
                           style: TextStyle(
-                            fontSize: double.parse(setFontSize),
-                            height: 1.5,  // 1.5 倍行高
+                              fontSize: double.parse(setFontSize),
+                              height: 1.5,  // 1.5 倍行高
+                              color: themeConfig['textColor']
                           ),
                         ),
                       );
@@ -237,17 +284,28 @@ class _GrammarItemAddPageState extends State<GrammarItemAddPage> {
                         margin: const EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 20),
                         child: TextField(
                           controller: textEditingController5,
-                          decoration: const InputDecoration(
-                            labelText: 'ノート',
-                            labelStyle: TextStyle(
-                              fontSize: 18,
-                            ),
-                            border: OutlineInputBorder(),
+                          decoration: InputDecoration(
+                              labelText: 'ノート',
+                              labelStyle: TextStyle(
+                                  fontSize: double.parse(setFontSize),
+                                  color: themeConfig['labelColor']
+                              ),
+                              floatingLabelStyle: TextStyle(
+                                  fontSize: 18,
+                                  color: themeConfig['floatingLabelColor']
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: themeConfig['enabledBorderColor'], width: 1)
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: themeConfig['focusedBorderColor'], width: 2)
+                              )
                           ),
                           maxLines: lines < maxLines ? null : maxLines,
                           style: TextStyle(
-                            fontSize: double.parse(setFontSize),
-                            height: 1.5,  // 1.5 倍行高
+                              fontSize: double.parse(setFontSize),
+                              height: 1.5,  // 1.5 倍行高
+                              color: themeConfig['textColor']
                           ),
                         ),
                       );
@@ -257,6 +315,9 @@ class _GrammarItemAddPageState extends State<GrammarItemAddPage> {
                   onPressed: () {
                     if(textEditingController1.text.isEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('请至少输入文型～'), duration: Duration(seconds: 1)));
+                      setState(() {
+
+                      });
                     }
                     else { // 条目写入数据库后刷新数据
                       TextTool t = TextTool();
@@ -307,8 +368,8 @@ class _GrammarItemAddPageState extends State<GrammarItemAddPage> {
                   },
                   minWidth: double.infinity,
                   height: 50.0,
-                  color: themes[0],
-                  textColor: titleColors[0],
+                  color: themeConfig['themeColor'],
+                  textColor: themeConfig['titleColor'],
                   child: const Text(
                     "添加",
                     style: TextStyle(fontSize: 20)

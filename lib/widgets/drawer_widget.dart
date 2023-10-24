@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jlptgrammar/common/global.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MenuDrawer extends StatefulWidget {
   const MenuDrawer({
@@ -20,20 +21,45 @@ class _MenuDrawerState extends State<MenuDrawer> {
         return false;
       },
       child: Drawer(
+        backgroundColor: themeConfig['backgroundColor'],
         child: ListView(
           // TODO 添加条目
           children: [
-            const ListTile(
-              title: Text('Grammar'),
+            ListTile(
+              title: Text('日本語文法', style: TextStyle(color: themeConfig['textColor'])),
+              trailing: IconButton(
+                onPressed: () async {
+                  Scaffold.of(context).closeDrawer();
+                  SharedPreferences prefs = await SharedPreferences.getInstance();
+                  // 主题切换模式
+                  setState(() {
+                    if(isLightTheme) {
+                      themeConfig = nightTheme;
+                      g.value = g.value + 1;
+                      isLightTheme = !isLightTheme;
+                      prefs.setBool('isLightTheme', isLightTheme);
+                    }
+                    else {
+                      themeConfig = lightTheme;
+                      g.value = g.value + 1;
+                      isLightTheme = !isLightTheme;
+                      prefs.setBool('isLightTheme', isLightTheme);
+                    }
+                  });
+                },
+                icon: isLightTheme
+                  ? Icon(Icons.nightlight, color: themeConfig['drawerIconColor'])
+                  : Icon(Icons.wb_sunny, color: themeConfig['drawerIconColor']),
+              ),
             ),
-            const Divider(
+            Divider(
               height: 0.5,
               indent: 0,
-              color: Colors.black12,
+              color: themeConfig['lineColor'],
             ),
             ListTile(
-              leading: const Icon(Icons.book),
-              title: const Text("JLPT N5"),
+              leading: Icon(Icons.book, color: themeConfig['drawerIconColor']),
+              title:Text("JLPT N5", style: TextStyle(color: themeConfig['textColor'])),
               onTap: () {
                 // 关闭抽屉
                 Scaffold.of(context).closeDrawer();
@@ -41,8 +67,8 @@ class _MenuDrawerState extends State<MenuDrawer> {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.book),
-              title: const Text("JLPT N4"),
+              leading: Icon(Icons.book, color: themeConfig['drawerIconColor']),
+              title: Text("JLPT N4", style: TextStyle(color: themeConfig['textColor'])),
               onTap: () {
                 // 关闭抽屉
                 Scaffold.of(context).closeDrawer();
@@ -50,8 +76,8 @@ class _MenuDrawerState extends State<MenuDrawer> {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.book),
-              title: const Text("JLPT N3"),
+              leading: Icon(Icons.book, color: themeConfig['drawerIconColor']),
+              title: Text("JLPT N3", style: TextStyle(color: themeConfig['textColor'])),
               onTap: () {
                 // 关闭抽屉
                 Scaffold.of(context).closeDrawer();
@@ -59,8 +85,8 @@ class _MenuDrawerState extends State<MenuDrawer> {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.book),
-              title: const Text("JLPT N2"),
+              leading: Icon(Icons.book, color: themeConfig['drawerIconColor']),
+              title: Text("JLPT N2", style: TextStyle(color: themeConfig['textColor'])),
               onTap: () {
                 // 关闭抽屉
                 Scaffold.of(context).closeDrawer();
@@ -68,8 +94,8 @@ class _MenuDrawerState extends State<MenuDrawer> {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.book),
-              title: const Text("JLPT N1"),
+              leading: Icon(Icons.book, color: themeConfig['drawerIconColor']),
+              title: Text("JLPT N1", style: TextStyle(color: themeConfig['textColor'])),
               onTap: () {
                 // 关闭抽屉
                 Scaffold.of(context).closeDrawer();
@@ -77,8 +103,8 @@ class _MenuDrawerState extends State<MenuDrawer> {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.book),
-              title: const Text("方言文法"),
+              leading: Icon(Icons.book, color: themeConfig['drawerIconColor']),
+              title: Text("方言文法", style: TextStyle(color: themeConfig['textColor'])),
               onTap: () {
                 // 关闭抽屉
                 Scaffold.of(context).closeDrawer();
@@ -86,8 +112,8 @@ class _MenuDrawerState extends State<MenuDrawer> {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.book),
-              title: const Text("其他语法"),
+              leading: Icon(Icons.book, color: themeConfig['drawerIconColor']),
+              title: Text("其他语法", style: TextStyle(color: themeConfig['textColor'])),
               onTap: () {
                 // 关闭抽屉
                 Scaffold.of(context).closeDrawer();
@@ -97,52 +123,54 @@ class _MenuDrawerState extends State<MenuDrawer> {
             const ListTile(
               title: Text(''),
             ),
-            const ListTile(
-              title: Text('设置'),
+            ListTile(
+              title: Text('设置', style: TextStyle(color: themeConfig['textColor'])),
             ),
-            const Divider(
+            Divider(
               height: 0.5,
               indent: 0,
-              color: Colors.black12,
+              color: themeConfig['lineColor'],
             ),
             ListTile(
-              leading: const Icon(Icons.text_fields),
-              title: const Text('文本大小'),
+              leading: Icon(Icons.text_fields, color: themeConfig['drawerIconColor']),
+              title: Text('文本大小', style: TextStyle(color: themeConfig['textColor'])),
               trailing: DropdownButton(
-                icon: const Icon(Icons.arrow_drop_down_rounded, color: Colors.black,),
+                dropdownColor: themeConfig['backgroundColor'],
+                icon: Icon(Icons.arrow_drop_down_rounded, color: themeConfig['drawerIconColor']),
                 value: setFontSize,
+                style: TextStyle(color: themeConfig['textColor']),
                 items: fontSizeArray.map((String item) => DropdownMenuItem<String>(
                   key: Key(item),
                   value: item,
                   child: Text(item),
                 )).toList(),
-                onChanged: (value) {
+                onChanged: (value) async {
                   setState(() {
                     setFontSize = value!;
                   });
+                  SharedPreferences prefs = await SharedPreferences.getInstance();
+                  prefs.setString('setFontSize', setFontSize);
                 },
                 underline: Container(),
               ),
             ),
             ListTile(
-              leading: const Icon(Icons.outbox),
-              title: const Text("导出数据"),
+              leading: Icon(Icons.outbox, color: themeConfig['drawerIconColor']),
+              title: Text("导出数据", style: TextStyle(color: themeConfig['textColor'])),
               onTap: () {
 
               },
-              enabled: false,
             ),
             ListTile(
-              leading: const Icon(Icons.sd_card),
-              title: const Text("导入数据"),
+              leading: Icon(Icons.sd_card, color: themeConfig['drawerIconColor']),
+              title: Text("导入数据", style: TextStyle(color: themeConfig['textColor'])),
               onTap: () {
 
               },
-              enabled: false,
             ),
             ListTile(
-              leading: const Icon(Icons.info),
-              title: const Text("关于"),
+              leading: Icon(Icons.info, color: themeConfig['drawerIconColor']),
+              title: Text("关于", style: TextStyle(color: themeConfig['textColor'])),
               onTap: () {
                 Scaffold.of(context).closeDrawer();
                 Navigator.of(context).pushNamed('/about');

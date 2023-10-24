@@ -42,16 +42,17 @@ class _GrammarItemEditPageState extends State<GrammarItemEditPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: themeConfig['backgroundColor'],
       appBar: AppBar(
-        title: Text(widget.title, style: const TextStyle(color: Colors.white)),
-        backgroundColor: Colors.deepPurple,
+        title: Text(widget.title, style: TextStyle(color: themeConfig['titleColor'])),
+        backgroundColor: themeConfig['themeColor'],
         leading: Builder(builder: (context) {
           return IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
               Navigator.pop(context);
             },
-            color: Colors.white,
+            color: themeConfig['iconColor'],
           );
         }),
       ),
@@ -66,17 +67,28 @@ class _GrammarItemEditPageState extends State<GrammarItemEditPage> {
                   margin: const EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 20),
                   child: TextField(
                     controller: textEditingController1..text = widget.list[widget.index].name ?? "",
-                    decoration: const InputDecoration(
-                      labelText: '文型',
-                      labelStyle: TextStyle(
-                        fontSize: 18,
-                      ),
-                      border: OutlineInputBorder(),
+                    decoration: InputDecoration(
+                        labelText: '文型',
+                        labelStyle: TextStyle(
+                            fontSize: double.parse(setFontSize),
+                            color: themeConfig['labelColor']
+                        ),
+                        floatingLabelStyle: TextStyle(
+                            fontSize: 18,
+                            color: themeConfig['floatingLabelColor']
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: themeConfig['enabledBorderColor'], width: 1)
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: themeConfig['focusedBorderColor'], width: 2)
+                        )
                     ),
                     maxLines: 1,
                     style: TextStyle(
-                      fontSize: double.parse(setFontSize),
-                      height: 1.5,  // 1.5 倍行高
+                        fontSize: double.parse(setFontSize),
+                        height: 1.5,  // 1.5 倍行高
+                        color: themeConfig['textColor']
                     ),
                   ),
                 ),
@@ -101,17 +113,28 @@ class _GrammarItemEditPageState extends State<GrammarItemEditPage> {
                         margin: const EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 20),
                         child: TextField(
                           controller: textEditingController2..text = widget.list[widget.index].grammar ?? "",
-                          decoration: const InputDecoration(
-                            labelText: '接続',
-                            labelStyle: TextStyle(
-                              fontSize: 18,
-                            ),
-                            border: OutlineInputBorder(),
+                          decoration: InputDecoration(
+                              labelText: '接続',
+                              labelStyle: TextStyle(
+                                  fontSize: double.parse(setFontSize),
+                                  color: themeConfig['labelColor']
+                              ),
+                              floatingLabelStyle: TextStyle(
+                                  fontSize: 18,
+                                  color: themeConfig['floatingLabelColor']
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: themeConfig['enabledBorderColor'], width: 1)
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: themeConfig['focusedBorderColor'], width: 2)
+                              )
                           ),
                           maxLines: lines < maxLines ? null : maxLines,
                           style: TextStyle(
-                            fontSize: double.parse(setFontSize),
-                            height: 1.5,  // 1.5 倍行高
+                              fontSize: double.parse(setFontSize),
+                              height: 1.5,  // 1.5 倍行高
+                              color: themeConfig['textColor']
                           ),
                         ),
                       );
@@ -138,17 +161,28 @@ class _GrammarItemEditPageState extends State<GrammarItemEditPage> {
                         margin: const EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 20),
                         child: TextField(
                           controller: textEditingController3..text = widget.list[widget.index].mean ?? "",
-                          decoration: const InputDecoration(
-                            labelText: '意味',
-                            labelStyle: TextStyle(
-                              fontSize: 18,
-                            ),
-                            border: OutlineInputBorder(),
+                          decoration: InputDecoration(
+                              labelText: '意味',
+                              labelStyle: TextStyle(
+                                  fontSize: double.parse(setFontSize),
+                                  color: themeConfig['labelColor']
+                              ),
+                              floatingLabelStyle: TextStyle(
+                                  fontSize: 18,
+                                  color: themeConfig['floatingLabelColor']
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: themeConfig['enabledBorderColor'], width: 1)
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: themeConfig['focusedBorderColor'], width: 2)
+                              )
                           ),
                           maxLines: lines < maxLines ? null : maxLines,
                           style: TextStyle(
-                            fontSize: double.parse(setFontSize),
-                            height: 1.5,  // 1.5 倍行高
+                              fontSize: double.parse(setFontSize),
+                              height: 1.5,  // 1.5 倍行高
+                              color: themeConfig['textColor']
                           ),
                         ),
                       );
@@ -175,17 +209,28 @@ class _GrammarItemEditPageState extends State<GrammarItemEditPage> {
                         margin: const EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 20),
                         child: TextField(
                           controller: textEditingController4..text = widget.list[widget.index].example ?? "",
-                          decoration: const InputDecoration(
-                            labelText: '例文',
-                            labelStyle: TextStyle(
-                              fontSize: 18,
-                            ),
-                            border: OutlineInputBorder(),
+                          decoration: InputDecoration(
+                              labelText: '例文',
+                              labelStyle: TextStyle(
+                                  fontSize: double.parse(setFontSize),
+                                  color: themeConfig['labelColor']
+                              ),
+                              floatingLabelStyle: TextStyle(
+                                  fontSize: 18,
+                                  color: themeConfig['floatingLabelColor']
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: themeConfig['enabledBorderColor'], width: 1)
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: themeConfig['focusedBorderColor'], width: 2)
+                              )
                           ),
                           maxLines: lines < maxLines ? null : maxLines,
                           style: TextStyle(
-                            fontSize: double.parse(setFontSize),
-                            height: 1.5,  // 1.5 倍行高
+                              fontSize: double.parse(setFontSize),
+                              height: 1.5,  // 1.5 倍行高
+                              color: themeConfig['textColor']
                           ),
                         ),
                       );
@@ -212,17 +257,28 @@ class _GrammarItemEditPageState extends State<GrammarItemEditPage> {
                         margin: const EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 20),
                         child: TextField(
                           controller: textEditingController5..text = widget.list[widget.index].notes ?? "",
-                          decoration: const InputDecoration(
-                            labelText: 'ノート',
-                            labelStyle: TextStyle(
-                              fontSize: 18,
-                            ),
-                            border: OutlineInputBorder(),
+                          decoration: InputDecoration(
+                              labelText: 'ノート',
+                              labelStyle: TextStyle(
+                                  fontSize: double.parse(setFontSize),
+                                  color: themeConfig['labelColor']
+                              ),
+                              floatingLabelStyle: TextStyle(
+                                  fontSize: 18,
+                                  color: themeConfig['floatingLabelColor']
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: themeConfig['enabledBorderColor'], width: 1)
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: themeConfig['focusedBorderColor'], width: 2)
+                              )
                           ),
                           maxLines: lines < maxLines ? null : maxLines,
                           style: TextStyle(
-                            fontSize: double.parse(setFontSize),
-                            height: 1.5,  // 1.5 倍行高
+                              fontSize: double.parse(setFontSize),
+                              height: 1.5,  // 1.5 倍行高
+                              color: themeConfig['textColor']
                           ),
                         ),
                       );
@@ -253,8 +309,8 @@ class _GrammarItemEditPageState extends State<GrammarItemEditPage> {
                   },
                   minWidth: double.infinity,
                   height: 50.0,
-                  color: themes[0],
-                  textColor: titleColors[0],
+                  color: themeConfig['themeColor'],
+                  textColor: themeConfig['titleColor'],
                   child: const Text(
                     "更新",
                     style: TextStyle(fontSize: 20)

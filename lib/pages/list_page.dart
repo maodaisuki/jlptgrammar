@@ -24,10 +24,11 @@ class _GrammarListPageState extends State<GrammarListPage> {
         valueListenable: g,
         builder: (BuildContext context, int value, Widget? child) {
           return Scaffold(
+            backgroundColor: themeConfig['backgroundColor'],
             appBar: AppBar(
               // 根据等级匹配标题 TODO
-              title: Text(widget.title, style: TextStyle(color: titleColors[0])),
-              backgroundColor: Colors.deepPurple,
+              title: Text(widget.title, style: TextStyle(color: themeConfig['titleColor'])),
+              backgroundColor: themeConfig['themeColor'],
               leading: Builder(builder: (context) {
                 return IconButton(
                   icon: const Icon(Icons.arrow_back),
@@ -36,7 +37,7 @@ class _GrammarListPageState extends State<GrammarListPage> {
                         context
                     );
                   },
-                  color: Colors.white,
+                  color: themeConfig['iconColor'],
                 );
               }),
               actions: <Widget>[
@@ -45,34 +46,38 @@ class _GrammarListPageState extends State<GrammarListPage> {
                     showSearch(context: context, delegate: GrammarSearchDelegate(grammarList: widget.list));
                   },
                   icon: const Icon(Icons.search),
-                  color: Colors.white,
+                  color: themeConfig['iconColor'],
                 ),
               ],
             ),
 
             body: widget.list.isEmpty
-                ? const Center(
-                child: Center(
-                  child: Text("当前没有数据", style: TextStyle(fontSize: 20)),
-                )
-            )
+                ? Center(
+                    child: Text("当前没有数据",
+                      style: TextStyle(fontSize: 20, color: themeConfig['textColor'])
+                    )
+                  )
                 : Center(
-              child: ListView.builder(
-                  itemCount: widget.list.length,
-                  itemBuilder: (context, index) {
-                    return GrammarListItem(grammarList: widget.list, index: index);
-                  }
-              ),
-            ),
+                  child: ListView.builder(
+                    itemCount: widget.list.length,
+                    itemBuilder: (context, index) {
+                      return GrammarListItem(grammarList: widget.list, index: index);
+                    }
+                  ),
+                ),
             floatingActionButton: FloatingActionButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              backgroundColor: themeConfig['floatingActionButtonBackgroundColor'],
               onPressed: () {
                 Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const GrammarItemAddPage(title: '添加条目'),
-                ));
+                    context,
+                    MaterialPageRoute(builder: (context) => const GrammarItemAddPage(title: '添加条目'),
+                    ));
               },
               tooltip: 'Add item',
-              child: const Icon(Icons.add),
+              child: Icon(Icons.add, color: themeConfig['floatingActionButtonIconColor'], size: 30),
             ),
           );
        }

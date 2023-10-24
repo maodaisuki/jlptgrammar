@@ -21,9 +21,10 @@ class _AboutPageState extends State<AboutPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: themeConfig['backgroundColor'],
       appBar: AppBar(
-        title: Text("关于软件", style: TextStyle(color: titleColors[0])),
-        backgroundColor: Colors.deepPurple,
+        title: Text("关于软件", style: TextStyle(color: themeConfig['titleColor'])),
+        backgroundColor: themeConfig['themeColor'],
         leading: Builder(builder: (context) {
           return IconButton(
             icon: const Icon(Icons.arrow_back),
@@ -32,18 +33,18 @@ class _AboutPageState extends State<AboutPage> {
                   context
               );
             },
-            color: Colors.white,
+            color: themeConfig['iconColor'],
           );
         }),
       ),
       body: Container(
-        color: Colors.white,
+        color: themeConfig['backgroundColor'],
         margin: const EdgeInsets.all(0),
         child: SingleChildScrollView(
           child: Column(
             children: [
               ListTile(
-                title: const Text("开放源代码许可", style: TextStyle(fontSize: 18)),
+                title: Text("开放源代码许可", style: TextStyle(fontSize: 18, color: themeConfig['textColor'])),
                 onTap: () {
                   print("开放源代码许可");
                   // Navigator.of(context).pushNamed('/source');
@@ -52,69 +53,72 @@ class _AboutPageState extends State<AboutPage> {
                           builder: (context) => Theme(
                             data: ThemeData(
                                 appBarTheme: AppBarTheme(
-                                  backgroundColor: themes[0],
+                                  backgroundColor: themeConfig['themeColor'],
                                   iconTheme: Theme.of(context).iconTheme.copyWith(
-                                    color: iconColors[0],
+                                    color: themeConfig['iconColor'],
                                   ),
-                                  titleTextStyle: TextStyle(color: titleColors[0], fontSize: 23),
+                                  titleTextStyle: TextStyle(color: themeConfig['titleColor'], fontSize: 23),
                                 ),
 
                                 textTheme: Theme.of(context).textTheme.copyWith(
-                                  titleLarge: TextStyle(color: titleColors[0]),
-                                  titleMedium: TextStyle(color: titleColors[0]),
-                                  titleSmall: TextStyle(color: titleColors[0]),
+                                  titleLarge: TextStyle(color: themeConfig['titleColor']),
+                                  titleMedium: TextStyle(color: themeConfig['titleColor']),
+                                  titleSmall: TextStyle(color: themeConfig['titleColor']),
                                 ),
                             ),
-                            child: LicensePage(
-                              applicationName: '日本語文法',
-                              applicationVersion: 'v1.0.0',
-                              applicationIcon: Container(
-                                margin: const EdgeInsets.only(top: 10, bottom: 10),
-                                child: Image.asset(
-                                  'lib/assets/jlptgrammar.png',
-                                  height: 80,
-                                  width: 80,
+                            child: Scaffold(
+                              // TODO 夜间模式适配
+                              backgroundColor: themeConfig['backgroundColor'],
+                              body: LicensePage(
+                                applicationName: '日本語文法',
+                                applicationVersion: 'v1.0.0',
+                                applicationIcon: Container(
+                                  margin: const EdgeInsets.only(top: 10, bottom: 10),
+                                  child: Image.asset(
+                                    'lib/assets/jlptgrammar.png',
+                                    height: 80,
+                                    width: 80,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                   ));
                 },
-                trailing: const Icon(Icons.keyboard_arrow_right),
+                trailing: Icon(Icons.keyboard_arrow_right, color: themeConfig['drawerIconColor']),
               ),
-              const Divider(
+              Divider(
                 height: 0.5,
                 indent: 0,
-                color: Colors.black12,
+                color: themeConfig['lineColor'],
               ),
               ListTile(
-                title: const Text("数据来源说明", style: TextStyle(fontSize: 18)),
+                title: Text("数据来源说明", style: TextStyle(fontSize: 18, color: themeConfig['textColor'])),
                 onTap: () {
                   print("数据来源说明");
                   Navigator.of(context).pushNamed('/datainfo');
                 },
-                trailing: const Icon(Icons.keyboard_arrow_right),
+                trailing: Icon(Icons.keyboard_arrow_right, color: themeConfig['drawerIconColor']),
               ),
-              const Divider(
+              Divider(
                 height: 0.5,
                 indent: 0,
-                color: Colors.black12,
+                color: themeConfig['lineColor'],
               ),
               ListTile(
-                title: const Text("恢复初始设置", style: TextStyle(fontSize: 18)),
+                title: Text("恢复初始设置", style: TextStyle(fontSize: 18, color: themeConfig['textColor'])),
                 onTap: () {
                   print("恢复初始设置");
                 },
-                trailing: const Icon(Icons.keyboard_arrow_right),
-                enabled: false,
+                trailing: Icon(Icons.keyboard_arrow_right, color: themeConfig['drawerIconColor']),
               ),
-              const Divider(
+              Divider(
                 height: 0.5,
                 indent: 0,
-                color: Colors.black12,
+                color: themeConfig['lineColor'],
               ),
               ListTile(
-                title: const Text("Github 仓库", style: TextStyle(fontSize: 18)),
+                title: Text("Github 仓库", style: TextStyle(fontSize: 18, color: themeConfig['textColor'])),
                 onTap: () {
                   // TODO 更好的关于弹窗页面
                   print("Github 仓库");
@@ -122,12 +126,12 @@ class _AboutPageState extends State<AboutPage> {
                   print("搜索链接: $url");
                   openURL(Uri.parse(url));
                 },
-                trailing: const Icon(Icons.keyboard_arrow_right),
+                trailing: Icon(Icons.keyboard_arrow_right, color: themeConfig['drawerIconColor']),
               ),
-              const Divider(
+              Divider(
                 height: 0.5,
                 indent: 0,
-                color: Colors.black12,
+                color: themeConfig['lineColor'],
               ),
             ],
           ),

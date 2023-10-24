@@ -44,6 +44,7 @@ dependencies:
   #  这个包预计在下一个版本使用
   permission_handler: ^11.0.1
   flutter_native_splash: ^2.3.4
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_test:

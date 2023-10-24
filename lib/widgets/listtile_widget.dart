@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jlptgrammar/common/global.dart';
 import 'package:jlptgrammar/pages/item_page.dart';
 
 class GrammarListItem extends StatefulWidget {
@@ -20,7 +21,7 @@ class _GrammarListItemState extends State<GrammarListItem>{
     return Column(
       children: [
         ListTile(
-          title: Text((widget.grammarList[widget.index].name).toString(), style: const TextStyle(fontSize: 18)),
+          title: Text((widget.grammarList[widget.index].name).toString(), style: TextStyle(fontSize: 18, color: themeConfig['textColor'])),
           // TODO bug: 处理回退按钮状态
           onTap: () {
             Navigator.push(
@@ -28,12 +29,12 @@ class _GrammarListItemState extends State<GrammarListItem>{
               MaterialPageRoute(builder: (context) => GrammarItemPage(list: widget.grammarList, index: widget.index)),
             );
           },
-          trailing: const Icon(Icons.keyboard_arrow_right),
+          trailing: Icon(Icons.keyboard_arrow_right, color: themeConfig['drawIconColor']),
         ),
-        const Divider(
+        Divider(
           height: 0.5,
           indent: 0,
-          color: Colors.black12,
+          color: themeConfig['lineColor'],
         ),
       ],
     );

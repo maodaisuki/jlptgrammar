@@ -9,20 +9,31 @@ import 'package:jlptgrammar/common/global.dart';
 import 'package:jlptgrammar/pages/list_page.dart';
 import 'package:jlptgrammar/widgets/listtile_widget.dart';
 import 'package:jlptgrammar/widgets/search_widget.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   print("运行APP");
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  setFontSize = await prefs.getString('setFontSize') ?? '18';
+  print('setFontSize: $setFontSize');
+  isLightTheme = await prefs.getBool('isLightTheme') ?? true;
+  print('isLightTheme: $isLightTheme');
+  themeConfig = (await isLightTheme) ? lightTheme : nightTheme;
+  print("配置获取完成");
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
   // This widget is the root of your application.
+
+  Future<SharedPreferences> prefs = SharedPreferences.getInstance();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'JLPT Grammar',
+      title: 'All Grammar',
       routes:  <String, WidgetBuilder> {
         '/n1': (context) => GrammarListPage(list: grammar.listN1, title: "JLPT N1"),
         '/n2': (context) => GrammarListPage(list: grammar.listN2, title: "JLPT N2"),
@@ -37,10 +48,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         // TODO 自定义水波纹 || 消除 bug
         splashFactory: NoSplash.splashFactory,
-        colorScheme: ColorScheme.fromSeed(seedColor: themes[0]),
+        // colorScheme: ColorScheme.fromSeed(seedColor: themeConfig['themeColor']),
+        // 固定颜色
+        primaryColor: themeConfig['themeColor'],
         useMaterial3: true,
       ),
-      home: const HomePage(title: "JLPT Grammar")
+      home: const HomePage(title: "All Grammar"),
     );
   }
 }
@@ -54,8 +67,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>  with AutomaticKeepAliveClientMixin {
   DateTime? lastPressTime; //上次点击时间
-  late Future<String> initData;
   Grammar allGrammar = grammar;
+
 
   Future<String> fetchData() async {
     return "fetchData";
@@ -63,7 +76,6 @@ class _HomePageState extends State<HomePage>  with AutomaticKeepAliveClientMixin
 
   @override
   void initState() {
-    initData = fetchData();
     super.initState();
   }
 
@@ -81,16 +93,17 @@ class _HomePageState extends State<HomePage>  with AutomaticKeepAliveClientMixin
           // print("构建页面 grammar.grammarList: ${grammar.grammarList}");
           if (g.value != 0) {
             return Scaffold(
+              backgroundColor: themeConfig['backgroundColor'],
               appBar: AppBar(
-                title: const Text('JLPT Grammar', style: TextStyle(color: Colors.white)),
-                backgroundColor: Colors.deepPurple,
+                title: Text(widget.title, style: TextStyle(color: themeConfig['titleColor'])),
+                backgroundColor: themeConfig['themeColor'],
                 leading: Builder(builder: (context) {
                   return IconButton(
                     icon: const Icon(Icons.menu),
                     onPressed: () {
                       Scaffold.of(context).openDrawer();
                     },
-                    color: Colors.white,
+                    color: themeConfig['iconColor'],
                   );
                 }),
                 actions: <Widget>[
@@ -99,7 +112,7 @@ class _HomePageState extends State<HomePage>  with AutomaticKeepAliveClientMixin
                       showSearch(context: context, delegate: GrammarSearchDelegate(grammarList: allGrammar.grammarList));
                     },
                     icon: const Icon(Icons.search),
-                    color: Colors.white,
+                    color: themeConfig['iconColor'],
                   ),
                 ],
               ),
@@ -129,7 +142,14 @@ class _HomePageState extends State<HomePage>  with AutomaticKeepAliveClientMixin
                   // 双击退出
                 },
                 child: allGrammar.grammarList.isEmpty
-                  ? const Center(child: Text("当前没有数据", style: TextStyle(fontSize: 20)))
+                  ? Container(
+                    color: themeConfig['backgroundColor'],
+                    child: Center(
+                      child: Text("当前没有数据",
+                          style: TextStyle(fontSize: 20, color: themeConfig['textColor'])
+                      )
+                    ),
+                  )
                   : Center(
                     child: ListView.builder(
                         itemCount: allGrammar.grammarList.length,
@@ -139,6 +159,10 @@ class _HomePageState extends State<HomePage>  with AutomaticKeepAliveClientMixin
                 ),
               ),
               floatingActionButton: FloatingActionButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                backgroundColor: themeConfig['floatingActionButtonBackgroundColor'],
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -146,7 +170,7 @@ class _HomePageState extends State<HomePage>  with AutomaticKeepAliveClientMixin
                   ));
                 },
                 tooltip: 'Add item',
-                child: const Icon(Icons.add),
+                child: Icon(Icons.add, color: themeConfig['floatingActionButtonIconColor'], size: 30),
               ),
             );
           }
@@ -154,9 +178,11 @@ class _HomePageState extends State<HomePage>  with AutomaticKeepAliveClientMixin
             // print("加载中, grammar.grammarList: ${grammar.grammarList}");
             // print("加载中，grammar.grammarList.length: ${g.value}");
             return Container(
-              color: Colors.white,
-              child: const Center(
-                child: CircularProgressIndicator(),
+              color: themeConfig['backgroundColor'],
+              child: Center(
+                child: CircularProgressIndicator(
+                  color: themeConfig['titleColor'],
+                ),
               ),
             );
           }

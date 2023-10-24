@@ -32,14 +32,14 @@ class _GrammarItemPageState extends State<GrammarItemPage> {
         builder: (BuildContext context, int value, Widget? child) {
           return Scaffold(
             appBar: AppBar(
-              title: Text(widget.list[widget.index].name.toString(), style: const TextStyle(color: Colors.white)),
-              backgroundColor: Colors.deepPurple,
+              title: Text(widget.list[widget.index].name.toString(), style: TextStyle(color: themeConfig['titleColor'])),
+              backgroundColor: themeConfig['themeColor'],
               leading: Builder(builder: (context) {
                 return IconButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  icon: const Icon(Icons.arrow_back, color: Colors.white),
+                  icon: Icon(Icons.arrow_back, color: themeConfig['iconColor']),
                 );
               }),
               actions: <Widget>[
@@ -52,11 +52,11 @@ class _GrammarItemPageState extends State<GrammarItemPage> {
                     );
                   },
                   icon: const Icon(Icons.edit),
-                  color: Colors.white,
+                  color: themeConfig['iconColor'],
                 ),
                 PopupMenuButton(
-                    icon: const Icon(Icons.more_vert, color: Colors.white),
-                    color: Colors.white,
+                    icon: Icon(Icons.more_vert, color: themeConfig['iconColor']),
+                    color: themeConfig['backgroundColor'],
                     onSelected: (value) async {
                       if(value == 1) {
                         // 网页内搜索
@@ -117,8 +117,8 @@ class _GrammarItemPageState extends State<GrammarItemPage> {
                     itemBuilder: (BuildContext context) {
                       return [
                         // TODO 添加功能
-                        const PopupMenuItem(value: 1, child: Text("在网页搜索")),
-                        const PopupMenuItem(value: 2, child: Text("分享")), // 图片分享开发中
+                        PopupMenuItem(value: 1, child: Text("在网页搜索", style: TextStyle(color: themeConfig['textColor']))),
+                        PopupMenuItem(value: 2, child: Text("分享", style: TextStyle(color: themeConfig['textColor']))), // 图片分享开发中
                         const PopupMenuItem(
                           value: 3,
                           child: Text("删除", style: TextStyle(color: Colors.red))
@@ -130,7 +130,7 @@ class _GrammarItemPageState extends State<GrammarItemPage> {
             ),
             body: SelectionArea(
               child: Container(
-                color: Colors.white,
+                color: themeConfig['backgroundColor'],
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.all(0),
                     child: RepaintBoundary(
@@ -138,14 +138,14 @@ class _GrammarItemPageState extends State<GrammarItemPage> {
                       child: Column(
                         children: [
                           Container(
-                            color: Colors.white,
+                            color: themeConfig['backgroundColor'],
                             padding: const EdgeInsets.only(left: 10, top: 10),
                             child: Row(
                               children: [
                                 RawChip(
-                                  label: const Text("文型", style: TextStyle(color: Colors.white)),
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3)),
-                                  backgroundColor: themes[0],
+                                  label: Text("文型", style: TextStyle(color: themeConfig['titleColor'])),
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0), side: const BorderSide(color: Colors.transparent)),
+                                  backgroundColor: themeConfig['themeColor'],
                                   padding: const EdgeInsets.all(2),
                                   selected: false,
                                 )
@@ -153,27 +153,28 @@ class _GrammarItemPageState extends State<GrammarItemPage> {
                             ),
                           ),
                           Container(
-                            color: Colors.white,
+                            color: themeConfig['backgroundColor'],
                             // margin: const EdgeInsets.only(left: 10, right: 0, top: 0, bottom: 20),
-                            padding: const EdgeInsets.only(left: 10, top: 5, right: 10),
+                            padding: const EdgeInsets.only(left: 11, top: 5, right: 11),
                             alignment: Alignment.topLeft,
                             child: Text(
                               "${widget.list[widget.index].name ?? ("无内容")}",
                               style: TextStyle(
                                 fontSize: double.parse(setFontSize),
+                                color: themeConfig['textColor'],
                               ),
                               textAlign: TextAlign.left,
                             ),
                           ),
                           Container(
-                            color: Colors.white,
+                            color: themeConfig['background'],
                             padding: const EdgeInsets.only(left: 10, top: 15),
                             child: Row(
                               children: [
                                 RawChip(
-                                  label: const Text("意味", style: TextStyle(color: Colors.white)),
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3)),
-                                  backgroundColor: themes[0],
+                                  label: Text("意味", style: TextStyle(color: themeConfig['titleColor'])),
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0), side: const BorderSide(color: Colors.transparent)),
+                                  backgroundColor: themeConfig['themeColor'],
                                   padding: const EdgeInsets.all(2),
                                   selected: false,
                                 )
@@ -181,27 +182,28 @@ class _GrammarItemPageState extends State<GrammarItemPage> {
                             ),
                           ),
                           Container(
-                            color: Colors.white,
+                            color: themeConfig['backgroundColor'],
                             // margin: const EdgeInsets.only(left: 10, right: 0, top: 0, bottom: 20),
-                            padding: const EdgeInsets.only(left: 10, top: 5, right: 10),
+                            padding: const EdgeInsets.only(left: 11, top: 5, right: 11),
                             alignment: Alignment.topLeft,
                             child: Text(
                               "${widget.list[widget.index].mean ?? ("无内容")}",
                               style: TextStyle(
                                 fontSize: double.parse(setFontSize),
+                                color: themeConfig['textColor'],
                               ),
                               textAlign: TextAlign.left,
                             ),
                           ),
                           Container(
-                            color: Colors.white,
+                            color: themeConfig['backgroundColor'],
                             padding: const EdgeInsets.only(left: 10, top: 15),
                             child: Row(
                               children: [
                                 RawChip(
-                                  label: const Text("接続", style: TextStyle(color: Colors.white)),
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3)),
-                                  backgroundColor: themes[0],
+                                  label: Text("接続", style: TextStyle(color: themeConfig['titleColor'])),
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0), side: const BorderSide(color: Colors.transparent)),
+                                  backgroundColor: themeConfig['themeColor'],
                                   padding: const EdgeInsets.all(2),
                                   selected: false,
                                 )
@@ -209,27 +211,28 @@ class _GrammarItemPageState extends State<GrammarItemPage> {
                             ),
                           ),
                           Container(
-                            color: Colors.white,
+                            color: themeConfig['backgroundColor'],
                             // margin: const EdgeInsets.only(left: 10, right: 0, top: 0, bottom: 20),
-                            padding: const EdgeInsets.only(left: 10, top: 5, right: 10),
+                            padding: const EdgeInsets.only(left: 11, top: 5, right: 11),
                             alignment: Alignment.topLeft,
                             child: Text(
                               "${widget.list[widget.index].grammar ?? ("无内容")}",
                               style: TextStyle(
                                 fontSize: double.parse(setFontSize),
+                                color: themeConfig['textColor'],
                               ),
                               textAlign: TextAlign.left,
                             ),
                           ),
                           Container(
-                            color: Colors.white,
+                            color: themeConfig['backgroundColor'],
                             padding: const EdgeInsets.only(left: 10, top: 15),
                             child: Row(
                               children: [
                                 RawChip(
-                                  label: const Text("例文", style: TextStyle(color: Colors.white)),
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3)),
-                                  backgroundColor: themes[0],
+                                  label: Text("例文", style: TextStyle(color: themeConfig['titleColor'])),
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0), side: const BorderSide(color: Colors.transparent)),
+                                  backgroundColor: themeConfig['themeColor'],
                                   padding: const EdgeInsets.all(2),
                                   selected: false,
                                 )
@@ -237,27 +240,28 @@ class _GrammarItemPageState extends State<GrammarItemPage> {
                             ),
                           ),
                           Container(
-                            color: Colors.white,
+                            color: themeConfig['backgroundColor'],
                             // margin: const EdgeInsets.only(left: 10, right: 0, top: 0, bottom: 20),
-                            padding: const EdgeInsets.only(left: 10, top: 5, right: 10),
+                            padding: const EdgeInsets.only(left: 11, top: 5, right: 11),
                             alignment: Alignment.topLeft,
                             child: Text(
                               "${widget.list[widget.index].example ?? ("无内容")}",
                               style: TextStyle(
                                 fontSize: double.parse(setFontSize),
+                                color: themeConfig['textColor'],
                               ),
                               textAlign: TextAlign.left,
                             ),
                           ),
                           Container(
-                            color: Colors.white,
+                            color: themeConfig['backgroundColor'],
                             padding: const EdgeInsets.only(left: 10, top: 15),
                             child: Row(
                               children: [
                                 RawChip(
-                                  label: const Text("ノート", style: TextStyle(color: Colors.white)),
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3)),
-                                  backgroundColor: themes[0],
+                                  label: Text("ノート", style: TextStyle(color: themeConfig['titleColor'])),
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0), side: const BorderSide(color: Colors.transparent)),
+                                  backgroundColor: themeConfig['themeColor'],
                                   padding: const EdgeInsets.all(2),
                                   selected: false,
                                 )
@@ -265,14 +269,15 @@ class _GrammarItemPageState extends State<GrammarItemPage> {
                             ),
                           ),
                           Container(
-                            color: Colors.white,
+                            color: themeConfig['backgroundColor'],
                             // margin: const EdgeInsets.only(left: 10, right: 0, top: 0, bottom: 20),
-                            padding: const EdgeInsets.only(left: 10, top: 5, bottom: 20, right: 10),
+                            padding: const EdgeInsets.only(left: 11, top: 5, bottom: 20, right: 11),
                             alignment: Alignment.topLeft,
                             child: Text(
                               "${widget.list[widget.index].notes ?? ("无内容")}",
                               style: TextStyle(
                                 fontSize: double.parse(setFontSize),
+                                color: themeConfig['textColor'],
                               ),
                               textAlign: TextAlign.left,
                             ),
