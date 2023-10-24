@@ -8,8 +8,9 @@ class GrammarSearchDelegate extends SearchDelegate {
     Key? key,
     required this.grammarList,
   });
-  List searchResult = [];
+  List searchList = [];
   List tempResult = [];
+
   @override
   ThemeData appBarTheme(BuildContext context) {
     return ThemeData(
@@ -73,17 +74,18 @@ class GrammarSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    if(searchResult.isEmpty && tempResult.isEmpty) {
+    if(searchList.isEmpty && tempResult.isEmpty) {
       print("准备数据");
       tempResult = grammarList;
-      searchResult = grammarList;
+      searchList = grammarList;
     }
-    searchResult = tempResult;
+    searchList = tempResult;
     tempResult = [];
-    for (int i = 0; i < searchResult.length; i++) {
-      if (searchResult[i].name.contains(query)) {
+    for (int i = 0; i < searchList.length; i++) {
+      // 搜索条目名和释义
+      if (searchList[i].name.contains(query) || searchList[i].mean.contains(query)) {
         print("搜索建议匹配成功");
-        tempResult.add(searchResult[i]);
+        tempResult.add(searchList[i]);
       }
     }
     if(tempResult.isEmpty) {
