@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:jlptgrammar/common/db_tool.dart';
-import 'package:jlptgrammar/common/share_tool.dart';
+import 'package:jlptgrammar/utils/db_tool.dart';
+import 'package:jlptgrammar/utils/share_tool.dart';
 import 'package:jlptgrammar/models/grammar_item_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';

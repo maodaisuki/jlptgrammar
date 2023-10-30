@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jlptgrammar/common/global.dart';
-import 'package:jlptgrammar/common/text_tool.dart';
+import 'package:jlptgrammar/utils/text_tool.dart';
 import 'package:jlptgrammar/models/grammar_item_model.dart';
 
 class GrammarItemEditPage extends StatefulWidget {

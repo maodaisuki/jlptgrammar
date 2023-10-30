@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jlptgrammar/models/grammar_item_model.dart';
-import 'package:jlptgrammar/common/db_tool.dart';
+import 'package:jlptgrammar/utils/db_tool.dart';
 import 'package:jlptgrammar/common/global.dart';
 
 class TextTool {
