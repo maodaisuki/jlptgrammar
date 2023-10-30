@@ -21,6 +21,7 @@ void main() async {
   print('setFontSize: $setFontSize');
   isLightTheme = await prefs.getBool('isLightTheme') ?? true;
   print('isLightTheme: $isLightTheme');
+  // TODO 去除夜间模式 isLightTheme 参数，默认紫色，切换颜色在 设置->显示
   themeConfig = (await isLightTheme) ? lightTheme : nightTheme;
   print("配置获取完成");
   runApp(MyApp());
