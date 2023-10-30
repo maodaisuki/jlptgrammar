@@ -5,7 +5,6 @@ import 'package:jlptgrammar/common/share_tool.dart';
 import 'package:jlptgrammar/models/grammar_item_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:jlptgrammar/common/config_tool.dart';
 
 const Map lightTheme = {
   'themeColor': Colors.deepPurple,
@@ -46,7 +45,6 @@ const Map nightTheme = {
 };
 
 ShareTool st = ShareTool();
-ConfigTool ct = ConfigTool();
 
 late bool isLightTheme;
 late String setFontSize;
@@ -64,8 +62,6 @@ class Grammar {
   late List<GrammarItem> listN3;
   late List<GrammarItem> listN4;
   late List<GrammarItem> listN5;
-  // 方言
-  late List<GrammarItem> listN6;
   // 其他
   late List<GrammarItem> listN0;
   late Database grammardb;
@@ -97,7 +93,6 @@ class Grammar {
     listN3 = await databaseTool.getLevelGrammarList("N3");
     listN4 = await databaseTool.getLevelGrammarList("N4");
     listN5 = await databaseTool.getLevelGrammarList("N5");
-    listN6 = await databaseTool.getLevelGrammarList("N6");
     print("初始化完成");
     return data;
     // print(grammarList);

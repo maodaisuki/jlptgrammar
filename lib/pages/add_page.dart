@@ -12,7 +12,7 @@ class GrammarItemAddPage extends StatefulWidget {
 }
 
 class _GrammarItemAddPageState extends State<GrammarItemAddPage> {
-  final List<String> levelArray = ["其他", "N1", "N2", "N3", "N4", "N5", "方言"];
+  final List<String> levelArray = ["其他", "N1", "N2", "N3", "N4", "N5"];
   String setLevel = "其他";
   TextEditingController textEditingController1 = TextEditingController();
   TextEditingController textEditingController2 = TextEditingController();
@@ -266,8 +266,8 @@ class _GrammarItemAddPageState extends State<GrammarItemAddPage> {
                 LayoutBuilder(
                     builder: (context, size){
                       TextSpan text = const TextSpan(
-                        // text: yourTextController.text,
-                        // style: yourTextStyle,
+                        // text: TextController.text,
+                        // style: TextStyle,
                       );
 
                       TextPainter tp = TextPainter(
@@ -359,7 +359,7 @@ class _GrammarItemAddPageState extends State<GrammarItemAddPage> {
                           break;
                           defalut:
                           {
-                            grammar.listN6.add(gi);
+                            grammar.listN0.add(gi);
                           }
                           break;
                       }
