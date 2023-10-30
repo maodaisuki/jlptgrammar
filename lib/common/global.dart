@@ -23,6 +23,7 @@ const Map lightTheme = {
   'floatingLabelColor': Colors.deepPurple,
   'enabledBorderColor': Colors.black,
   'focusedBorderColor': Colors.deepPurple,
+  'drawerTitleColor': Colors.deepPurple,
 };
 
 const Map nightTheme = {
@@ -41,6 +42,7 @@ const Map nightTheme = {
   'floatingLabelColor': Colors.white,
   'enabledBorderColor': Colors.grey,
   'focusedBorderColor': Colors.white,
+  'drawerTitleColor': Colors.white,
 };
 
 ShareTool st = ShareTool();

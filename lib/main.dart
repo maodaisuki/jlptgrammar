@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:jlptgrammar/pages/about_page.dart';
 import 'package:jlptgrammar/pages/add_page.dart';
 import 'package:jlptgrammar/pages/data_info_page.dart';
+import 'package:jlptgrammar/pages/exercises_page.dart';
+import 'package:jlptgrammar/pages/settings_page.dart';
 import 'package:jlptgrammar/widgets/drawer_widget.dart';
 import 'package:jlptgrammar/common/global.dart';
 import 'package:jlptgrammar/pages/list_page.dart';
@@ -40,10 +42,11 @@ class MyApp extends StatelessWidget {
         '/n3': (context) => GrammarListPage(list: grammar.listN3, title: "JLPT N3"),
         '/n4': (context) => GrammarListPage(list: grammar.listN4, title: "JLPT N4"),
         '/n5': (context) => GrammarListPage(list: grammar.listN5, title: "JLPT N5"),
-        '/n6': (context) => GrammarListPage(list: grammar.listN6, title: "方言文法"),
         '/n0': (context) => GrammarListPage(list: grammar.listN0, title: "其他文法"),
         '/about': (context) => const AboutPage(),
         '/datainfo': (context) => const DataInfoPage(),
+        '/exercises': (context) => const ExercisesPage(),
+        '/settings': (context) => const SettingsPage(),
       },
       theme: ThemeData(
         // TODO 自定义水波纹 || 消除 bug

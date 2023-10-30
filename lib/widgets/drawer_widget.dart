@@ -20,175 +20,167 @@ class _MenuDrawerState extends State<MenuDrawer> {
         Navigator.pop(context);
         return false;
       },
-      child: Drawer(
-        backgroundColor: themeConfig['backgroundColor'],
-        child: ListView(
-          // TODO 添加条目
-          children: [
-            ListTile(
-              title: Text('日本語文法', style: TextStyle(color: themeConfig['textColor'])),
-              trailing: IconButton(
-                onPressed: () async {
-                  Scaffold.of(context).closeDrawer();
-                  SharedPreferences prefs = await SharedPreferences.getInstance();
-                  // 主题切换模式
-                  setState(() {
-                    if(isLightTheme) {
-                      themeConfig = nightTheme;
-                      g.value = g.value + 1;
-                      isLightTheme = !isLightTheme;
-                      prefs.setBool('isLightTheme', isLightTheme);
-                    }
-                    else {
-                      themeConfig = lightTheme;
-                      g.value = g.value + 1;
-                      isLightTheme = !isLightTheme;
-                      prefs.setBool('isLightTheme', isLightTheme);
-                    }
-                  });
-                },
-                icon: isLightTheme
-                  ? Icon(Icons.nightlight, color: themeConfig['drawerIconColor'])
-                  : Icon(Icons.wb_sunny, color: themeConfig['drawerIconColor']),
-              ),
-            ),
-            Divider(
-              height: 0.5,
-              indent: 0,
-              color: themeConfig['lineColor'],
-            ),
-            ListTile(
-              leading: Icon(Icons.book, color: themeConfig['drawerIconColor']),
-              title:Text("JLPT N5", style: TextStyle(color: themeConfig['textColor'])),
-              onTap: () {
-                // 关闭抽屉
-                Scaffold.of(context).closeDrawer();
-                Navigator.of(context).pushNamed('/n5');
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.book, color: themeConfig['drawerIconColor']),
-              title: Text("JLPT N4", style: TextStyle(color: themeConfig['textColor'])),
-              onTap: () {
-                // 关闭抽屉
-                Scaffold.of(context).closeDrawer();
-                Navigator.of(context).pushNamed('/n4');
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.book, color: themeConfig['drawerIconColor']),
-              title: Text("JLPT N3", style: TextStyle(color: themeConfig['textColor'])),
-              onTap: () {
-                // 关闭抽屉
-                Scaffold.of(context).closeDrawer();
-                Navigator.of(context).pushNamed('/n3');
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.book, color: themeConfig['drawerIconColor']),
-              title: Text("JLPT N2", style: TextStyle(color: themeConfig['textColor'])),
-              onTap: () {
-                // 关闭抽屉
-                Scaffold.of(context).closeDrawer();
-                Navigator.of(context).pushNamed('/n2');
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.book, color: themeConfig['drawerIconColor']),
-              title: Text("JLPT N1", style: TextStyle(color: themeConfig['textColor'])),
-              onTap: () {
-                // 关闭抽屉
-                Scaffold.of(context).closeDrawer();
-                Navigator.of(context).pushNamed('/n1');
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.book, color: themeConfig['drawerIconColor']),
-              title: Text("方言文法", style: TextStyle(color: themeConfig['textColor'])),
-              onTap: () {
-                // 关闭抽屉
-                Scaffold.of(context).closeDrawer();
-                Navigator.of(context).pushNamed('/n6');
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.book, color: themeConfig['drawerIconColor']),
-              title: Text("其他语法", style: TextStyle(color: themeConfig['textColor'])),
-              onTap: () {
-                // 关闭抽屉
-                Scaffold.of(context).closeDrawer();
-                Navigator.of(context).pushNamed('/n0');
-              },
-            ),
-            const ListTile(
-              title: Text(''),
-            ),
-            ListTile(
-              title: Text('设置', style: TextStyle(color: themeConfig['textColor'])),
-            ),
-            Divider(
-              height: 0.5,
-              indent: 0,
-              color: themeConfig['lineColor'],
-            ),
-            ListTile(
-              leading: Icon(Icons.text_fields, color: themeConfig['drawerIconColor']),
-              title: Text('文本大小', style: TextStyle(color: themeConfig['textColor'])),
-              trailing: DropdownButton(
-                dropdownColor: themeConfig['backgroundColor'],
-                icon: Icon(Icons.arrow_drop_down_rounded, color: themeConfig['drawerIconColor']),
-                value: setFontSize,
-                style: TextStyle(color: themeConfig['textColor']),
-                items: fontSizeArray.map((String item) => DropdownMenuItem<String>(
-                  key: Key(item),
-                  value: item,
-                  child: Text(item),
-                )).toList(),
-                onChanged: (value) async {
-                  setState(() {
-                    setFontSize = value!;
-                  });
-                  SharedPreferences prefs = await SharedPreferences.getInstance();
-                  prefs.setString('setFontSize', setFontSize);
-                },
-                underline: Container(),
-              ),
-            ),
-            ListTile(
-              leading: Icon(Icons.outbox, color: /* themeConfig['drawerIconColor'] */ Colors.grey),
-              title: Text("导出数据", style: TextStyle(color: /* themeConfig['textColor'] */ Colors.grey)),
-              onTap: () {
-                Navigator.pop(context);
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('开发中'),
-                    duration: Duration(seconds: 1),
+      child: Container(
+      width: MediaQuery.of(context).size.width * 3.5 / 5,
+        child: Drawer(
+          backgroundColor: themeConfig['backgroundColor'],
+          child: ListView(
+            // TODO 添加条目
+            children: [
+              Container(
+                margin: EdgeInsets.only(left: 0),
+                height: 70,
+                child: ListTile(
+                  title: Text(
+                    '日本語文法',
+                    style: TextStyle(
+                    fontSize: 20,
+                    color: themeConfig['textColor'],
+                  )),
+                  trailing: IconButton(
+                    icon: Icon(Icons.settings, color: themeConfig['drawerIconColor']),
+                    onPressed: () {
+                      Scaffold.of(context).closeDrawer();
+                      Navigator.of(context).pushNamed('/settings');
+                    },
                   ),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.sd_card, color: /* themeConfig['drawerIconColor'] */ Colors.grey),
-              title: Text("导入数据", style: TextStyle(color: /* themeConfig['textColor'] */ Colors.grey)),
-              onTap: () {
-                Navigator.pop(context);
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('开发中'),
-                    duration: Duration(seconds: 1),
+                ),
+              ),
+              Divider(
+                height: 0.5,
+                indent: 0,
+                color: Colors.transparent,
+              ),
+              Container(
+                height: 20,
+                margin: EdgeInsets.only(left: 20, bottom: 10),
+                child: Text(
+                  '分类',
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: themeConfig['drawerTitleColor'],
+                    fontWeight: FontWeight.w600,
                   ),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.info, color: themeConfig['drawerIconColor']),
-              title: Text("关于", style: TextStyle(color: themeConfig['textColor'])),
-              onTap: () {
-                Scaffold.of(context).closeDrawer();
-                Navigator.of(context).pushNamed('/about');
-              },
-            ),
-          ],
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(left: 10, right: 10),
+                child: ListTile(
+                  title: Text('JLPT N5', style: TextStyle(color: themeConfig['textColor'], fontSize: 18)),
+                  shape:  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50.0),
+                  ),
+                  leading: Icon(Icons.book, color: themeConfig['drawerIconColor']),
+                  onTap: () {
+                    // 关闭抽屉
+                    Scaffold.of(context).closeDrawer();
+                    Navigator.of(context).pushNamed('/n5');
+                  },
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(left: 10, right: 10),
+                child: ListTile(
+                  title: Text('JLPT N4', style: TextStyle(color: themeConfig['textColor'], fontSize: 18)),
+                  shape:  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50.0),
+                  ),
+                  leading: Icon(Icons.book, color: themeConfig['drawerIconColor']),
+                  onTap: () {
+                    // 关闭抽屉
+                    Scaffold.of(context).closeDrawer();
+                    Navigator.of(context).pushNamed('/n4');
+                  },
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(left: 10, right: 10),
+                child: ListTile(
+                  title: Text('JLPT N3', style: TextStyle(color: themeConfig['textColor'], fontSize: 18)),
+                  shape:  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50.0),
+                  ),
+                  leading: Icon(Icons.book, color: themeConfig['drawerIconColor']),
+                  onTap: () {
+                    // 关闭抽屉
+                    Scaffold.of(context).closeDrawer();
+                    Navigator.of(context).pushNamed('/n3');
+                  },
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(left: 10, right: 10),
+                child: ListTile(
+                  title: Text('JLPT N2', style: TextStyle(color: themeConfig['textColor'], fontSize: 18)),
+                  shape:  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50.0),
+                  ),
+                  leading: Icon(Icons.book, color: themeConfig['drawerIconColor']),
+                  onTap: () {
+                    // 关闭抽屉
+                    Scaffold.of(context).closeDrawer();
+                    Navigator.of(context).pushNamed('/n2');
+                  },
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(left: 10, right: 10),
+                child: ListTile(
+                  title: Text('JLPT N1', style: TextStyle(color: themeConfig['textColor'], fontSize: 18)),
+                  shape:  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50.0),
+                  ),
+                  leading: Icon(Icons.book, color: themeConfig['drawerIconColor']),
+                  onTap: () {
+                    // 关闭抽屉
+                    Scaffold.of(context).closeDrawer();
+                    Navigator.of(context).pushNamed('/n1');
+                  },
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(left: 10, right: 10),
+                child: ListTile(
+                  title: Text('其他文法', style: TextStyle(color: themeConfig['textColor'], fontSize: 18)),
+                  shape:  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50.0),
+                  ),
+                  leading: Icon(Icons.book, color: themeConfig['drawerIconColor']),
+                  onTap: () {
+                    // 关闭抽屉
+                    Scaffold.of(context).closeDrawer();
+                    Navigator.of(context).pushNamed('/n0');
+                  },
+                ),
+              ),
+              Container(
+                height: 20,
+                margin: EdgeInsets.only(left: 20, bottom: 10, top: 15),
+                child: Text(
+                  '其他选项',
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: themeConfig['drawerTitleColor'],
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(left: 10, right: 10),
+                child: ListTile(
+                  title: Text('练习题', style: TextStyle(color: themeConfig['textColor'], fontSize: 18)),
+                  shape:  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50.0),
+                  ),
+                  leading: Icon(Icons.library_books, color: themeConfig['drawerIconColor']),
+                  onTap: () {
+                    Scaffold.of(context).closeDrawer();
+                    Navigator.of(context).pushNamed('/exercises');
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
