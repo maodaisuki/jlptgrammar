@@ -12,6 +12,7 @@ import 'package:jlptgrammar/pages/list_page.dart';
 import 'package:jlptgrammar/widgets/listtile_widget.dart';
 import 'package:jlptgrammar/widgets/search_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:jlptgrammar/common/theme.dart';
 
 void main() async {
   print("运行APP");

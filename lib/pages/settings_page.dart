@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jlptgrammar/common/global.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:jlptgrammar/common/theme.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({
@@ -14,7 +16,7 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-      // g 用来刷新夜间模式界面
+      // g 用来刷新主题
       valueListenable: g,
       builder: (BuildContext context, int value, Widget? child) {
         return Scaffold(
@@ -47,20 +49,38 @@ class _SettingsPageState extends State<SettingsPage> {
                       subtitle: Text('检查 Github 仓库有无新版本发布', style: TextStyle(fontSize: 14, color: themeConfig['textColor'])),
                       minVerticalPadding: 10,
                       onTap: () {
-
+                        // TODO 抓取通用版本，提示小体积版本
                       },
                     ),
                     ListTile(
                       leading: Container(
                         margin: EdgeInsets.only(left: 15),
-                        child: Icon(Icons.color_lens, color: themeConfig['drawerIconColor']),
+                        child: Icon(Icons.mode_night_sharp, color: themeConfig['drawerIconColor']),
                       ),
-                      title: Text('显示', style: TextStyle(fontSize: 20, color: themeConfig['textColor'])),
-                      subtitle: Text('切换主题颜色', style: TextStyle(fontSize: 14, color: themeConfig['textColor'])),
+                      title: Text('夜间模式', style: TextStyle(fontSize: 20, color: themeConfig['textColor'])),
+                      subtitle: Text(isLightTheme == false ? 'On' : 'Off', style: TextStyle(fontSize: 14, color: themeConfig['textColor'])),
                       minVerticalPadding: 10,
-                      onTap: () {
-
-                      },
+                      trailing: Switch(
+                        value: !isLightTheme,
+                        onChanged: (value) async {
+                          SharedPreferences prefs = await SharedPreferences.getInstance();
+                          // 主题切换模式
+                          setState(() {
+                            if(isLightTheme) {
+                              themeConfig = nightTheme;
+                              g.value = g.value + 1;
+                              isLightTheme = !isLightTheme;
+                              prefs.setBool('isLightTheme', isLightTheme);
+                            }
+                            else {
+                              themeConfig = lightTheme;
+                              g.value = g.value + 1;
+                              isLightTheme = !isLightTheme;
+                              prefs.setBool('isLightTheme', isLightTheme);
+                            }
+                          });
+                        }
+                      ),
                     ),
                     // TODO 语言切换
                     // ListTile(

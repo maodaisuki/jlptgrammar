@@ -86,7 +86,7 @@ class _GrammarItemPageState extends State<GrammarItemPage> {
                               content: Text("确认删除此条目？", style: TextStyle(fontSize: 18, color: themeConfig['textColor'])),
                               actions: <Widget>[
                                 MaterialButton(
-                                  child: const Text("确认", style: TextStyle(color: Colors.red)),
+                                  child: const Text("确认", style: TextStyle(color: Colors.red, fontSize: 15)),
                                   onPressed: () {
                                     int id = widget.list[widget.index].id;
                                     // TODO 索引越界 bug, 但是能跑 :D
@@ -98,7 +98,7 @@ class _GrammarItemPageState extends State<GrammarItemPage> {
                                   },
                                 ),
                                 MaterialButton(
-                                  child: Text("取消", style: TextStyle(color: themeConfig['textColor'])),
+                                  child: Text("取消", style: TextStyle(color: themeConfig['textColor'], fontSize: 15)),
                                   onPressed: () {
                                     Navigator.pop(context);
                                   },
