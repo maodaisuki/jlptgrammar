@@ -41,10 +41,10 @@ dependencies:
   path_provider: ^2.1.1
   # 7.0.2 不要更改 share_plus 版本 详情参见 https://github.com/fluttercommunity/plus_plugins/issues/1351#issuecomment-1594494904
   share_plus: ^7.0.2
-  #  这个包预计在下一个版本使用
   permission_handler: ^11.0.1
   flutter_native_splash: ^2.3.4
   shared_preferences: ^2.2.2
+  package_info_plus: ^4.2.0
 
 dev_dependencies:
   flutter_test:

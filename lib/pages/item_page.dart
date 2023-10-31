@@ -31,6 +31,7 @@ class _GrammarItemPageState extends State<GrammarItemPage> {
         valueListenable: g,
         builder: (BuildContext context, int value, Widget? child) {
           return Scaffold(
+            backgroundColor: themeConfig['backgroundColor'],
             appBar: AppBar(
               title: Text(widget.list[widget.index].name.toString(), style: TextStyle(color: themeConfig['titleColor'])),
               backgroundColor: themeConfig['themeColor'],
@@ -144,7 +145,7 @@ class _GrammarItemPageState extends State<GrammarItemPage> {
                             child: Row(
                               children: [
                                 RawChip(
-                                  label: Text("文型", style: TextStyle(color: themeConfig['titleColor'])),
+                                  label: Text("文型", style: TextStyle(color: themeConfig['titleColor'], fontSize: 16)),
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0), side: const BorderSide(color: Colors.transparent)),
                                   backgroundColor: themeConfig['themeColor'],
                                   padding: const EdgeInsets.all(2),
@@ -173,7 +174,7 @@ class _GrammarItemPageState extends State<GrammarItemPage> {
                             child: Row(
                               children: [
                                 RawChip(
-                                  label: Text("意味", style: TextStyle(color: themeConfig['titleColor'])),
+                                  label: Text("意味", style: TextStyle(color: themeConfig['titleColor'], fontSize: 16)),
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0), side: const BorderSide(color: Colors.transparent)),
                                   backgroundColor: themeConfig['themeColor'],
                                   padding: const EdgeInsets.all(2),
@@ -202,7 +203,7 @@ class _GrammarItemPageState extends State<GrammarItemPage> {
                             child: Row(
                               children: [
                                 RawChip(
-                                  label: Text("接続", style: TextStyle(color: themeConfig['titleColor'])),
+                                  label: Text("接続", style: TextStyle(color: themeConfig['titleColor'], fontSize: 16)),
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0), side: const BorderSide(color: Colors.transparent)),
                                   backgroundColor: themeConfig['themeColor'],
                                   padding: const EdgeInsets.all(2),
@@ -231,7 +232,7 @@ class _GrammarItemPageState extends State<GrammarItemPage> {
                             child: Row(
                               children: [
                                 RawChip(
-                                  label: Text("例文", style: TextStyle(color: themeConfig['titleColor'])),
+                                  label: Text("例文", style: TextStyle(color: themeConfig['titleColor'], fontSize: 16)),
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0), side: const BorderSide(color: Colors.transparent)),
                                   backgroundColor: themeConfig['themeColor'],
                                   padding: const EdgeInsets.all(2),
@@ -260,7 +261,7 @@ class _GrammarItemPageState extends State<GrammarItemPage> {
                             child: Row(
                               children: [
                                 RawChip(
-                                  label: Text("ノート", style: TextStyle(color: themeConfig['titleColor'])),
+                                  label: Text("ノート", style: TextStyle(color: themeConfig['titleColor'], fontSize: 16)),
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0), side: const BorderSide(color: Colors.transparent)),
                                   backgroundColor: themeConfig['themeColor'],
                                   padding: const EdgeInsets.all(2),

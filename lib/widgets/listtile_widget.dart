@@ -22,14 +22,13 @@ class _GrammarListItemState extends State<GrammarListItem>{
       children: [
         ListTile(
           title: Text((widget.grammarList[widget.index].name).toString(), style: TextStyle(fontSize: 18, color: themeConfig['textColor'])),
-          // TODO bug: 处理回退按钮状态
           onTap: () {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => GrammarItemPage(list: widget.grammarList, index: widget.index)),
             );
           },
-          trailing: Icon(Icons.keyboard_arrow_right, color: themeConfig['drawIconColor']),
+          trailing: Icon(Icons.keyboard_arrow_right, color: themeConfig['drawerIconColor']),
         ),
         Divider(
           height: 0.5,

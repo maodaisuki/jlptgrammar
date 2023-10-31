@@ -1,6 +1,10 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:jlptgrammar/models/grammar_item_model.dart';
+import 'package:jlptgrammar/utils/permission_tool.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:jlptgrammar/common/global.dart';
@@ -50,6 +54,34 @@ class DatabaseHelper {
     await targetDatabase.close();
   }
 
+  Future<void> resetDb() async {
+    var databasesPath = await getDatabasesPath();
+    var path = join(databasesPath, 'jlptgrammar.db');
+    // 删除当前数据库文件
+    await deleteDatabase(path);
+    // 从assets目录中复制原始的数据库文件
+    ByteData data = await rootBundle.load(join("lib", "assets", "jlptgrammar.db"));
+    List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+    await File(path).writeAsBytes(bytes);
+    // 重新打开数据库
+    var database = await openDatabase(path, version: 1,
+        onCreate: (Database db, int version) async {
+          await db.execute('''
+          CREATE TABLE IF NOT EXISTS jlptgrammar (
+            id INTEGER PRIMARY KEY NOT NULL,
+            level TEXT,
+            name TEXT,
+            grammar TEXT,
+            mean TEXT,
+            example TEXT,
+            notes TEXT
+          )
+        ''');
+        });
+    grammarDatabase = database;
+    print("重置数据库: ${await database}");
+  }
+
   Future<Database> initDb() async {
     var databasesPath = await getDatabasesPath();
     var path = join(databasesPath, 'jlptgrammar.db');
@@ -75,10 +107,18 @@ class DatabaseHelper {
     return database;
   }
 
+  // TODO 导出数据库
+  Future<void> exportDatabase() async {
+    print("导出文件");
+  }
+
+
   // 关闭数据库连接
   Future close() async {
     var dbClient = await dhGrammarDb;
-    return dbClient.close();
+    await dbClient.close();
+    print("关闭数据库连接");
+    return;
   }
 }
 

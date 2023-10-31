@@ -13,6 +13,7 @@ import 'package:jlptgrammar/widgets/listtile_widget.dart';
 import 'package:jlptgrammar/widgets/search_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:jlptgrammar/common/theme.dart';
+import 'package:jlptgrammar/pages/data_manger_page.dart';
 
 void main() async {
   print("运行APP");
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
         '/datainfo': (context) => const DataInfoPage(),
         '/exercises': (context) => const ExercisesPage(),
         '/settings': (context) => const SettingsPage(),
+        '/dataManger': (context) => const DataMangerPage(),
       },
       theme: ThemeData(
         // TODO 自定义水波纹 || 消除 bug

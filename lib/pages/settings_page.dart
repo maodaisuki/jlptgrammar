@@ -104,7 +104,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       subtitle: Text('管理软件数据内容', style: TextStyle(fontSize: 14, color: themeConfig['textColor'])),
                       minVerticalPadding: 10,
                       onTap: () {
-
+                        Navigator.of(context).pushNamed('/dataManger');
                       },
                     ),
                     ListTile(
