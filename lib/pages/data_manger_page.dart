@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:jlptgrammar/common/global.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -59,8 +60,13 @@ class _DataMangerPageState extends State<DataMangerPage> {
                   subtitle: Text('将数据导出为数据库 (.db) 文件', style: TextStyle(fontSize: 14, color: themeConfig['textColor'])),
                   minVerticalPadding: 10,
                   onTap: () async {
-                    // TODO 考虑边界情况
-                    await grammar.databaseHelper.exportDatabase();
+                    String? selectedDirectory = await FilePicker.platform.getDirectoryPath();
+                    if(await requestStoragePermission()) {
+                      await grammar.databaseHelper.exportDatabase(selectedDirectory!);
+                    }
+                    else {
+                      print("没有存储权限");
+                    }
                   },
                 ),
                 ListTile(

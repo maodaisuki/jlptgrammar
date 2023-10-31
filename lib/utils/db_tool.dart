@@ -107,9 +107,27 @@ class DatabaseHelper {
     return database;
   }
 
-  // TODO 导出数据库
-  Future<void> exportDatabase() async {
-    print("导出文件");
+  Future<void> importDatabase(String importPath) async {
+
+  }
+
+  Future<void> exportDatabase(String exportPath) async {
+    final timeName = DateTime.now().toString();
+    exportPath = '$exportPath/jlptgrammar_export_$timeName.db';
+    var databasesPath = await getDatabasesPath();
+    var sourcePath = join(databasesPath, 'jlptgrammar.db');
+    print(await File(sourcePath).exists() ? "存在此源文件" : "源文件不存在");
+    print("exportPath: $exportPath");
+    print("sourcePath: $sourcePath");
+    try {
+      var data = await File(sourcePath).readAsBytes();
+      // print(data);
+      await File(exportPath).writeAsBytes(data);
+      print("导出文件成功");
+    }
+    catch(e) {
+      print(e);
+    }
   }
 
 
