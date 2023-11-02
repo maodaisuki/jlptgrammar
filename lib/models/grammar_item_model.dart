@@ -52,7 +52,6 @@ class GrammarItem {
   }
 
   @override
-  // TODO: implement hashCode
   int get hashCode {
     return id.hashCode ^ level.hashCode ^ name.hashCode ^ grammar.hashCode ^ mean.hashCode ^ example.hashCode ^ notes.hashCode;
   }

@@ -32,7 +32,6 @@ class Grammar {
   late DatabaseHelper databaseHelper;
 
   Grammar() {
-
     init().then((_) async {
       print("实例化 grammarList: $grammarList");
       print("实例化 grammardb: $grammardb");
@@ -43,19 +42,18 @@ class Grammar {
 
   Future<List<GrammarItem>> init() async {
     databaseTool = DatabaseTool();
-    Completer<void> completer = Completer<void>();
     databaseHelper = databaseTool.dbHelper;
     List<GrammarItem> data = await databaseTool.getAllData();
-    completer.complete();
-    await completer.future;
-    grammardb = databaseTool.dbHelper.grammarDatabase!;
-    grammarList = await databaseTool.getAllData();
-    listN0 = await databaseTool.getLevelGrammarList("N0");
-    listN1 = await databaseTool.getLevelGrammarList("N1");
-    listN2 = await databaseTool.getLevelGrammarList("N2");
-    listN3 = await databaseTool.getLevelGrammarList("N3");
-    listN4 = await databaseTool.getLevelGrammarList("N4");
-    listN5 = await databaseTool.getLevelGrammarList("N5");
+    // TODO 内存泄漏 bug
+    // 稳定复现: 导出再立即导入
+    grammardb = databaseHelper.grammarDatabase!;
+    grammarList = data;
+    listN0 = await databaseTool.getLevelGrammarList("N0", grammardb);
+    listN1 = await databaseTool.getLevelGrammarList("N1", grammardb);
+    listN2 = await databaseTool.getLevelGrammarList("N2", grammardb);
+    listN3 = await databaseTool.getLevelGrammarList("N3", grammardb);
+    listN4 = await databaseTool.getLevelGrammarList("N4", grammardb);
+    listN5 = await databaseTool.getLevelGrammarList("N5", grammardb);
     print("初始化完成");
     return data;
     // print(grammarList);

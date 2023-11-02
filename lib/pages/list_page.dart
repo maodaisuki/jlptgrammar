@@ -8,10 +8,12 @@ import 'package:jlptgrammar/pages/add_page.dart';
 class GrammarListPage extends StatefulWidget {
   final List list;
   final String title;
+  final String tag;
   const GrammarListPage({
     Key? key,
     required this.list,
     required this.title,
+    required this.tag,
   }) : super(key: key);
   @override
   _GrammarListPageState createState() => _GrammarListPageState();
@@ -26,7 +28,6 @@ class _GrammarListPageState extends State<GrammarListPage> {
           return Scaffold(
             backgroundColor: themeConfig['backgroundColor'],
             appBar: AppBar(
-              // 根据等级匹配标题 TODO
               title: Text(widget.title, style: TextStyle(color: themeConfig['titleColor'])),
               backgroundColor: themeConfig['themeColor'],
               leading: Builder(builder: (context) {
@@ -73,7 +74,7 @@ class _GrammarListPageState extends State<GrammarListPage> {
               onPressed: () {
                 Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const GrammarItemAddPage(title: '添加条目'),
+                    MaterialPageRoute(builder: (context) => GrammarItemAddPage(title: '添加条目', tag: widget.tag, tempList: widget.list,),
                     ));
               },
               tooltip: 'Add item',

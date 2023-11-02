@@ -87,10 +87,9 @@ class _GrammarItemPageState extends State<GrammarItemPage> {
                               content: Text("确认删除此条目？", style: TextStyle(fontSize: 18, color: themeConfig['textColor'])),
                               actions: <Widget>[
                                 MaterialButton(
-                                  child: const Text("确认", style: TextStyle(color: Colors.red, fontSize: 15)),
+                                  child: const Text("确认", style: TextStyle(color: Colors.red, fontSize: 18)),
                                   onPressed: () {
                                     int id = widget.list[widget.index].id;
-                                    // TODO 索引越界 bug, 但是能跑 :D
                                     widget.list.removeAt(widget.index);
                                     grammar.databaseTool.deleteData(id);
                                     // print(widget.list);
@@ -99,7 +98,7 @@ class _GrammarItemPageState extends State<GrammarItemPage> {
                                   },
                                 ),
                                 MaterialButton(
-                                  child: Text("取消", style: TextStyle(color: themeConfig['textColor'], fontSize: 15)),
+                                  child: Text("取消", style: TextStyle(color: themeConfig['textColor'], fontSize: 18)),
                                   onPressed: () {
                                     Navigator.pop(context);
                                   },
@@ -118,7 +117,6 @@ class _GrammarItemPageState extends State<GrammarItemPage> {
                     },
                     itemBuilder: (BuildContext context) {
                       return [
-                        // TODO 添加功能
                         PopupMenuItem(value: 1, child: Text("在网页搜索", style: TextStyle(color: themeConfig['textColor']))),
                         PopupMenuItem(value: 2, child: Text("分享", style: TextStyle(color: themeConfig['textColor']))), // 图片分享开发中
                         const PopupMenuItem(

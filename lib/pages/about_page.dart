@@ -68,7 +68,6 @@ class _AboutPageState extends State<AboutPage> {
                                 ),
                             ),
                             child: Scaffold(
-                              // TODO 夜间模式适配
                               backgroundColor: themeConfig['backgroundColor'],
                               body: LicensePage(
                                 applicationName: '日本語文法',
@@ -111,7 +110,6 @@ class _AboutPageState extends State<AboutPage> {
                 onTap: () async {
                   print("恢复初始设置");
                   SharedPreferences prefs = await SharedPreferences.getInstance();
-                  // TODO
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       content: Text('开发中'),
@@ -129,7 +127,6 @@ class _AboutPageState extends State<AboutPage> {
               ListTile(
                 title: Text("Github 仓库", style: TextStyle(fontSize: 18, color: themeConfig['textColor'])),
                 onTap: () {
-                  // TODO 更好的关于弹窗页面
                   print("Github 仓库");
                   String url = "https://github.com/maodaisuki/jlptgrammar";
                   print("搜索链接: $url");

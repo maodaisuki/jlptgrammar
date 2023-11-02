@@ -17,26 +17,10 @@ class ShareTool {
     ui.Image image = await boundary.toImage(pixelRatio: dpr);
     final sourceBytes = await image.toByteData(format: ImageByteFormat.png);
     print(sourceBytes!.buffer.asUint8List());
-    return sourceBytes!.buffer.asUint8List();
+    return sourceBytes.buffer.asUint8List();
   }
 
-  // 数据转图片
-  // TODO
-  Future<Image?> pngToImage(Uint8List source) async {
-    try {
-      Image image = Image.memory(source);
-      print("转换图片成功！");
-      return image;
-    }
-    catch(e) {
-      print("转换图片失败");
-    }
-    // 转换失败
-    return null;
-  }
-
-  // 二次加工图片
-  // TODO
+  // TODO 二次加工图片
   Future<ByteData?> betterImage() async {
 
   }
@@ -44,8 +28,7 @@ class ShareTool {
   // 分享图片
   Future<bool> shareImage(Uint8List? image) async {
     // path 图片路径
-    // TODO 只传图片数据
-    //时间戳命名
+    // 时间戳命名
     final timeName = DateTime.now().toString();
     // 路径
     final tempDir = await getTemporaryDirectory();
@@ -61,19 +44,27 @@ class ShareTool {
 
 
     final result = await Share.shareXFiles([XFile(filePath)], text: 'Grammar picture');
-    if (result.status == ShareResultStatus.success) {
-      print('分享了一张图片');
-      return true;
+    try {
+      if (result.status == ShareResultStatus.success) {
+        print('分享了一张图片');
+        return true;
+      }
+      else if (result.status == ShareResultStatus.dismissed) {
+        print("取消分享图片");
+        return false;
+      }
+      else {
+        // 其他操作
+        print("分享失败");
+        return false;
+      }
     }
-    else if(result.status == ShareResultStatus.dismissed) {
-      print("取消分享图片");
-      return false;
+    catch (e) {
+      print(e);
     }
-    else {
-      // 其他操作
-      // TODO 处理其他情况
-      print("分享失败");
-      return false;
+    finally {
+      file.deleteSync();
     }
+    return false;
   }
 }

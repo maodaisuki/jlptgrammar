@@ -53,7 +53,6 @@ class _DataInfoPageState extends State<DataInfoPage> {
                 margin: const EdgeInsets.only(top: 5),
                 padding: const EdgeInsets.only(left: 0, right: 0, bottom: 5),
                 child: RichText(
-                  // TODO span 无法调整
                   textAlign: TextAlign.left,
                   text: TextSpan(
                     text: '本软件初始内容所有语法体条目及及其详细内容均来自网站',

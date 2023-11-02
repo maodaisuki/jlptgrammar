@@ -25,7 +25,6 @@ class _MenuDrawerState extends State<MenuDrawer> {
         child: Drawer(
           backgroundColor: themeConfig['backgroundColor'],
           child: ListView(
-            // TODO 添加条目
             children: [
               Container(
                 margin: EdgeInsets.only(left: 0),

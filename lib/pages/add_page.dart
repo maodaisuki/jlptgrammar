@@ -4,9 +4,10 @@ import 'package:jlptgrammar/utils/text_tool.dart';
 import 'package:jlptgrammar/models/grammar_item_model.dart';
 
 class GrammarItemAddPage extends StatefulWidget {
-  // TODO 添加参数，分类页默认添加分类
   final String title;
-  const GrammarItemAddPage({Key? key, required this.title}) : super(key: key);
+  final List tempList;
+  final String tag;
+  const GrammarItemAddPage({Key? key, required this.title, required this.tempList, required this.tag}) : super(key: key);
   @override
   State<GrammarItemAddPage> createState() => _GrammarItemAddPageState();
 }
@@ -315,12 +316,13 @@ class _GrammarItemAddPageState extends State<GrammarItemAddPage> {
                   onPressed: () {
                     if(textEditingController1.text.isEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('请至少输入文型～'), duration: Duration(seconds: 1)));
-                      setState(() {
-
-                      });
                     }
-                    else { // 条目写入数据库后刷新数据
+                    else {
+                      // 条目写入数据库后刷新数据
                       TextTool t = TextTool();
+                      if(setLevel == '其他') {
+                        setLevel = 'N0';
+                      }
                       GrammarItem gi = t.insertDataGenerator(
                         textEditingController1,
                         textEditingController2,
@@ -329,40 +331,19 @@ class _GrammarItemAddPageState extends State<GrammarItemAddPage> {
                         textEditingController5,
                         setLevel,
                       );
-                      grammar.databaseTool.insertData(gi);
                       // 临时加入 list 解决页面同步
-                      switch (setLevel) {
-                        case 'N1':
-                          {
-                            grammar.listN1.add(gi);
-                          }
-                          break;
-                        case 'N2':
-                          {
-                            grammar.listN2.add(gi);
-                          }
-                          break;
-                        case 'N3':
-                          {
-                            grammar.listN3.add(gi);
-                          }
-                          break;
-                        case 'N4':
-                          {
-                            grammar.listN4.add(gi);
-                          }
-                          break;
-                        case 'N5':
-                          {
-                            grammar.listN5.add(gi);
-                          }
-                          break;
-                          defalut:
-                          {
-                            grammar.listN0.add(gi);
-                          }
-                          break;
+                      // print("setLevel: $setLevel\nwidget.tag: ${widget.tag}");
+                      if(setLevel == widget.tag) {
+                        print("分类一致");
+                        widget.tempList.add(gi);
                       }
+                      else if(widget.tag == 'all') {
+                        widget.tempList.add(gi);
+                      }
+                      else {
+                        // 非该分类页，可以不刷新
+                      }
+                      grammar.databaseTool.insertData(gi);
                       Navigator.pop(context);
                     }
                   },

@@ -20,10 +20,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
   setFontSize = await prefs.getString('setFontSize') ?? '18';
-  print('setFontSize: $setFontSize');
+  // print('setFontSize: $setFontSize');
   isLightTheme = await prefs.getBool('isLightTheme') ?? true;
-  print('isLightTheme: $isLightTheme');
-  // TODO 去除夜间模式 isLightTheme 参数，默认紫色，切换颜色在 设置->显示
+  // print('isLightTheme: $isLightTheme');
   themeConfig = (await isLightTheme) ? lightTheme : nightTheme;
   print("配置获取完成");
   runApp(MyApp());
@@ -31,7 +30,6 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});
-  // This widget is the root of your application.
 
   Future<SharedPreferences> prefs = SharedPreferences.getInstance();
 
@@ -40,12 +38,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'All Grammar',
       routes:  <String, WidgetBuilder> {
-        '/n1': (context) => GrammarListPage(list: grammar.listN1, title: "JLPT N1"),
-        '/n2': (context) => GrammarListPage(list: grammar.listN2, title: "JLPT N2"),
-        '/n3': (context) => GrammarListPage(list: grammar.listN3, title: "JLPT N3"),
-        '/n4': (context) => GrammarListPage(list: grammar.listN4, title: "JLPT N4"),
-        '/n5': (context) => GrammarListPage(list: grammar.listN5, title: "JLPT N5"),
-        '/n0': (context) => GrammarListPage(list: grammar.listN0, title: "其他文法"),
+        '/n1': (context) => GrammarListPage(list: grammar.listN1, title: "JLPT N1", tag: 'N1'),
+        '/n2': (context) => GrammarListPage(list: grammar.listN2, title: "JLPT N2", tag: 'N2'),
+        '/n3': (context) => GrammarListPage(list: grammar.listN3, title: "JLPT N3", tag: 'N3'),
+        '/n4': (context) => GrammarListPage(list: grammar.listN4, title: "JLPT N4", tag: 'N4'),
+        '/n5': (context) => GrammarListPage(list: grammar.listN5, title: "JLPT N5", tag: 'N5'),
+        '/n0': (context) => GrammarListPage(list: grammar.listN0, title: "其他文法", tag: 'N0'),
         '/about': (context) => const AboutPage(),
         '/datainfo': (context) => const DataInfoPage(),
         '/exercises': (context) => const ExercisesPage(),
@@ -173,7 +171,7 @@ class _HomePageState extends State<HomePage>  with AutomaticKeepAliveClientMixin
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const GrammarItemAddPage(title: '添加条目'),
+                    MaterialPageRoute(builder: (context) => GrammarItemAddPage(title: '添加条目', tag: 'all', tempList: grammar.grammarList,),
                   ));
                 },
                 tooltip: 'Add item',
