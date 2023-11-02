@@ -6,6 +6,7 @@ import 'package:jlptgrammar/models/grammar_item_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:jlptgrammar/common/theme.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 ShareTool st = ShareTool();
 
@@ -16,7 +17,14 @@ late Map themeConfig;
 ValueNotifier<int> g = ValueNotifier<int>(0);
 Grammar grammar = Grammar();
 GlobalKey repaintWidgetKey = GlobalKey();
-
+PackageInfo packageInfo = PackageInfo(
+  appName: 'Unknown',
+  packageName: 'Unknown',
+  version: 'Unknown',
+  buildNumber: 'Unknown',
+  buildSignature: 'Unknown',
+  installerStore: 'Unknown',
+);
 
 class Grammar {
   late List<GrammarItem> grammarList;
@@ -37,6 +45,7 @@ class Grammar {
       print("实例化 grammardb: $grammardb");
       // 加 1 避免数据为空一直加载
       g.value = grammarList.length + 1;
+      packageInfo = await PackageInfo.fromPlatform();
     });
   }
 

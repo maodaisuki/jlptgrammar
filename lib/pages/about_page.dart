@@ -22,125 +22,106 @@ class _AboutPageState extends State<AboutPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: themeConfig['backgroundColor'],
-      appBar: AppBar(
-        title: Text("关于软件", style: TextStyle(color: themeConfig['titleColor'])),
-        backgroundColor: themeConfig['themeColor'],
+        backgroundColor: themeConfig['backgroundColor'],
+        appBar: AppBar(
+        // title: Text("关于软件", style: TextStyle(color: themeConfig['titleColor'])),
+        backgroundColor: themeConfig['backgroundColor'],
         leading: Builder(builder: (context) {
           return IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
               Navigator.pop(
-                  context
+                context
               );
             },
-            color: themeConfig['iconColor'],
+            color: themeConfig['drawerIconColor'],
           );
         }),
       ),
       body: Container(
-        color: themeConfig['backgroundColor'],
         margin: const EdgeInsets.all(0),
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              ListTile(
-                title: Text("开放源代码许可", style: TextStyle(fontSize: 18, color: themeConfig['textColor'])),
-                onTap: () {
-                  print("开放源代码许可");
-                  // Navigator.of(context).pushNamed('/source');
-                  Navigator.of(context).push(
-                      MaterialPageRoute<void>(
-                          builder: (context) => Theme(
-                            data: ThemeData(
-                                appBarTheme: AppBarTheme(
-                                  backgroundColor: themeConfig['themeColor'],
-                                  iconTheme: Theme.of(context).iconTheme.copyWith(
-                                    color: themeConfig['iconColor'],
-                                  ),
-                                  titleTextStyle: TextStyle(color: themeConfig['titleColor'], fontSize: 23),
-                                ),
-
-                                textTheme: Theme.of(context).textTheme.copyWith(
-                                  titleLarge: TextStyle(color: themeConfig['titleColor']),
-                                  titleMedium: TextStyle(color: themeConfig['titleColor']),
-                                  titleSmall: TextStyle(color: themeConfig['titleColor']),
-                                ),
-                            ),
-                            child: Scaffold(
-                              backgroundColor: themeConfig['backgroundColor'],
-                              body: LicensePage(
-                                applicationName: '日本語文法',
-                                applicationVersion: 'v1.1.0',
-                                applicationIcon: Container(
-                                  margin: const EdgeInsets.only(top: 10, bottom: 10),
-                                  child: Image.asset(
-                                    'lib/assets/jlptgrammar.png',
-                                    height: 80,
-                                    width: 80,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                  ));
-                },
-                trailing: Icon(Icons.keyboard_arrow_right, color: themeConfig['drawerIconColor']),
-              ),
-              Divider(
-                height: 0.5,
-                indent: 0,
-                color: themeConfig['lineColor'],
-              ),
-              ListTile(
-                title: Text("数据来源说明", style: TextStyle(fontSize: 18, color: themeConfig['textColor'])),
-                onTap: () {
-                  print("数据来源说明");
-                  Navigator.of(context).pushNamed('/datainfo');
-                },
-                trailing: Icon(Icons.keyboard_arrow_right, color: themeConfig['drawerIconColor']),
-              ),
-              Divider(
-                height: 0.5,
-                indent: 0,
-                color: themeConfig['lineColor'],
-              ),
-              ListTile(
-                title: Text("恢复初始设置", style: TextStyle(fontSize: 18, color: /* themeConfig['textColor'] */ Colors.grey)),
-                onTap: () async {
-                  print("恢复初始设置");
-                  SharedPreferences prefs = await SharedPreferences.getInstance();
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('开发中'),
-                      duration: Duration(seconds: 1),
+          child: Container(
+            child: Column(
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(top: 10),
+                    child: Center(
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.3,
+                        child: Image.asset(
+                          'lib/assets/jlptgrammar.png',
+                          fit: BoxFit.fitWidth,
+                        ),
+                      ),
                     ),
-                  );
-                },
-                trailing: Icon(Icons.keyboard_arrow_right, color: themeConfig['drawerIconColor']),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 20),
+                    child: Center(
+                      child: Text('日本語文法', style: TextStyle(color: themeConfig['textColor'], fontSize: 20, fontWeight: FontWeight.w700)),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 10, bottom: 10),
+                    child: Center(
+                      child: Text("Version ${packageInfo.version} -release", style: TextStyle(color: themeConfig['textColor'], fontSize: 16)),
+                    ),
+                  ),
+                  ListTile(
+                    leading: Container(
+                      margin: EdgeInsets.only(left: 15),
+                      child: Icon(Icons.emoji_emotions, color: themeConfig['drawerIconColor']),
+                    ),
+                    title: Text('日本語文法官方网站', style: TextStyle(fontSize: 20, color: themeConfig['textColor'])),
+                    subtitle: Text('软件官方网站', style: TextStyle(fontSize: 14, color: themeConfig['textColor'])),
+                    minVerticalPadding: 10,
+                    onTap: () {
+                      print("打开官网");
+                      openURL(Uri.parse('https://github.com/maodaisuki/jlptgrammar/'));
+                    },
+                  ),
+                  ListTile(
+                    leading: Container(
+                      margin: EdgeInsets.only(left: 15),
+                      child: Icon(Icons.sticky_note_2_outlined, color: themeConfig['drawerIconColor']),
+                    ),
+                    title: Text('日本語 NET 官方网站', style: TextStyle(fontSize: 20, color: themeConfig['textColor'])),
+                    subtitle: Text('提供了软件所使用的语法数据', style: TextStyle(fontSize: 14, color: themeConfig['textColor'])),
+                    minVerticalPadding: 10,
+                    onTap: () {
+                      print("打开官网");
+                      openURL(Uri.parse('https://nihongokyoshi-net.com/jlpt-grammars/'));
+                    },
+                  ),
+                  ListTile(
+                    leading: Container(
+                      margin: EdgeInsets.only(left: 15),
+                      child: Icon(Icons.rocket_launch, color: themeConfig['drawerIconColor']),
+                    ),
+                    title: Text('检查更新', style: TextStyle(fontSize: 20, color: themeConfig['textColor'])),
+                    subtitle: Text('检查 Github 仓库有无新版本发布', style: TextStyle(fontSize: 14, color: themeConfig['textColor'])),
+                    minVerticalPadding: 10,
+                    onTap: () {
+                      // TODO 抓取通用版本，提示小体积版本
+                    },
+                  ),
+                  // TODO 添加开源相关
+                  // ListTile(
+                  //   leading: Container(
+                  //     margin: EdgeInsets.only(left: 15),
+                  //     child: Icon(Icons.rocket_launch, color: themeConfig['drawerIconColor']),
+                  //   ),
+                  //   title: Text('开源相关', style: TextStyle(fontSize: 20, color: themeConfig['textColor'])),
+                  //   subtitle: Text('', style: TextStyle(fontSize: 14, color: themeConfig['textColor'])),
+                  //   minVerticalPadding: 10,
+                  //   onTap: () {
+                  //
+                  //   },
+                  // ),
+                ],
               ),
-              Divider(
-                height: 0.5,
-                indent: 0,
-                color: themeConfig['lineColor'],
-              ),
-              ListTile(
-                title: Text("Github 仓库", style: TextStyle(fontSize: 18, color: themeConfig['textColor'])),
-                onTap: () {
-                  print("Github 仓库");
-                  String url = "https://github.com/maodaisuki/jlptgrammar";
-                  print("搜索链接: $url");
-                  openURL(Uri.parse(url));
-                },
-                trailing: Icon(Icons.keyboard_arrow_right, color: themeConfig['drawerIconColor']),
-              ),
-              Divider(
-                height: 0.5,
-                indent: 0,
-                color: themeConfig['lineColor'],
-              ),
-            ],
-          ),
+            ),
         ),
       ),
     );

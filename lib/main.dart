@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:jlptgrammar/pages/about_page.dart';
 import 'package:jlptgrammar/pages/add_page.dart';
-import 'package:jlptgrammar/pages/data_info_page.dart';
 import 'package:jlptgrammar/pages/exercises_page.dart';
 import 'package:jlptgrammar/pages/settings_page.dart';
 import 'package:jlptgrammar/widgets/drawer_widget.dart';
@@ -45,7 +44,6 @@ class MyApp extends StatelessWidget {
         '/n5': (context) => GrammarListPage(list: grammar.listN5, title: "JLPT N5", tag: 'N5'),
         '/n0': (context) => GrammarListPage(list: grammar.listN0, title: "其他文法", tag: 'N0'),
         '/about': (context) => const AboutPage(),
-        '/datainfo': (context) => const DataInfoPage(),
         '/exercises': (context) => const ExercisesPage(),
         '/settings': (context) => const SettingsPage(),
         '/dataManger': (context) => const DataMangerPage(),

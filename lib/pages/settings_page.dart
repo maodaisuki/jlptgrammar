@@ -43,18 +43,6 @@ class _SettingsPageState extends State<SettingsPage> {
                     ListTile(
                       leading: Container(
                         margin: EdgeInsets.only(left: 15),
-                        child: Icon(Icons.rocket_launch, color: themeConfig['drawerIconColor']),
-                      ),
-                      title: Text('检查更新', style: TextStyle(fontSize: 20, color: themeConfig['textColor'])),
-                      subtitle: Text('检查 Github 仓库有无新版本发布', style: TextStyle(fontSize: 14, color: themeConfig['textColor'])),
-                      minVerticalPadding: 10,
-                      onTap: () {
-                        // TODO 抓取通用版本，提示小体积版本
-                      },
-                    ),
-                    ListTile(
-                      leading: Container(
-                        margin: EdgeInsets.only(left: 15),
                         child: Icon(Icons.mode_night_sharp, color: themeConfig['drawerIconColor']),
                       ),
                       title: Text('夜间模式', style: TextStyle(fontSize: 20, color: themeConfig['textColor'])),
@@ -116,7 +104,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       subtitle: Text('软件相关信息', style: TextStyle(fontSize: 14, color: themeConfig['textColor'])),
                       minVerticalPadding: 10,
                       onTap: () {
-
+                        Navigator.of(context).pushNamed('/about');
                       },
                     ),
                   ],
