@@ -270,7 +270,7 @@ class _AboutPageState extends State<AboutPage> {
                     onTap: () async {
                       // 显示正在检查
                       showCheckingInfo();
-                      await showUpdateInfo(await checkUpdate("1.0.0"));
+                      await showUpdateInfo(await checkUpdate(packageInfo.version.toString()));
                     },
                   ),
                   // TODO 添加开源相关
