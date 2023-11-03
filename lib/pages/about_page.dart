@@ -115,11 +115,12 @@ class _AboutPageState extends State<AboutPage> {
                         borderRadius: BorderRadius.all(Radius.circular(4))
                     ),
                     title: Text(isConfirmDownload == false ? "发现新版本" : "下载中", style: TextStyle(color: themeConfig['textColor'])),
-                    content: isConfirmDownload == false ? Text("$updateInfo\n\n立即更新？", style: TextStyle(fontSize: 18, color: themeConfig['textColor']))
-                      : Container(
-                        child:
-                          LinearProgressIndicator(color: isLightTheme ? themeConfig['themeColor'] : themeConfig['titleColor']),
-                    ),
+                    // content: isConfirmDownload == false ? Text("$updateInfo\n\n立即更新？", style: TextStyle(fontSize: 18, color: themeConfig['textColor']))
+                    //   : Container(
+                    //     child:
+                    //       LinearProgressIndicator(color: isLightTheme ? themeConfig['themeColor'] : themeConfig['titleColor']),
+                    // ),
+                    content: Text("$updateInfo\n\n立即前往下载？", style: TextStyle(fontSize: 18, color: themeConfig['textColor'])),
                     actions: <Widget>[
                       MaterialButton(
                           child: Text('取消', style: TextStyle(color: themeConfig['textColor'], fontSize: 18)),
@@ -138,16 +139,16 @@ class _AboutPageState extends State<AboutPage> {
                           child: const Text('确认', style: TextStyle(color: Colors.red, fontSize: 18,)),
                           onPressed: () async {
                             // 开始下载
+                            // TODO 应用内更新
                             String url = await getDownloadUrl(resInfo);
-                            String savePath = (await getTemporaryDirectory()).path;
-                            String apkPath = "$savePath/app-release.apk";
+                            openURL(Uri.parse(url));
+                            // String savePath = (await getTemporaryDirectory()).path;
+                            // String apkPath = "$savePath/app-release.apk";
                             setState(() {
                               isConfirmDownload = true;
-                              downloadListener.value = 1;
+                              // downloadListener.value = 1;
                             });
-
                             print(url);
-
                             Navigator.pop(context);
                           }
                         ),
