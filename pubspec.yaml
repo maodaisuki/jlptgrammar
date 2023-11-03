@@ -42,11 +42,13 @@ dependencies:
   # 7.0.2 不要更改 share_plus 版本 详情参见 https://github.com/fluttercommunity/plus_plugins/issues/1351#issuecomment-1594494904
   share_plus: ^7.0.2
   permission_handler: ^11.0.1
-  flutter_native_splash: ^2.3.4
+  # splash 与 image 兼容
+  flutter_native_splash: ^2.2.16
   shared_preferences: ^2.2.2
   package_info_plus: ^4.2.0
   file_picker: ^6.0.0
   http: ^1.1.0
+  image: ^3.3.0
 
 dev_dependencies:
   flutter_test:
