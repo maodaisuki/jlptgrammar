@@ -70,8 +70,9 @@ class _GrammarItemPageState extends State<GrammarItemPage> {
                       }
                       else if(value == 2) {
                         // 截图分享
-                        Uint8List? tempImage = await st.capturePngToByte(widget.index, widget.list);
-                        await st.shareImage(tempImage);
+                        // Uint8List? tempImage = await st.capturePngToByte(widget.index, widget.list);
+                        // TODO 优化这个选项
+                        await st.shareImage(await st.capturePngToByte(widget.index, widget.list));
                       }
                       else if(value == 3) {
                         // 删除条目
