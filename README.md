@@ -1,8 +1,8 @@
 <p align="center">
-  <img width="120" height="120" src="https://github.com/maodaisuki/jlptgrammar/blob/main/doc/assets/icon.png?raw=true">
+  <img width="140" height="140" src="https://github.com/maodaisuki/jlptgrammar/blob/main/doc/assets/icon.png?raw=true">
 </p>
 <h3 align="center">日本語文法</h3>
-<p align="center">一个日本语文法 APP</p>
+<p align="center">一款简洁的日本语文法应用</p>
 <hr />
 
 ## 下载
