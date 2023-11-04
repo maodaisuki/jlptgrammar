@@ -55,6 +55,11 @@ class MyApp extends StatelessWidget {
         // 固定颜色
         primaryColor: themeConfig['themeColor'],
         useMaterial3: true,
+        textSelectionTheme: TextSelectionThemeData(
+          cursorColor: isLightTheme ? Color.fromRGBO(184, 150, 103, 1) : Colors.white,
+          selectionColor: Colors.blue,
+          selectionHandleColor: Colors.blueAccent,
+        ),
       ),
       home: const HomePage(title: "All Grammar"),
     );

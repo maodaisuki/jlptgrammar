@@ -49,6 +49,8 @@ class _SettingsPageState extends State<SettingsPage> {
                       subtitle: Text(isLightTheme == false ? 'On' : 'Off', style: TextStyle(fontSize: 14, color: themeConfig['textColor'])),
                       minVerticalPadding: 10,
                       trailing: Switch(
+                        activeTrackColor: Color.fromRGBO(184, 150, 103, 1),
+                        inactiveTrackColor: Colors.white,
                         value: !isLightTheme,
                         onChanged: (value) async {
                           SharedPreferences prefs = await SharedPreferences.getInstance();

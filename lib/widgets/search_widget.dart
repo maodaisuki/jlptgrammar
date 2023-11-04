@@ -27,7 +27,7 @@ class GrammarSearchDelegate extends SearchDelegate {
         textSelectionTheme: const TextSelectionThemeData(
           selectionColor: Colors.blue,
           selectionHandleColor: Colors.blueAccent,
-          cursorColor: Colors.deepPurpleAccent,
+          cursorColor: Colors.white,
         ));
   }
 
