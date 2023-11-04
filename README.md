@@ -32,3 +32,28 @@
 
 参考 [Flutter 文档](https://docs.flutter.dev/)。
 
+
+
+## 数据存储相关
+
+数据库存储用表创建语句为
+
+```sql
+CREATE TABLE "jlptgrammar" (
+	"id"	INTEGER NOT NULL,
+	"level"	TEXT,
+	"name"	TEXT,
+	"grammar"	TEXT,
+	"mean"	TEXT,
+	"example"	TEXT,
+	"notes"	TEXT,
+	PRIMARY KEY("id")
+)
+```
+
+
+
+## 数据来源
+
+软件内置数据来源于[毎日のんびり日本語教師](https://nihongonosensei.net/)。此**不作为**软件的一部分。
+
