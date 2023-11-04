@@ -1,7 +1,26 @@
 import 'package:flutter/material.dart';
 /// 主题合集
+// const Map lightTheme = {
+//   'themeColor': Colors.deepPurple,
+//   'backgroundColor': Colors.white,
+//   'lineColor': Colors.black12,
+//   'titleColor': Colors.white,
+//   'subtitleColor': Colors.white,
+//   'iconColor': Colors.white,
+//   'hintColor': Colors.white70,
+//   'textColor': Colors.black,
+//   'drawerIconButtonColor': Colors.black,
+//   'floatingActionButtonBackgroundColor': Color.fromRGBO(224, 213, 255, 1),
+//   'floatingActionButtonIconColor': Color.fromRGBO(79, 72, 94, 0.8),
+//   'labelColor': Color.fromRGBO(80, 80, 80, 1),
+//   'floatingLabelColor': Colors.deepPurple,
+//   'enabledBorderColor': Colors.black,
+//   'focusedBorderColor': Colors.deepPurple,
+//   'drawerTitleColor': Colors.deepPurple,
+// };
+
 const Map lightTheme = {
-  'themeColor': Colors.deepPurple,
+  'themeColor': Color.fromRGBO(184, 150, 103, 1),
   'backgroundColor': Colors.white,
   'lineColor': Colors.black12,
   'titleColor': Colors.white,
@@ -10,13 +29,13 @@ const Map lightTheme = {
   'hintColor': Colors.white70,
   'textColor': Colors.black,
   'drawerIconButtonColor': Colors.black,
-  'floatingActionButtonBackgroundColor': Color.fromRGBO(224, 213, 255, 1),
-  'floatingActionButtonIconColor': Color.fromRGBO(79, 72, 94, 0.8),
+  'floatingActionButtonBackgroundColor': Color.fromRGBO(255, 209, 143, 1),
+  'floatingActionButtonIconColor': Color.fromRGBO(161, 131, 90, 1),
   'labelColor': Color.fromRGBO(80, 80, 80, 1),
-  'floatingLabelColor': Colors.deepPurple,
+  'floatingLabelColor': Color.fromRGBO(184, 150, 103, 1),
   'enabledBorderColor': Colors.black,
-  'focusedBorderColor': Colors.deepPurple,
-  'drawerTitleColor': Colors.deepPurple,
+  'focusedBorderColor': Color.fromRGBO(184, 150, 103, 1),
+  'drawerTitleColor': Color.fromRGBO(184, 150, 103, 1),
 };
 
 const Map nightTheme = {
