@@ -41,8 +41,8 @@ class _AboutPageState extends State<AboutPage> {
 
   Future<String> getDownloadUrl(Map maps) async {
     String url = "";
-    for(var m in maps['assets']) {
-      if(m['name'] == 'app-release.apk') {
+    for (var m in maps['assets']) {
+      if (m['name'] == 'app-release.apk') {
         // print(m['browser_download_url']);
         return m['browser_download_url'];
       }
@@ -66,40 +66,37 @@ class _AboutPageState extends State<AboutPage> {
         break;
       }
     }
-    if(compareResult >= 0) {
+    if (compareResult >= 0) {
       return false;
-    }
-    else {
+    } else {
       return true;
     }
   }
 
   Future<bool> checkUpdate(String version) async {
-    final response = await http.get(Uri.parse('https://api.github.com/repos/maodaisuki/jlptgrammar/releases/latest'));
+    final response = await http.get(Uri.parse(
+        'https://api.github.com/repos/maodaisuki/jlptgrammar/releases/latest'));
 
     if (response.statusCode == 200) {
       final release = jsonDecode(response.body);
       final newVersion = release['tag_name'].substring(1);
       print("newVersion: $newVersion");
-      if(await compareVersion(version, newVersion)) {
+      if (await compareVersion(version, newVersion)) {
         // 有新版本
         updateInfo = release['body'];
         resInfo = release;
         // print(resInfo['assets'][0]['browser_download_url']);
         return true;
-      }
-      else {
+      } else {
         return false;
       }
     }
     return false;
   }
 
-
-
   Future<void> showUpdateInfo(bool info) async {
     ValueNotifier<int> downloadListener = ValueNotifier<int>(0);
-    if(info) {
+    if (info) {
       // 有新版本
       bool isConfirmDownload = false;
       await showDialog(
@@ -112,92 +109,97 @@ class _AboutPageState extends State<AboutPage> {
                   return AlertDialog(
                     backgroundColor: themeConfig['backgroundColor'],
                     shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(4))
-                    ),
-                    title: Text(isConfirmDownload == false ? "发现新版本" : "下载中", style: TextStyle(color: themeConfig['textColor'])),
+                        borderRadius: BorderRadius.all(Radius.circular(4))),
+                    title: Text(isConfirmDownload == false ? "发现新版本" : "下载中",
+                        style: TextStyle(color: themeConfig['textColor'])),
                     // content: isConfirmDownload == false ? Text("$updateInfo\n\n立即更新？", style: TextStyle(fontSize: 18, color: themeConfig['textColor']))
                     //   : Container(
                     //     child:
                     //       LinearProgressIndicator(color: isLightTheme ? themeConfig['themeColor'] : themeConfig['titleColor']),
                     // ),
-                    content: Text("$updateInfo\n\n立即前往下载？", style: TextStyle(fontSize: 18, color: themeConfig['textColor'])),
+                    content: Text("$updateInfo\n\n立即前往下载？",
+                        style: TextStyle(
+                            fontSize: 18, color: themeConfig['textColor'])),
                     actions: <Widget>[
                       MaterialButton(
-                          child: Text('取消', style: TextStyle(color: themeConfig['textColor'], fontSize: 18)),
+                          child: Text('取消',
+                              style: TextStyle(
+                                  color: themeConfig['textColor'],
+                                  fontSize: 18)),
                           onPressed: () async {
-                            if(isConfirmDownload) {
+                            if (isConfirmDownload) {
                               // 停止下载同时关闭
 
                               isConfirmDownload = !isConfirmDownload;
                             }
                             Navigator.pop(context);
-                          }
-                      ),
+                          }),
                       Visibility(
                         visible: !isConfirmDownload,
                         child: MaterialButton(
-                          child: const Text('确认', style: TextStyle(color: Colors.red, fontSize: 18,)),
-                          onPressed: () async {
-                            // 开始下载
-                            // TODO 应用内更新
-                            String url = await getDownloadUrl(resInfo);
-                            openURL(Uri.parse(url));
-                            // String savePath = (await getTemporaryDirectory()).path;
-                            // String apkPath = "$savePath/app-release.apk";
-                            setState(() {
-                              isConfirmDownload = true;
-                              // downloadListener.value = 1;
-                            });
-                            print(url);
-                            Navigator.pop(context);
-                          }
-                        ),
+                            child: const Text('确认',
+                                style: TextStyle(
+                                  color: Colors.red,
+                                  fontSize: 18,
+                                )),
+                            onPressed: () async {
+                              // 开始下载
+                              // TODO 应用内更新
+                              String url = await getDownloadUrl(resInfo);
+                              openURL(Uri.parse(url));
+                              // String savePath = (await getTemporaryDirectory()).path;
+                              // String apkPath = "$savePath/app-release.apk";
+                              setState(() {
+                                isConfirmDownload = true;
+                                // downloadListener.value = 1;
+                              });
+                              print(url);
+                              Navigator.pop(context);
+                            }),
                       ),
                     ],
-                );
-            });
-          }
-      );
-    }
-    else {
+                  );
+                });
+          });
+    } else {
       // 没有新版本
       await showDialog(
           barrierDismissible: false,
           context: context,
           builder: (_) => AlertDialog(
-            backgroundColor: themeConfig['backgroundColor'],
-            shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(4))
-            ),
-            title: Text("检查更新", style: TextStyle(color: themeConfig['textColor'])),
-            content: Text("暂未发现新版本", style: TextStyle(fontSize: 18, color: themeConfig['textColor'])),
-            actions: <Widget>[
-              MaterialButton(
-                  child: Text('确认', style: TextStyle(color: themeConfig['textColor'], fontSize: 18)),
-                  onPressed: () async {
-                    Navigator.pop(context);
-                  }
-              ),
-            ],
-          )
-      );
+                backgroundColor: themeConfig['backgroundColor'],
+                shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(4))),
+                title: Text("检查更新",
+                    style: TextStyle(color: themeConfig['textColor'])),
+                content: Text("暂未发现新版本",
+                    style: TextStyle(
+                        fontSize: 18, color: themeConfig['textColor'])),
+                actions: <Widget>[
+                  MaterialButton(
+                      child: Text('确认',
+                          style: TextStyle(
+                              color: themeConfig['textColor'], fontSize: 18)),
+                      onPressed: () async {
+                        Navigator.pop(context);
+                      }),
+                ],
+              ));
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: themeConfig['backgroundColor'],
-        appBar: AppBar(
+      backgroundColor: themeConfig['backgroundColor'],
+      appBar: AppBar(
         // title: Text("关于软件", style: TextStyle(color: themeConfig['titleColor'])),
         backgroundColor: themeConfig['backgroundColor'],
         leading: Builder(builder: (context) {
           return IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.pop(
-                context
-              );
+              Navigator.pop(context);
             },
             color: themeConfig['drawerIconColor'],
           );
@@ -208,87 +210,110 @@ class _AboutPageState extends State<AboutPage> {
         child: SingleChildScrollView(
           child: Container(
             child: Column(
-                children: [
-                  Container(
-                    margin: const EdgeInsets.only(top: 10),
-                    child: Center(
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.3,
-                        child: Image.asset(
-                          'lib/assets/jlptgrammar.png',
-                          fit: BoxFit.fitWidth,
-                        ),
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(top: 10),
+                  child: Center(
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.3,
+                      child: Image.asset(
+                        'lib/assets/jlptgrammar.png',
+                        fit: BoxFit.fitWidth,
                       ),
                     ),
                   ),
-                  Container(
-                    margin: EdgeInsets.only(top: 20),
-                    child: Center(
-                      child: Text('日本語文法', style: TextStyle(color: themeConfig['textColor'], fontSize: 20, fontWeight: FontWeight.w700)),
-                    ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 20),
+                  child: Center(
+                    child: Text('日本語文法',
+                        style: TextStyle(
+                            color: themeConfig['textColor'],
+                            fontSize: 20,
+                            fontWeight: FontWeight.w700)),
                   ),
-                  Container(
-                    margin: EdgeInsets.only(top: 10, bottom: 10),
-                    child: Center(
-                      child: Text("Version ${packageInfo.version} -release", style: TextStyle(color: themeConfig['textColor'], fontSize: 16)),
-                    ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 10, bottom: 10),
+                  child: Center(
+                    child: Text("Version ${packageInfo.version} -release",
+                        style: TextStyle(
+                            color: themeConfig['textColor'], fontSize: 16)),
                   ),
-                  ListTile(
-                    leading: Container(
-                      margin: EdgeInsets.only(left: 15),
-                      child: Icon(Icons.emoji_emotions, color: themeConfig['drawerIconColor']),
-                    ),
-                    title: Text('日本語文法官方网站', style: TextStyle(fontSize: 20, color: themeConfig['textColor'])),
-                    subtitle: Text('软件官方网站', style: TextStyle(fontSize: 14, color: themeConfig['textColor'])),
-                    minVerticalPadding: 10,
-                    onTap: () {
-                      print("打开官网");
-                      openURL(Uri.parse('https://github.com/maodaisuki/jlptgrammar/'));
-                    },
+                ),
+                ListTile(
+                  leading: Container(
+                    margin: EdgeInsets.only(left: 15),
+                    child: Icon(Icons.emoji_emotions,
+                        color: themeConfig['drawerIconColor']),
                   ),
-                  ListTile(
-                    leading: Container(
-                      margin: EdgeInsets.only(left: 15),
-                      child: Icon(Icons.sticky_note_2_outlined, color: themeConfig['drawerIconColor']),
-                    ),
-                    title: Text('毎日のんびり日本語教師', style: TextStyle(fontSize: 20, color: themeConfig['textColor'])),
-                    subtitle: Text('提供了软件所使用的语法数据', style: TextStyle(fontSize: 14, color: themeConfig['textColor'])),
-                    minVerticalPadding: 10,
-                    onTap: () {
-                      print("打开官网");
-                      openURL(Uri.parse('https://nihongonosensei.net/'));
-                    },
+                  title: Text('日本語文法官方网站',
+                      style: TextStyle(
+                          fontSize: 20, color: themeConfig['textColor'])),
+                  subtitle: Text('软件官方网站',
+                      style: TextStyle(
+                          fontSize: 14, color: themeConfig['textColor'])),
+                  minVerticalPadding: 10,
+                  onTap: () {
+                    print("打开官网");
+                    openURL(Uri.parse(
+                        'https://github.com/maodaisuki/jlptgrammar/'));
+                  },
+                ),
+                ListTile(
+                  leading: Container(
+                    margin: EdgeInsets.only(left: 15),
+                    child: Icon(Icons.sticky_note_2_outlined,
+                        color: themeConfig['drawerIconColor']),
                   ),
-                  ListTile(
-                    leading: Container(
-                      margin: EdgeInsets.only(left: 15),
-                      child: Icon(Icons.rocket_launch, color: themeConfig['drawerIconColor']),
-                    ),
-                    title: Text('检查更新', style: TextStyle(fontSize: 20, color: themeConfig['textColor'])),
-                    subtitle: Text('检查 Github 仓库有无新版本发布', style: TextStyle(fontSize: 14, color: themeConfig['textColor'])),
-                    minVerticalPadding: 10,
-                    onTap: () async {
-                      // 显示正在检查
-                      showCheckingInfo();
-                      await showUpdateInfo(await checkUpdate(packageInfo.version.toString()));
-                    },
+                  title: Text('毎日のんびり日本語教師',
+                      style: TextStyle(
+                          fontSize: 20, color: themeConfig['textColor'])),
+                  subtitle: Text('提供了软件所使用的语法数据',
+                      style: TextStyle(
+                          fontSize: 14, color: themeConfig['textColor'])),
+                  minVerticalPadding: 10,
+                  onTap: () {
+                    print("打开官网");
+                    openURL(Uri.parse('https://nihongonosensei.net/'));
+                  },
+                ),
+                ListTile(
+                  leading: Container(
+                    margin: EdgeInsets.only(left: 15),
+                    child: Icon(Icons.rocket_launch,
+                        color: themeConfig['drawerIconColor']),
                   ),
-                  // TODO 添加开源相关
-                  // ListTile(
-                  //   leading: Container(
-                  //     margin: EdgeInsets.only(left: 15),
-                  //     child: Icon(Icons.rocket_launch, color: themeConfig['drawerIconColor']),
-                  //   ),
-                  //   title: Text('开源相关', style: TextStyle(fontSize: 20, color: themeConfig['textColor'])),
-                  //   subtitle: Text('', style: TextStyle(fontSize: 14, color: themeConfig['textColor'])),
-                  //   minVerticalPadding: 10,
-                  //   onTap: () {
-                  //
-                  //   },
-                  // ),
-                ],
-              ),
+                  title: Text('检查更新',
+                      style: TextStyle(
+                          fontSize: 20, color: themeConfig['textColor'])),
+                  subtitle: Text('检查 Github 仓库有无新版本发布',
+                      style: TextStyle(
+                          fontSize: 14, color: themeConfig['textColor'])),
+                  minVerticalPadding: 10,
+                  onTap: () async {
+                    // 显示正在检查
+                    showCheckingInfo();
+                    await showUpdateInfo(
+                        await checkUpdate(packageInfo.version.toString()));
+                  },
+                ),
+                // TODO 添加开源相关
+                // ListTile(
+                //   leading: Container(
+                //     margin: EdgeInsets.only(left: 15),
+                //     child: Icon(Icons.rocket_launch, color: themeConfig['drawerIconColor']),
+                //   ),
+                //   title: Text('开源相关', style: TextStyle(fontSize: 20, color: themeConfig['textColor'])),
+                //   subtitle: Text('', style: TextStyle(fontSize: 14, color: themeConfig['textColor'])),
+                //   minVerticalPadding: 10,
+                //   onTap: () {
+                //
+                //   },
+                // ),
+              ],
             ),
+          ),
         ),
       ),
     );

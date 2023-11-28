@@ -33,7 +33,8 @@ class _QuizAnswerPageState extends State<QuizAnswerPage> {
           return Scaffold(
             backgroundColor: themeConfig['backgroundColor'],
             appBar: AppBar(
-              title: Text(widget.list[widget.index].name.toString(), style: TextStyle(color: themeConfig['titleColor'])),
+              title: Text(widget.list[widget.index].name.toString(),
+                  style: TextStyle(color: themeConfig['titleColor'])),
               backgroundColor: themeConfig['themeColor'],
               leading: Builder(builder: (context) {
                 return IconButton(
@@ -59,8 +60,14 @@ class _QuizAnswerPageState extends State<QuizAnswerPage> {
                           child: Row(
                             children: [
                               RawChip(
-                                label: Text("文型", style: TextStyle(color: themeConfig['titleColor'], fontSize: 16)),
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0), side: const BorderSide(color: Colors.transparent)),
+                                label: Text("文型",
+                                    style: TextStyle(
+                                        color: themeConfig['titleColor'],
+                                        fontSize: 16)),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(0),
+                                    side: const BorderSide(
+                                        color: Colors.transparent)),
                                 backgroundColor: themeConfig['themeColor'],
                                 padding: const EdgeInsets.all(2),
                                 selected: false,
@@ -71,7 +78,8 @@ class _QuizAnswerPageState extends State<QuizAnswerPage> {
                         Container(
                           color: themeConfig['backgroundColor'],
                           // margin: const EdgeInsets.only(left: 10, right: 0, top: 0, bottom: 20),
-                          padding: const EdgeInsets.only(left: 11, top: 5, right: 11),
+                          padding: const EdgeInsets.only(
+                              left: 11, top: 5, right: 11),
                           alignment: Alignment.topLeft,
                           child: Text(
                             "${widget.list[widget.index].name ?? ("无内容")}",
@@ -88,8 +96,14 @@ class _QuizAnswerPageState extends State<QuizAnswerPage> {
                           child: Row(
                             children: [
                               RawChip(
-                                label: Text("意味", style: TextStyle(color: themeConfig['titleColor'], fontSize: 16)),
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0), side: const BorderSide(color: Colors.transparent)),
+                                label: Text("意味",
+                                    style: TextStyle(
+                                        color: themeConfig['titleColor'],
+                                        fontSize: 16)),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(0),
+                                    side: const BorderSide(
+                                        color: Colors.transparent)),
                                 backgroundColor: themeConfig['themeColor'],
                                 padding: const EdgeInsets.all(2),
                                 selected: false,
@@ -100,7 +114,8 @@ class _QuizAnswerPageState extends State<QuizAnswerPage> {
                         Container(
                           color: themeConfig['backgroundColor'],
                           // margin: const EdgeInsets.only(left: 10, right: 0, top: 0, bottom: 20),
-                          padding: const EdgeInsets.only(left: 11, top: 5, right: 11),
+                          padding: const EdgeInsets.only(
+                              left: 11, top: 5, right: 11),
                           alignment: Alignment.topLeft,
                           child: Text(
                             "${widget.list[widget.index].mean ?? ("无内容")}",
@@ -117,8 +132,14 @@ class _QuizAnswerPageState extends State<QuizAnswerPage> {
                           child: Row(
                             children: [
                               RawChip(
-                                label: Text("接続", style: TextStyle(color: themeConfig['titleColor'], fontSize: 16)),
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0), side: const BorderSide(color: Colors.transparent)),
+                                label: Text("接続",
+                                    style: TextStyle(
+                                        color: themeConfig['titleColor'],
+                                        fontSize: 16)),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(0),
+                                    side: const BorderSide(
+                                        color: Colors.transparent)),
                                 backgroundColor: themeConfig['themeColor'],
                                 padding: const EdgeInsets.all(2),
                                 selected: false,
@@ -129,7 +150,8 @@ class _QuizAnswerPageState extends State<QuizAnswerPage> {
                         Container(
                           color: themeConfig['backgroundColor'],
                           // margin: const EdgeInsets.only(left: 10, right: 0, top: 0, bottom: 20),
-                          padding: const EdgeInsets.only(left: 11, top: 5, right: 11),
+                          padding: const EdgeInsets.only(
+                              left: 11, top: 5, right: 11),
                           alignment: Alignment.topLeft,
                           child: Text(
                             "${widget.list[widget.index].grammar ?? ("无内容")}",
@@ -146,8 +168,14 @@ class _QuizAnswerPageState extends State<QuizAnswerPage> {
                           child: Row(
                             children: [
                               RawChip(
-                                label: Text("例文", style: TextStyle(color: themeConfig['titleColor'], fontSize: 16)),
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0), side: const BorderSide(color: Colors.transparent)),
+                                label: Text("例文",
+                                    style: TextStyle(
+                                        color: themeConfig['titleColor'],
+                                        fontSize: 16)),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(0),
+                                    side: const BorderSide(
+                                        color: Colors.transparent)),
                                 backgroundColor: themeConfig['themeColor'],
                                 padding: const EdgeInsets.all(2),
                                 selected: false,
@@ -158,7 +186,8 @@ class _QuizAnswerPageState extends State<QuizAnswerPage> {
                         Container(
                           color: themeConfig['backgroundColor'],
                           // margin: const EdgeInsets.only(left: 10, right: 0, top: 0, bottom: 20),
-                          padding: const EdgeInsets.only(left: 11, top: 5, right: 11),
+                          padding: const EdgeInsets.only(
+                              left: 11, top: 5, right: 11),
                           alignment: Alignment.topLeft,
                           child: Text(
                             "${widget.list[widget.index].example ?? ("无内容")}",
@@ -175,8 +204,14 @@ class _QuizAnswerPageState extends State<QuizAnswerPage> {
                           child: Row(
                             children: [
                               RawChip(
-                                label: Text("ノート", style: TextStyle(color: themeConfig['titleColor'], fontSize: 16)),
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0), side: const BorderSide(color: Colors.transparent)),
+                                label: Text("ノート",
+                                    style: TextStyle(
+                                        color: themeConfig['titleColor'],
+                                        fontSize: 16)),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(0),
+                                    side: const BorderSide(
+                                        color: Colors.transparent)),
                                 backgroundColor: themeConfig['themeColor'],
                                 padding: const EdgeInsets.all(2),
                                 selected: false,
@@ -187,7 +222,8 @@ class _QuizAnswerPageState extends State<QuizAnswerPage> {
                         Container(
                           color: themeConfig['backgroundColor'],
                           // margin: const EdgeInsets.only(left: 10, right: 0, top: 0, bottom: 20),
-                          padding: const EdgeInsets.only(left: 11, top: 5, bottom: 20, right: 11),
+                          padding: const EdgeInsets.only(
+                              left: 11, top: 5, bottom: 20, right: 11),
                           alignment: Alignment.topLeft,
                           child: Text(
                             "${widget.list[widget.index].notes ?? ("无内容")}",
@@ -205,7 +241,6 @@ class _QuizAnswerPageState extends State<QuizAnswerPage> {
               ),
             ),
           );
-        }
-    );
+        });
   }
 }

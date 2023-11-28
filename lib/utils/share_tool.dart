@@ -11,11 +11,11 @@ import 'package:share_plus/share_plus.dart';
 import 'package:jlptgrammar/common/global.dart';
 import 'package:image/image.dart' as img;
 
-
 class ShareTool {
   // 返回二进制图片数据
   Future<Uint8List?> capturePngToByte(int index, List list) async {
-    RenderRepaintBoundary? boundary = repaintWidgetKey.currentContext?.findRenderObject() as RenderRepaintBoundary;
+    RenderRepaintBoundary? boundary = repaintWidgetKey.currentContext
+        ?.findRenderObject() as RenderRepaintBoundary;
     double dpr = ui.window.devicePixelRatio;
     ui.Image image = await boundary.toImage(pixelRatio: dpr);
     // 这里插入
@@ -24,7 +24,6 @@ class ShareTool {
     headerUint8List = await betterImage(headerUint8List);
     return headerUint8List;
   }
-
 
   Future<Uint8List> betterImage(Uint8List headerUint8List) async {
     String qrImgPath = 'lib/assets/shareQR.png';
@@ -43,7 +42,6 @@ class ShareTool {
     return headerUint8List;
   }
 
-
   // 分享图片
   Future<bool> shareImage(Uint8List? image) async {
     // path 图片路径
@@ -61,27 +59,23 @@ class ShareTool {
 
     print("图片测试");
 
-
-    final result = await Share.shareXFiles([XFile(filePath)], text: 'Grammar picture');
+    final result =
+        await Share.shareXFiles([XFile(filePath)], text: 'Grammar picture');
     try {
       if (result.status == ShareResultStatus.success) {
         print('分享了一张图片');
         return true;
-      }
-      else if (result.status == ShareResultStatus.dismissed) {
+      } else if (result.status == ShareResultStatus.dismissed) {
         print("取消分享图片");
         return false;
-      }
-      else {
+      } else {
         // 其他操作
         print("分享失败");
         return false;
       }
-    }
-    catch (e) {
+    } catch (e) {
       print(e);
-    }
-    finally {
+    } finally {
       file.deleteSync();
     }
     return false;

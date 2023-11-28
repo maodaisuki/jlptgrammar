@@ -18,14 +18,14 @@ class GrammarItem {
   });
 
   factory GrammarItem.fromMap(Map<String, dynamic> json) => GrammarItem(
-    id: json['id'],
-    level: json['level'],
-    name: json['name'],
-    grammar: json['grammar'],
-    mean: json['mean'],
-    example: json['example'],
-    notes: json['notes'],
-  );
+        id: json['id'],
+        level: json['level'],
+        name: json['name'],
+        grammar: json['grammar'],
+        mean: json['mean'],
+        example: json['example'],
+        notes: json['notes'],
+      );
 
   Map<String, dynamic> toMap() {
     return {
@@ -42,18 +42,23 @@ class GrammarItem {
   @override
   bool operator ==(other) {
     return other is GrammarItem &&
-      other.id == id &&
-      other.name == name &&
-      other.level == level &&
-      other.grammar == grammar &&
-      other.mean == mean &&
-      other.example == example &&
-      other.notes == notes;
+        other.id == id &&
+        other.name == name &&
+        other.level == level &&
+        other.grammar == grammar &&
+        other.mean == mean &&
+        other.example == example &&
+        other.notes == notes;
   }
 
   @override
   int get hashCode {
-    return id.hashCode ^ level.hashCode ^ name.hashCode ^ grammar.hashCode ^ mean.hashCode ^ example.hashCode ^ notes.hashCode;
+    return id.hashCode ^
+        level.hashCode ^
+        name.hashCode ^
+        grammar.hashCode ^
+        mean.hashCode ^
+        example.hashCode ^
+        notes.hashCode;
   }
-
 }

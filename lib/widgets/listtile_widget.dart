@@ -14,21 +14,24 @@ class GrammarListItem extends StatefulWidget {
   _GrammarListItemState createState() => _GrammarListItemState();
 }
 
-class _GrammarListItemState extends State<GrammarListItem>{
-
+class _GrammarListItemState extends State<GrammarListItem> {
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         ListTile(
-          title: Text((widget.grammarList[widget.index].name).toString(), style: TextStyle(fontSize: 18, color: themeConfig['textColor'])),
+          title: Text((widget.grammarList[widget.index].name).toString(),
+              style: TextStyle(fontSize: 18, color: themeConfig['textColor'])),
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => GrammarItemPage(list: widget.grammarList, index: widget.index)),
+              MaterialPageRoute(
+                  builder: (context) => GrammarItemPage(
+                      list: widget.grammarList, index: widget.index)),
             );
           },
-          trailing: Icon(Icons.keyboard_arrow_right, color: themeConfig['drawerIconColor']),
+          trailing: Icon(Icons.keyboard_arrow_right,
+              color: themeConfig['drawerIconColor']),
         ),
         Divider(
           height: 0.5,

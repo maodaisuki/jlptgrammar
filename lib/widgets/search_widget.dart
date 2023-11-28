@@ -14,9 +14,7 @@ class GrammarSearchDelegate extends SearchDelegate {
   @override
   ThemeData appBarTheme(BuildContext context) {
     return ThemeData(
-        appBarTheme: AppBarTheme(
-          backgroundColor: themeConfig['themeColor']
-        ),
+        appBarTheme: AppBarTheme(backgroundColor: themeConfig['themeColor']),
         inputDecorationTheme: const InputDecorationTheme(
           border: InputBorder.none,
           hintStyle: TextStyle(color: Colors.white70),
@@ -40,10 +38,10 @@ class GrammarSearchDelegate extends SearchDelegate {
           title: const Text("Search"),
         ),
         body: ValueListenableBuilder(
-          valueListenable: g,
-          builder: (BuildContext context, int value, Widget? child) {
-            return buildSuggestions(context);
-          }),
+            valueListenable: g,
+            builder: (BuildContext context, int value, Widget? child) {
+              return buildSuggestions(context);
+            }),
       ),
     );
   }
@@ -70,11 +68,9 @@ class GrammarSearchDelegate extends SearchDelegate {
     );
   }
 
-
-
   @override
   Widget buildResults(BuildContext context) {
-    if(searchList.isEmpty && tempResult.isEmpty) {
+    if (searchList.isEmpty && tempResult.isEmpty) {
       print("准备数据");
       tempResult = grammarList;
       searchList = grammarList;
@@ -83,12 +79,13 @@ class GrammarSearchDelegate extends SearchDelegate {
     tempResult = [];
     for (int i = 0; i < searchList.length; i++) {
       // 搜索条目名和释义
-      if (searchList[i].name.contains(query) || searchList[i].mean.contains(query)) {
+      if (searchList[i].name.contains(query) ||
+          searchList[i].mean.contains(query)) {
         print("搜索建议匹配成功");
         tempResult.add(searchList[i]);
       }
     }
-    if(tempResult.isEmpty) {
+    if (tempResult.isEmpty) {
       return Container(
         color: themeConfig['backgroundColor'],
         child: Center(
@@ -145,9 +142,10 @@ class GrammarSearchDelegate extends SearchDelegate {
     //       }),
     // );
     return Container(
-      color: themeConfig['backgroundColor'],
-      child: Center(
-        child: Text("回车键搜索", style: TextStyle(fontSize: 18, color: themeConfig['textColor'])),
-    ));
+        color: themeConfig['backgroundColor'],
+        child: Center(
+          child: Text("回车键搜索",
+              style: TextStyle(fontSize: 18, color: themeConfig['textColor'])),
+        ));
   }
 }

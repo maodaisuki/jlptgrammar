@@ -21,7 +21,7 @@ class _MenuDrawerState extends State<MenuDrawer> {
         return false;
       },
       child: Container(
-      width: MediaQuery.of(context).size.width * 3.5 / 5,
+        width: MediaQuery.of(context).size.width * 3.5 / 5,
         child: Drawer(
           backgroundColor: themeConfig['backgroundColor'],
           child: ListView(
@@ -30,14 +30,14 @@ class _MenuDrawerState extends State<MenuDrawer> {
                 margin: EdgeInsets.only(left: 0),
                 height: 70,
                 child: ListTile(
-                  title: Text(
-                    '日本語文法',
-                    style: TextStyle(
-                    fontSize: 20,
-                    color: themeConfig['textColor'],
-                  )),
+                  title: Text('日本語文法',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: themeConfig['textColor'],
+                      )),
                   trailing: IconButton(
-                    icon: Icon(Icons.settings, color: themeConfig['drawerIconColor']),
+                    icon: Icon(Icons.settings,
+                        color: themeConfig['drawerIconColor']),
                     onPressed: () {
                       Scaffold.of(context).closeDrawer();
                       Navigator.of(context).pushNamed('/settings');
@@ -65,11 +65,14 @@ class _MenuDrawerState extends State<MenuDrawer> {
               Container(
                 margin: EdgeInsets.only(left: 10, right: 10),
                 child: ListTile(
-                  title: Text('JLPT N5', style: TextStyle(color: themeConfig['textColor'], fontSize: 18)),
-                  shape:  RoundedRectangleBorder(
+                  title: Text('JLPT N5',
+                      style: TextStyle(
+                          color: themeConfig['textColor'], fontSize: 18)),
+                  shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50.0),
                   ),
-                  leading: Icon(Icons.book, color: themeConfig['drawerIconColor']),
+                  leading:
+                      Icon(Icons.book, color: themeConfig['drawerIconColor']),
                   onTap: () {
                     // 关闭抽屉
                     Scaffold.of(context).closeDrawer();
@@ -80,11 +83,14 @@ class _MenuDrawerState extends State<MenuDrawer> {
               Container(
                 margin: EdgeInsets.only(left: 10, right: 10),
                 child: ListTile(
-                  title: Text('JLPT N4', style: TextStyle(color: themeConfig['textColor'], fontSize: 18)),
-                  shape:  RoundedRectangleBorder(
+                  title: Text('JLPT N4',
+                      style: TextStyle(
+                          color: themeConfig['textColor'], fontSize: 18)),
+                  shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50.0),
                   ),
-                  leading: Icon(Icons.book, color: themeConfig['drawerIconColor']),
+                  leading:
+                      Icon(Icons.book, color: themeConfig['drawerIconColor']),
                   onTap: () {
                     // 关闭抽屉
                     Scaffold.of(context).closeDrawer();
@@ -95,11 +101,14 @@ class _MenuDrawerState extends State<MenuDrawer> {
               Container(
                 margin: EdgeInsets.only(left: 10, right: 10),
                 child: ListTile(
-                  title: Text('JLPT N3', style: TextStyle(color: themeConfig['textColor'], fontSize: 18)),
-                  shape:  RoundedRectangleBorder(
+                  title: Text('JLPT N3',
+                      style: TextStyle(
+                          color: themeConfig['textColor'], fontSize: 18)),
+                  shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50.0),
                   ),
-                  leading: Icon(Icons.book, color: themeConfig['drawerIconColor']),
+                  leading:
+                      Icon(Icons.book, color: themeConfig['drawerIconColor']),
                   onTap: () {
                     // 关闭抽屉
                     Scaffold.of(context).closeDrawer();
@@ -110,11 +119,14 @@ class _MenuDrawerState extends State<MenuDrawer> {
               Container(
                 margin: EdgeInsets.only(left: 10, right: 10),
                 child: ListTile(
-                  title: Text('JLPT N2', style: TextStyle(color: themeConfig['textColor'], fontSize: 18)),
-                  shape:  RoundedRectangleBorder(
+                  title: Text('JLPT N2',
+                      style: TextStyle(
+                          color: themeConfig['textColor'], fontSize: 18)),
+                  shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50.0),
                   ),
-                  leading: Icon(Icons.book, color: themeConfig['drawerIconColor']),
+                  leading:
+                      Icon(Icons.book, color: themeConfig['drawerIconColor']),
                   onTap: () {
                     // 关闭抽屉
                     Scaffold.of(context).closeDrawer();
@@ -125,11 +137,14 @@ class _MenuDrawerState extends State<MenuDrawer> {
               Container(
                 margin: EdgeInsets.only(left: 10, right: 10),
                 child: ListTile(
-                  title: Text('JLPT N1', style: TextStyle(color: themeConfig['textColor'], fontSize: 18)),
-                  shape:  RoundedRectangleBorder(
+                  title: Text('JLPT N1',
+                      style: TextStyle(
+                          color: themeConfig['textColor'], fontSize: 18)),
+                  shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50.0),
                   ),
-                  leading: Icon(Icons.book, color: themeConfig['drawerIconColor']),
+                  leading:
+                      Icon(Icons.book, color: themeConfig['drawerIconColor']),
                   onTap: () {
                     // 关闭抽屉
                     Scaffold.of(context).closeDrawer();
@@ -140,11 +155,14 @@ class _MenuDrawerState extends State<MenuDrawer> {
               Container(
                 margin: EdgeInsets.only(left: 10, right: 10),
                 child: ListTile(
-                  title: Text('其他文法', style: TextStyle(color: themeConfig['textColor'], fontSize: 18)),
-                  shape:  RoundedRectangleBorder(
+                  title: Text('其他文法',
+                      style: TextStyle(
+                          color: themeConfig['textColor'], fontSize: 18)),
+                  shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50.0),
                   ),
-                  leading: Icon(Icons.book, color: themeConfig['drawerIconColor']),
+                  leading:
+                      Icon(Icons.book, color: themeConfig['drawerIconColor']),
                   onTap: () {
                     // 关闭抽屉
                     Scaffold.of(context).closeDrawer();
@@ -167,11 +185,14 @@ class _MenuDrawerState extends State<MenuDrawer> {
               Container(
                 margin: EdgeInsets.only(left: 10, right: 10),
                 child: ListTile(
-                  title: Text('练习题', style: TextStyle(color: themeConfig['textColor'], fontSize: 18)),
-                  shape:  RoundedRectangleBorder(
+                  title: Text('练习题',
+                      style: TextStyle(
+                          color: themeConfig['textColor'], fontSize: 18)),
+                  shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50.0),
                   ),
-                  leading: Icon(Icons.library_books, color: themeConfig['drawerIconColor']),
+                  leading: Icon(Icons.library_books,
+                      color: themeConfig['drawerIconColor']),
                   onTap: () {
                     Scaffold.of(context).closeDrawer();
                     Navigator.of(context).pushNamed('/exercises');

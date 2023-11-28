@@ -36,13 +36,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'All Grammar',
-      routes:  <String, WidgetBuilder> {
-        '/n1': (context) => GrammarListPage(list: grammar.listN1, title: "JLPT N1", tag: 'N1'),
-        '/n2': (context) => GrammarListPage(list: grammar.listN2, title: "JLPT N2", tag: 'N2'),
-        '/n3': (context) => GrammarListPage(list: grammar.listN3, title: "JLPT N3", tag: 'N3'),
-        '/n4': (context) => GrammarListPage(list: grammar.listN4, title: "JLPT N4", tag: 'N4'),
-        '/n5': (context) => GrammarListPage(list: grammar.listN5, title: "JLPT N5", tag: 'N5'),
-        '/n0': (context) => GrammarListPage(list: grammar.listN0, title: "其他文法", tag: 'N0'),
+      routes: <String, WidgetBuilder>{
+        '/n1': (context) =>
+            GrammarListPage(list: grammar.listN1, title: "JLPT N1", tag: 'N1'),
+        '/n2': (context) =>
+            GrammarListPage(list: grammar.listN2, title: "JLPT N2", tag: 'N2'),
+        '/n3': (context) =>
+            GrammarListPage(list: grammar.listN3, title: "JLPT N3", tag: 'N3'),
+        '/n4': (context) =>
+            GrammarListPage(list: grammar.listN4, title: "JLPT N4", tag: 'N4'),
+        '/n5': (context) =>
+            GrammarListPage(list: grammar.listN5, title: "JLPT N5", tag: 'N5'),
+        '/n0': (context) =>
+            GrammarListPage(list: grammar.listN0, title: "其他文法", tag: 'N0'),
         '/about': (context) => const AboutPage(),
         '/exercises': (context) => const ExercisesPage(),
         '/settings': (context) => const SettingsPage(),
@@ -56,7 +62,8 @@ class MyApp extends StatelessWidget {
         primaryColor: themeConfig['themeColor'],
         useMaterial3: true,
         textSelectionTheme: TextSelectionThemeData(
-          cursorColor: isLightTheme ? Color.fromRGBO(184, 150, 103, 1) : Colors.white,
+          cursorColor:
+              isLightTheme ? Color.fromRGBO(184, 150, 103, 1) : Colors.white,
           selectionColor: Colors.blue,
           selectionHandleColor: Colors.blueAccent,
         ),
@@ -73,10 +80,10 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage>  with AutomaticKeepAliveClientMixin {
+class _HomePageState extends State<HomePage>
+    with AutomaticKeepAliveClientMixin {
   DateTime? lastPressTime; //上次点击时间
   Grammar allGrammar = grammar;
-
 
   Future<String> fetchData() async {
     return "fetchData";
@@ -96,108 +103,123 @@ class _HomePageState extends State<HomePage>  with AutomaticKeepAliveClientMixin
   Widget build(BuildContext context) {
     super.build(context);
     return ValueListenableBuilder(
-        valueListenable: g,
-        builder: (BuildContext context, int value, Widget? child) {
-          // print("构建页面 grammar.grammarList: ${grammar.grammarList}");
-          if (g.value != 0) {
-            return Scaffold(
-              backgroundColor: themeConfig['backgroundColor'],
-              appBar: AppBar(
-                title: Text(widget.title, style: TextStyle(color: themeConfig['titleColor'])),
-                backgroundColor: themeConfig['themeColor'],
-                leading: Builder(builder: (context) {
-                  return IconButton(
-                    icon: const Icon(Icons.menu),
-                    onPressed: () {
-                      Scaffold.of(context).openDrawer();
-                    },
-                    color: themeConfig['iconColor'],
-                  );
-                }),
-                actions: <Widget>[
-                  IconButton(
-                    onPressed: () {
-                      showSearch(context: context, delegate: GrammarSearchDelegate(grammarList: allGrammar.grammarList));
-                    },
-                    icon: const Icon(Icons.search),
-                    color: themeConfig['iconColor'],
-                  ),
-                ],
-              ),
-              drawer: const MenuDrawer(),
-              body: WillPopScope(
-                onWillPop: () async {
-                  if (lastPressTime == null || DateTime.now().difference(lastPressTime!) > const Duration(seconds: 1)) {
-                    //两次点击间隔超过1秒则重新计时
-                    lastPressTime = DateTime.now();
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('再次点击关闭'),
-                        duration: Duration(seconds: 1),
-                      ),
-                    );
-                    return false;
-                  }
-                  // BUG: Router17 导致返回 true 也无法正常关闭
-                  // ios 应使用 exit(0);
-                  if(Platform.isAndroid) {
-                    SystemNavigator.pop();
-                  }
-                  else {
-                    exit(0);
-                  }
-                  return true;
-                  // 双击退出
-                },
-                child: allGrammar.grammarList.isEmpty
-                  ? Container(
-                    color: themeConfig['backgroundColor'],
-                    child: Center(
-                      child: Text("当前没有数据",
-                          style: TextStyle(fontSize: 20, color: themeConfig['textColor'])
-                      )
+      valueListenable: g,
+      builder: (BuildContext context, int value, Widget? child) {
+        // print("构建页面 grammar.grammarList: ${grammar.grammarList}");
+        if (g.value != 0) {
+          return Scaffold(
+            backgroundColor: themeConfig['backgroundColor'],
+            appBar: AppBar(
+              title: Text(widget.title,
+                  style: TextStyle(color: themeConfig['titleColor'])),
+              backgroundColor: themeConfig['themeColor'],
+              leading: Builder(builder: (context) {
+                return IconButton(
+                  icon: const Icon(Icons.menu),
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  color: themeConfig['iconColor'],
+                );
+              }),
+              actions: <Widget>[
+                IconButton(
+                  onPressed: () {
+                    showSearch(
+                        context: context,
+                        delegate: GrammarSearchDelegate(
+                            grammarList: allGrammar.grammarList));
+                  },
+                  icon: const Icon(Icons.search),
+                  color: themeConfig['iconColor'],
+                ),
+              ],
+            ),
+            drawer: const MenuDrawer(),
+            body: WillPopScope(
+              onWillPop: () async {
+                if (lastPressTime == null ||
+                    DateTime.now().difference(lastPressTime!) >
+                        const Duration(seconds: 1)) {
+                  //两次点击间隔超过1秒则重新计时
+                  lastPressTime = DateTime.now();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('再次点击关闭'),
+                      duration: Duration(seconds: 1),
                     ),
-                  )
+                  );
+                  return false;
+                }
+                // BUG: Router17 导致返回 true 也无法正常关闭
+                // ios 应使用 exit(0);
+                if (Platform.isAndroid) {
+                  SystemNavigator.pop();
+                } else {
+                  exit(0);
+                }
+                return true;
+                // 双击退出
+              },
+              child: allGrammar.grammarList.isEmpty
+                  ? Container(
+                      color: themeConfig['backgroundColor'],
+                      child: Center(
+                          child: Text("当前没有数据",
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: themeConfig['textColor']))),
+                    )
                   : Center(
-                    child: ListView.builder(
-                        itemCount: allGrammar.grammarList.length,
-                        itemBuilder: (context, index) {
-                          return GrammarListItem(grammarList: allGrammar.grammarList, index: index,);
-                    }),
-                ),
+                      child: ListView.builder(
+                          itemCount: allGrammar.grammarList.length,
+                          itemBuilder: (context, index) {
+                            return GrammarListItem(
+                              grammarList: allGrammar.grammarList,
+                              index: index,
+                            );
+                          }),
+                    ),
+            ),
+            floatingActionButton: FloatingActionButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
               ),
-              floatingActionButton: FloatingActionButton(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                backgroundColor: themeConfig['floatingActionButtonBackgroundColor'],
-                onPressed: () {
-                  Navigator.push(
+              backgroundColor:
+                  themeConfig['floatingActionButtonBackgroundColor'],
+              onPressed: () {
+                Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => GrammarItemAddPage(title: '添加条目', tag: 'all', tempList: grammar.grammarList,),
-                  ));
-                },
-                tooltip: 'Add item',
-                child: Icon(Icons.add, color: themeConfig['floatingActionButtonIconColor'], size: 30),
+                    MaterialPageRoute(
+                      builder: (context) => GrammarItemAddPage(
+                        title: '添加条目',
+                        tag: 'all',
+                        tempList: grammar.grammarList,
+                      ),
+                    ));
+              },
+              tooltip: 'Add item',
+              child: Icon(Icons.add,
+                  color: themeConfig['floatingActionButtonIconColor'],
+                  size: 30),
+            ),
+          );
+        } else {
+          // print("加载中, grammar.grammarList: ${grammar.grammarList}");
+          // print("加载中，grammar.grammarList.length: ${g.value}");
+          return Container(
+            color: themeConfig['backgroundColor'],
+            child: Center(
+              child: CircularProgressIndicator(
+                color: themeConfig['titleColor'],
               ),
-            );
-          }
-          else {
-            // print("加载中, grammar.grammarList: ${grammar.grammarList}");
-            // print("加载中，grammar.grammarList.length: ${g.value}");
-            return Container(
-              color: themeConfig['backgroundColor'],
-              child: Center(
-                child: CircularProgressIndicator(
-                  color: themeConfig['titleColor'],
-                ),
-              ),
-            );
-          }
-        },
+            ),
+          );
+        }
+      },
     );
   }
 
   @override
-  bool get wantKeepAlive =>true;
+  bool get wantKeepAlive => true;
 }

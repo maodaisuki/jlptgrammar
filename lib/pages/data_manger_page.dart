@@ -17,28 +17,29 @@ class DataMangerPage extends StatefulWidget {
 }
 
 class _DataMangerPageState extends State<DataMangerPage> {
-
   Future<void> showExportInfo(String selectedDirectory) async {
     await showDialog(
-      barrierDismissible: false,
-      context: context,
-      builder: (_) => AlertDialog(
-        backgroundColor: themeConfig['backgroundColor'],
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(4))
-        ),
-        title: Text("导出数据", style: TextStyle(color: themeConfig['textColor'])),
-        content: Text("成功导出数据到 $selectedDirectory", style: TextStyle(fontSize: 18, color: themeConfig['textColor'])),
-        actions: <Widget>[
-          MaterialButton(
-            child: Text('确认', style: TextStyle(color: themeConfig['textColor'], fontSize: 18)),
-            onPressed: () async {
-              Navigator.pop(context);
-            }
-          ),
-        ],
-      )
-    );
+        barrierDismissible: false,
+        context: context,
+        builder: (_) => AlertDialog(
+              backgroundColor: themeConfig['backgroundColor'],
+              shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(4))),
+              title: Text("导出数据",
+                  style: TextStyle(color: themeConfig['textColor'])),
+              content: Text("成功导出数据到 $selectedDirectory",
+                  style:
+                      TextStyle(fontSize: 18, color: themeConfig['textColor'])),
+              actions: <Widget>[
+                MaterialButton(
+                    child: Text('确认',
+                        style: TextStyle(
+                            color: themeConfig['textColor'], fontSize: 18)),
+                    onPressed: () async {
+                      Navigator.pop(context);
+                    }),
+              ],
+            ));
   }
 
   Future<void> showImportOkInfo() async {
@@ -52,49 +53,53 @@ class _DataMangerPageState extends State<DataMangerPage> {
 
   Future<void> showImportErrorInfo() async {
     await showDialog(
-      barrierDismissible: false,
-      context: context,
-      builder: (_) => AlertDialog(
-        backgroundColor: themeConfig['backgroundColor'],
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(4))
-        ),
-        title: Text("导入数据", style: TextStyle(color: themeConfig['textColor'])),
-        content: Text("导入失败，请确保文件后缀为 db 且数据库表名、字段合规", style: TextStyle(fontSize: 18, color: themeConfig['textColor'])),
-        actions: <Widget>[
-          MaterialButton(
-            child: Text('确认', style: TextStyle(color: themeConfig['textColor'], fontSize: 18)),
-              onPressed: () async {
-                Navigator.pop(context);
-            }
-          ),
-        ],
-      )
-    );
+        barrierDismissible: false,
+        context: context,
+        builder: (_) => AlertDialog(
+              backgroundColor: themeConfig['backgroundColor'],
+              shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(4))),
+              title: Text("导入数据",
+                  style: TextStyle(color: themeConfig['textColor'])),
+              content: Text("导入失败，请确保文件后缀为 db 且数据库表名、字段合规",
+                  style:
+                      TextStyle(fontSize: 18, color: themeConfig['textColor'])),
+              actions: <Widget>[
+                MaterialButton(
+                    child: Text('确认',
+                        style: TextStyle(
+                            color: themeConfig['textColor'], fontSize: 18)),
+                    onPressed: () async {
+                      Navigator.pop(context);
+                    }),
+              ],
+            ));
   }
-
 
   Future<void> showImportInfo() async {
     await showDialog(
         barrierDismissible: false,
         context: context,
         builder: (_) => AlertDialog(
-          backgroundColor: themeConfig['backgroundColor'],
-          shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(4))
-          ),
-          title: Text("导入数据", style: TextStyle(color: themeConfig['textColor'])),
-          content: Text("导入前请确保数据文件为 db 数据库文件且其中包含名为 jlptgrammar 的表，其字段包含 'id, level, name, grammar, mean, example, notes.'", style: TextStyle(fontSize: 18, color: themeConfig['textColor'])),
-          actions: <Widget>[
-            MaterialButton(
-                child: Text('确认', style: TextStyle(color: themeConfig['textColor'], fontSize: 18)),
-                onPressed: () async {
-                  Navigator.pop(context);
-                }
-            ),
-          ],
-        )
-    );
+              backgroundColor: themeConfig['backgroundColor'],
+              shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(4))),
+              title: Text("导入数据",
+                  style: TextStyle(color: themeConfig['textColor'])),
+              content: Text(
+                  "导入前请确保数据文件为 db 数据库文件且其中包含名为 jlptgrammar 的表，其字段包含 'id, level, name, grammar, mean, example, notes.'",
+                  style:
+                      TextStyle(fontSize: 18, color: themeConfig['textColor'])),
+              actions: <Widget>[
+                MaterialButton(
+                    child: Text('确认',
+                        style: TextStyle(
+                            color: themeConfig['textColor'], fontSize: 18)),
+                    onPressed: () async {
+                      Navigator.pop(context);
+                    }),
+              ],
+            ));
   }
 
   @override
@@ -107,9 +112,7 @@ class _DataMangerPageState extends State<DataMangerPage> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(
-                context
-            );
+            Navigator.pop(context);
           },
           color: themeConfig['iconColor'],
         ),
@@ -123,15 +126,21 @@ class _DataMangerPageState extends State<DataMangerPage> {
                 ListTile(
                   leading: Container(
                     margin: EdgeInsets.only(left: 15),
-                    child: Icon(Icons.file_copy, color: themeConfig['drawerIconColor']),
+                    child: Icon(Icons.file_copy,
+                        color: themeConfig['drawerIconColor']),
                   ),
-                  title: Text('导入数据', style: TextStyle(fontSize: 20, color: themeConfig['textColor'])),
-                  subtitle: Text('从外部数据库 (.db) 导入数据', style: TextStyle(fontSize: 14, color: themeConfig['textColor'])),
+                  title: Text('导入数据',
+                      style: TextStyle(
+                          fontSize: 20, color: themeConfig['textColor'])),
+                  subtitle: Text('从外部数据库 (.db) 导入数据',
+                      style: TextStyle(
+                          fontSize: 14, color: themeConfig['textColor'])),
                   minVerticalPadding: 10,
                   onTap: () async {
                     await showImportInfo();
-                    if(await requestStoragePermission()) {
-                      FilePickerResult? result = await FilePicker.platform.pickFiles(
+                    if (await requestStoragePermission()) {
+                      FilePickerResult? result =
+                          await FilePicker.platform.pickFiles(
                         allowMultiple: false,
                         // TODO File_Picker 暂时不支持筛选 db 文件
                         // type: FileType.custom,
@@ -140,20 +149,18 @@ class _DataMangerPageState extends State<DataMangerPage> {
                       );
                       if (result != null) {
                         String importPath = result.files.single.path!;
-                        if(await grammar.databaseHelper.importDatabase(importPath)) {
+                        if (await grammar.databaseHelper
+                            .importDatabase(importPath)) {
                           print("导入成功");
                           showImportOkInfo();
-                        }
-                        else {
+                        } else {
                           print("导入失败");
                           showImportErrorInfo();
                         }
-                      }
-                      else {
+                      } else {
                         print("用户取消了选择");
                       }
-                    }
-                    else {
+                    } else {
                       print("没有存储权限");
                     }
                   },
@@ -161,28 +168,32 @@ class _DataMangerPageState extends State<DataMangerPage> {
                 ListTile(
                   leading: Container(
                     margin: EdgeInsets.only(left: 15),
-                    child: Icon(Icons.outbox, color: themeConfig['drawerIconColor']),
+                    child: Icon(Icons.outbox,
+                        color: themeConfig['drawerIconColor']),
                   ),
-                  title: Text('导出数据', style: TextStyle(fontSize: 20, color: themeConfig['textColor'])),
-                  subtitle: Text('将数据导出为数据库 (.db) 文件', style: TextStyle(fontSize: 14, color: themeConfig['textColor'])),
+                  title: Text('导出数据',
+                      style: TextStyle(
+                          fontSize: 20, color: themeConfig['textColor'])),
+                  subtitle: Text('将数据导出为数据库 (.db) 文件',
+                      style: TextStyle(
+                          fontSize: 14, color: themeConfig['textColor'])),
                   minVerticalPadding: 10,
                   onTap: () async {
-                    if(await requestStoragePermission()) {
-                      String? selectedDirectory = await FilePicker.platform.getDirectoryPath();
-                      if(selectedDirectory != null) {
-                        if(await grammar.databaseHelper.exportDatabase(selectedDirectory)) {
+                    if (await requestStoragePermission()) {
+                      String? selectedDirectory =
+                          await FilePicker.platform.getDirectoryPath();
+                      if (selectedDirectory != null) {
+                        if (await grammar.databaseHelper
+                            .exportDatabase(selectedDirectory)) {
                           await showExportInfo(selectedDirectory);
                           print("导出成功");
-                        }
-                        else {
+                        } else {
                           print("导出失败");
                         }
-                      }
-                      else {
+                      } else {
                         print("用户取消选择");
                       }
-                    }
-                    else {
+                    } else {
                       print("没有存储权限");
                     }
                   },
@@ -190,78 +201,93 @@ class _DataMangerPageState extends State<DataMangerPage> {
                 ListTile(
                   leading: Container(
                     margin: EdgeInsets.only(left: 15),
-                    child: Icon(Icons.refresh, color: themeConfig['drawerIconColor']),
+                    child: Icon(Icons.refresh,
+                        color: themeConfig['drawerIconColor']),
                   ),
-                  title: Text('重置数据', style: TextStyle(fontSize: 20, color: themeConfig['textColor'])),
-                  subtitle: Text('将数据恢复至初始状态', style: TextStyle(fontSize: 14, color: themeConfig['textColor'])),
+                  title: Text('重置数据',
+                      style: TextStyle(
+                          fontSize: 20, color: themeConfig['textColor'])),
+                  subtitle: Text('将数据恢复至初始状态',
+                      style: TextStyle(
+                          fontSize: 14, color: themeConfig['textColor'])),
                   minVerticalPadding: 10,
                   onTap: () {
                     showDialog(
-                      barrierDismissible: false,
-                      context: context,
-                      builder: (BuildContext context) {
-                        bool isConfirmed = false;
-                        // 重载返回键防止中断重置界面
-                        return WillPopScope(
-                          onWillPop: () async {
-                            if(isConfirmed) {
-                              return Future.value(false); // 阻止对话框被关闭
-                            }
-                            else {
-                              return Future.value(true);
-                            }
-                          },
-                          child: StatefulBuilder(
-                            builder: (context, state) {
+                        barrierDismissible: false,
+                        context: context,
+                        builder: (BuildContext context) {
+                          bool isConfirmed = false;
+                          // 重载返回键防止中断重置界面
+                          return WillPopScope(
+                            onWillPop: () async {
+                              if (isConfirmed) {
+                                return Future.value(false); // 阻止对话框被关闭
+                              } else {
+                                return Future.value(true);
+                              }
+                            },
+                            child: StatefulBuilder(builder: (context, state) {
                               return AlertDialog(
                                 backgroundColor: themeConfig['backgroundColor'],
-                                title: Text("重置数据", style: TextStyle(color: themeConfig['textColor'])),
+                                title: Text("重置数据",
+                                    style: TextStyle(
+                                        color: themeConfig['textColor'])),
                                 shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(4))
-                                ),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(4))),
                                 content: isConfirmed == false
-                                  ? Container(
-                                      margin: EdgeInsets.only(top: 5),
-                                      child: Text("确认重置数据？", style: TextStyle(fontSize: 18, color: themeConfig['textColor']))
-                                    )
-                                  : Container(
-                                      margin: EdgeInsets.only(top: 5),
-                                      child: SizedBox(
-                                        height: 5,
-                                        child: LinearProgressIndicator(color: isLightTheme ? themeConfig['themeColor'] : themeConfig['titleColor']),
-                                      )
-                                  ),
+                                    ? Container(
+                                        margin: EdgeInsets.only(top: 5),
+                                        child: Text("确认重置数据？",
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                color:
+                                                    themeConfig['textColor'])))
+                                    : Container(
+                                        margin: EdgeInsets.only(top: 5),
+                                        child: SizedBox(
+                                          height: 5,
+                                          child: LinearProgressIndicator(
+                                              color: isLightTheme
+                                                  ? themeConfig['themeColor']
+                                                  : themeConfig['titleColor']),
+                                        )),
                                 actions: isConfirmed == false
-                                  ? <Widget>[
-                                    MaterialButton(
-                                      child: const Text('确认', style: TextStyle(color: Colors.red, fontSize: 18)),
-                                      onPressed: () async {
-                                        state(() {
-                                          isConfirmed = !isConfirmed;
-                                        });
-                                        await grammar.databaseHelper.resetDb();
-                                        grammar = Grammar();
-                                        // 延时 1 秒
-                                        await Future.delayed(Duration(seconds: 1), () {
-                                          Navigator.pop(context);}
-                                        );
-                                      }
-                                    ),
-                                    MaterialButton(
-                                      child: Text(
-                                        '取消', style: TextStyle(color: themeConfig['textColor'], fontSize: 18)),
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                    )
-                                  ]
-                                  : <Widget>[],
+                                    ? <Widget>[
+                                        MaterialButton(
+                                            child: const Text('确认',
+                                                style: TextStyle(
+                                                    color: Colors.red,
+                                                    fontSize: 18)),
+                                            onPressed: () async {
+                                              state(() {
+                                                isConfirmed = !isConfirmed;
+                                              });
+                                              await grammar.databaseHelper
+                                                  .resetDb();
+                                              grammar = Grammar();
+                                              // 延时 1 秒
+                                              await Future.delayed(
+                                                  Duration(seconds: 1), () {
+                                                Navigator.pop(context);
+                                              });
+                                            }),
+                                        MaterialButton(
+                                          child: Text('取消',
+                                              style: TextStyle(
+                                                  color:
+                                                      themeConfig['textColor'],
+                                                  fontSize: 18)),
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                        )
+                                      ]
+                                    : <Widget>[],
                               );
-                            }
-                          ),
-                        );
-                      }
-                    );
+                            }),
+                          );
+                        });
                   },
                 ),
               ],

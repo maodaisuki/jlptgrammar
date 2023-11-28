@@ -28,9 +28,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
           return IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.pop(
-                  context
-              );
+              Navigator.pop(context);
             },
             color: themeConfig['iconColor'],
           );
@@ -47,42 +45,46 @@ class _ExercisesPageState extends State<ExercisesPage> {
                 // TODO 居中，保持距离，使用题目生成器
                 Container(
                   padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.2,
-                    left: MediaQuery.of(context).size.width * 0.1,
-                    right: MediaQuery.of(context).size.width * 0.1
-                  ),
+                      top: MediaQuery.of(context).size.height * 0.2,
+                      left: MediaQuery.of(context).size.width * 0.1,
+                      right: MediaQuery.of(context).size.width * 0.1),
                   child: Center(
                     child: Text(
                       quiz.name.toString(),
-                      style: TextStyle(fontSize: 25, color: themeConfig['textColor']),
+                      style: TextStyle(
+                          fontSize: 25, color: themeConfig['textColor']),
                     ),
                   ),
                 ),
                 const Spacer(),
                 Container(
-                  margin: EdgeInsets.only(bottom: 80, left: MediaQuery.of(context).size.width * 0.1, right: MediaQuery.of(context).size.width * 0.1),
+                  margin: EdgeInsets.only(
+                      bottom: 80,
+                      left: MediaQuery.of(context).size.width * 0.1,
+                      right: MediaQuery.of(context).size.width * 0.1),
                   child: Row(
                     children: [
                       Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Color.fromRGBO(130, 194, 171, 1),
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          height: 50.0,
-                          width: MediaQuery.of(context).size.width * 0.35,
-                          child: MaterialButton(
-                            onPressed: () {
-                              // 下一个
-                              setState(() {
-                                quiz = qg.randomListItem();
-                              });
-                            },
-                            child: Text('认识', style: TextStyle(fontSize: 20, color: Colors.white)),
-                          ),
-                        )
-                      ),
+                          alignment: Alignment.bottomCenter,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color.fromRGBO(130, 194, 171, 1),
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            height: 50.0,
+                            width: MediaQuery.of(context).size.width * 0.35,
+                            child: MaterialButton(
+                              onPressed: () {
+                                // 下一个
+                                setState(() {
+                                  quiz = qg.randomListItem();
+                                });
+                              },
+                              child: Text('认识',
+                                  style: TextStyle(
+                                      fontSize: 20, color: Colors.white)),
+                            ),
+                          )),
                       const Spacer(),
                       Align(
                           alignment: Alignment.bottomCenter,
@@ -97,16 +99,18 @@ class _ExercisesPageState extends State<ExercisesPage> {
                               onPressed: () {
                                 // 构建 item 页面
                                 Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) =>
-                                      QuizAnswerPage(list: grammar.grammarList, index: grammar.grammarList.indexOf(quiz))
-                                  )
-                                );
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => QuizAnswerPage(
+                                            list: grammar.grammarList,
+                                            index: grammar.grammarList
+                                                .indexOf(quiz))));
                               },
-                              child: Text('忘记', style: TextStyle(fontSize: 20, color: Colors.white)),
+                              child: Text('忘记',
+                                  style: TextStyle(
+                                      fontSize: 20, color: Colors.white)),
                             ),
-                          )
-                      ),
+                          )),
                     ],
                   ),
                 ),
