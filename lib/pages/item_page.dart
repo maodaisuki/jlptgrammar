@@ -147,132 +147,130 @@ class _GrammarItemPageState extends State<GrammarItemPage> {
                 ),
               ],
             ),
+            // TODO 截图：语法条目有间隙（只在虚拟机出现）
             body: ListView(
               children: [
-                SelectionArea(
-                  child: Container(
-                    color: themeConfig['backgroundColor'],
-                    child: SingleChildScrollView(
-                      // 这似乎可以禁用此滚动条且不影响截图
-                      // TODO 由于不可避免地嵌套，目前有不影响使用的轻微滚动卡顿
-                      physics: const NeverScrollableScrollPhysics(),
-                      padding: const EdgeInsets.all(0),
-                      child: RepaintBoundary(
-                        // TODO 不截取例文和笔记
-                        key: repaintWidgetKey,
-                        child: Column(
-                          children: [
-                            Container(
-                              color: themeConfig['backgroundColor'],
-                              padding: const EdgeInsets.only(left: 10, top: 10),
-                              child: Row(
-                                children: [
-                                  RawChip(
-                                    label: Text("文型",
-                                        style: TextStyle(
-                                            color: themeConfig['titleColor'],
-                                            fontSize: 16)),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(0),
-                                        side: const BorderSide(
-                                            color: Colors.transparent)),
-                                    backgroundColor: themeConfig['themeColor'],
-                                    padding: const EdgeInsets.all(2),
-                                    selected: false,
-                                  )
-                                ],
-                              ),
+                Container(
+                  color: themeConfig['backgroundColor'],
+                  child: SingleChildScrollView(
+                    // 这似乎可以禁用此滚动条且不影响截图
+                    // TODO 由于不可避免地嵌套，目前有不影响使用的轻微滚动卡顿
+                    physics: const NeverScrollableScrollPhysics(),
+                    padding: const EdgeInsets.all(0),
+                    child: RepaintBoundary(
+                      key: repaintWidgetKey,
+                      child: Column(
+                        children: [
+                          Container(
+                            color: themeConfig['backgroundColor'],
+                            padding: const EdgeInsets.only(left: 10, top: 10),
+                            child: Row(
+                              children: [
+                                RawChip(
+                                  label: Text("文型",
+                                      style: TextStyle(
+                                          color: themeConfig['titleColor'],
+                                          fontSize: 16)),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(0),
+                                      side: const BorderSide(
+                                          color: Colors.transparent)),
+                                  backgroundColor: themeConfig['themeColor'],
+                                  padding: const EdgeInsets.all(2),
+                                  selected: false,
+                                )
+                              ],
                             ),
-                            Container(
-                              color: themeConfig['backgroundColor'],
-                              // margin: const EdgeInsets.only(left: 10, right: 0, top: 0, bottom: 20),
-                              padding: const EdgeInsets.only(
-                                  left: 11, top: 5, right: 11),
-                              alignment: Alignment.topLeft,
-                              child: Text(
-                                "${widget.list[widget.index].name ?? ("无内容")}",
-                                style: TextStyle(
-                                  fontSize: double.parse(setFontSize),
-                                  color: themeConfig['textColor'],
-                                ),
-                                textAlign: TextAlign.left,
+                          ),
+                          Container(
+                            color: themeConfig['backgroundColor'],
+                            // margin: const EdgeInsets.only(left: 10, right: 0, top: 0, bottom: 20),
+                            padding: const EdgeInsets.only(
+                                left: 11, top: 5, right: 11),
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              "${widget.list[widget.index].name ?? ("无内容")}",
+                              style: TextStyle(
+                                fontSize: double.parse(setFontSize),
+                                color: themeConfig['textColor'],
                               ),
+                              textAlign: TextAlign.left,
                             ),
-                            Container(
-                              color: themeConfig['backgroundColor'],
-                              padding: const EdgeInsets.only(left: 10, top: 15),
-                              child: Row(
-                                children: [
-                                  RawChip(
-                                    label: Text("意味",
-                                        style: TextStyle(
-                                            color: themeConfig['titleColor'],
-                                            fontSize: 16)),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(0),
-                                        side: const BorderSide(
-                                            color: Colors.transparent)),
-                                    backgroundColor: themeConfig['themeColor'],
-                                    padding: const EdgeInsets.all(2),
-                                    selected: false,
-                                  )
-                                ],
+                          ),
+                          Container(
+                            color: themeConfig['backgroundColor'],
+                            padding: const EdgeInsets.only(left: 10, top: 15),
+                            child: Row(
+                              children: [
+                                RawChip(
+                                  label: Text("意味",
+                                      style: TextStyle(
+                                          color: themeConfig['titleColor'],
+                                          fontSize: 16)),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(0),
+                                      side: const BorderSide(
+                                          color: Colors.transparent)),
+                                  backgroundColor: themeConfig['themeColor'],
+                                  padding: const EdgeInsets.all(2),
+                                  selected: false,
+                                )
+                              ],
+                            ),
+                          ),
+                          Container(
+                            color: themeConfig['backgroundColor'],
+                            // margin: const EdgeInsets.only(left: 10, right: 0, top: 0, bottom: 20),
+                            padding: const EdgeInsets.only(
+                                left: 11, top: 5, right: 11),
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              "${widget.list[widget.index].mean ?? ("无内容")}",
+                              style: TextStyle(
+                                fontSize: double.parse(setFontSize),
+                                color: themeConfig['textColor'],
                               ),
+                              textAlign: TextAlign.left,
                             ),
-                            Container(
-                              color: themeConfig['backgroundColor'],
-                              // margin: const EdgeInsets.only(left: 10, right: 0, top: 0, bottom: 20),
-                              padding: const EdgeInsets.only(
-                                  left: 11, top: 5, right: 11),
-                              alignment: Alignment.topLeft,
-                              child: Text(
-                                "${widget.list[widget.index].mean ?? ("无内容")}",
-                                style: TextStyle(
-                                  fontSize: double.parse(setFontSize),
-                                  color: themeConfig['textColor'],
-                                ),
-                                textAlign: TextAlign.left,
+                          ),
+                          Container(
+                            color: themeConfig['backgroundColor'],
+                            padding: const EdgeInsets.only(left: 10, top: 15),
+                            child: Row(
+                              children: [
+                                RawChip(
+                                  label: Text("接続",
+                                      style: TextStyle(
+                                          color: themeConfig['titleColor'],
+                                          fontSize: 16)),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(0),
+                                      side: const BorderSide(
+                                          color: Colors.transparent)),
+                                  backgroundColor: themeConfig['themeColor'],
+                                  padding: const EdgeInsets.all(2),
+                                  selected: false,
+                                )
+                              ],
+                            ),
+                          ),
+                          Container(
+                            color: themeConfig['backgroundColor'],
+                            // margin: const EdgeInsets.only(left: 10, right: 0, top: 0, bottom: 20),
+                            // padding-bottom: 20 留给截图
+                            padding: const EdgeInsets.only(
+                                left: 11, top: 5, right: 11, bottom: 20),
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              "${widget.list[widget.index].grammar ?? ("无内容")}",
+                              style: TextStyle(
+                                fontSize: double.parse(setFontSize),
+                                color: themeConfig['textColor'],
                               ),
+                              textAlign: TextAlign.left,
                             ),
-                            Container(
-                              color: themeConfig['backgroundColor'],
-                              padding: const EdgeInsets.only(left: 10, top: 15),
-                              child: Row(
-                                children: [
-                                  RawChip(
-                                    label: Text("接続",
-                                        style: TextStyle(
-                                            color: themeConfig['titleColor'],
-                                            fontSize: 16)),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(0),
-                                        side: const BorderSide(
-                                            color: Colors.transparent)),
-                                    backgroundColor: themeConfig['themeColor'],
-                                    padding: const EdgeInsets.all(2),
-                                    selected: false,
-                                  )
-                                ],
-                              ),
-                            ),
-                            Container(
-                              color: themeConfig['backgroundColor'],
-                              // margin: const EdgeInsets.only(left: 10, right: 0, top: 0, bottom: 20),
-                              // padding-bottom: 20 留给截图
-                              padding: const EdgeInsets.only(
-                                  left: 11, top: 5, right: 11, bottom: 20),
-                              alignment: Alignment.topLeft,
-                              child: Text(
-                                "${widget.list[widget.index].grammar ?? ("无内容")}",
-                                style: TextStyle(
-                                  fontSize: double.parse(setFontSize),
-                                  color: themeConfig['textColor'],
-                                ),
-                                textAlign: TextAlign.left,
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
