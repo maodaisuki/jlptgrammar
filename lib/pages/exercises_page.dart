@@ -21,7 +21,6 @@ class _ExercisesPageState extends State<ExercisesPage> {
     return Scaffold(
       backgroundColor: themeConfig['backgroundColor'],
       appBar: AppBar(
-        // TODO 考虑修改练习数量
         title: Text("练习题", style: TextStyle(color: themeConfig['titleColor'])),
         backgroundColor: themeConfig['themeColor'],
         leading: Builder(builder: (context) {
@@ -42,7 +41,6 @@ class _ExercisesPageState extends State<ExercisesPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // TODO 居中，保持距离，使用题目生成器
                 Container(
                   padding: EdgeInsets.only(
                       top: MediaQuery.of(context).size.height * 0.2,
