@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:jlptgrammar/pages/about_page.dart';
@@ -37,33 +36,23 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'All Grammar',
       routes: <String, WidgetBuilder>{
-        '/n1': (context) =>
-            GrammarListPage(list: grammar.listN1, title: "JLPT N1", tag: 'N1'),
-        '/n2': (context) =>
-            GrammarListPage(list: grammar.listN2, title: "JLPT N2", tag: 'N2'),
-        '/n3': (context) =>
-            GrammarListPage(list: grammar.listN3, title: "JLPT N3", tag: 'N3'),
-        '/n4': (context) =>
-            GrammarListPage(list: grammar.listN4, title: "JLPT N4", tag: 'N4'),
-        '/n5': (context) =>
-            GrammarListPage(list: grammar.listN5, title: "JLPT N5", tag: 'N5'),
-        '/n0': (context) =>
-            GrammarListPage(list: grammar.listN0, title: "其他文法", tag: 'N0'),
+        '/n1': (context) => GrammarListPage(list: grammar.listN1, title: "JLPT N1", tag: 'N1'),
+        '/n2': (context) => GrammarListPage(list: grammar.listN2, title: "JLPT N2", tag: 'N2'),
+        '/n3': (context) => GrammarListPage(list: grammar.listN3, title: "JLPT N3", tag: 'N3'),
+        '/n4': (context) => GrammarListPage(list: grammar.listN4, title: "JLPT N4", tag: 'N4'),
+        '/n5': (context) => GrammarListPage(list: grammar.listN5, title: "JLPT N5", tag: 'N5'),
+        '/n0': (context) => GrammarListPage(list: grammar.listN0, title: "其他文法", tag: 'N0'),
         '/about': (context) => const AboutPage(),
         '/exercises': (context) => const ExercisesPage(),
         '/settings': (context) => const SettingsPage(),
         '/dataManger': (context) => const DataMangerPage(),
       },
       theme: ThemeData(
-        // TODO 自定义水波纹 || 消除 bug
         splashFactory: NoSplash.splashFactory,
-        // colorScheme: ColorScheme.fromSeed(seedColor: themeConfig['themeColor']),
-        // 固定颜色
         primaryColor: themeConfig['themeColor'],
         useMaterial3: true,
         textSelectionTheme: TextSelectionThemeData(
-          cursorColor:
-              isLightTheme ? Color.fromRGBO(184, 150, 103, 1) : Colors.white,
+          cursorColor: isLightTheme ? Color.fromRGBO(184, 150, 103, 1) : Colors.white,
           selectionColor: Colors.blue,
           selectionHandleColor: Colors.blueAccent,
         ),
@@ -80,8 +69,7 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage>
-    with AutomaticKeepAliveClientMixin {
+class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin {
   DateTime? lastPressTime; //上次点击时间
   Grammar allGrammar = grammar;
 
@@ -110,8 +98,7 @@ class _HomePageState extends State<HomePage>
           return Scaffold(
             backgroundColor: themeConfig['backgroundColor'],
             appBar: AppBar(
-              title: Text(widget.title,
-                  style: TextStyle(color: themeConfig['titleColor'])),
+              title: Text(widget.title, style: TextStyle(color: themeConfig['titleColor'])),
               backgroundColor: themeConfig['themeColor'],
               leading: Builder(builder: (context) {
                 return IconButton(
@@ -125,10 +112,7 @@ class _HomePageState extends State<HomePage>
               actions: <Widget>[
                 IconButton(
                   onPressed: () {
-                    showSearch(
-                        context: context,
-                        delegate: GrammarSearchDelegate(
-                            grammarList: allGrammar.grammarList));
+                    showSearch(context: context, delegate: GrammarSearchDelegate(grammarList: allGrammar.grammarList));
                   },
                   icon: const Icon(Icons.search),
                   color: themeConfig['iconColor'],
@@ -138,9 +122,7 @@ class _HomePageState extends State<HomePage>
             drawer: const MenuDrawer(),
             body: WillPopScope(
               onWillPop: () async {
-                if (lastPressTime == null ||
-                    DateTime.now().difference(lastPressTime!) >
-                        const Duration(seconds: 1)) {
+                if (lastPressTime == null || DateTime.now().difference(lastPressTime!) > const Duration(seconds: 1)) {
                   //两次点击间隔超过1秒则重新计时
                   lastPressTime = DateTime.now();
                   ScaffoldMessenger.of(context).showSnackBar(
@@ -151,24 +133,16 @@ class _HomePageState extends State<HomePage>
                   );
                   return false;
                 }
-                // BUG: Router17 导致返回 true 也无法正常关闭
-                // ios 应使用 exit(0);
-                if (Platform.isAndroid) {
-                  SystemNavigator.pop();
-                } else {
-                  exit(0);
-                }
-                return true;
                 // 双击退出
+                // 安卓平台退出
+                SystemNavigator.pop();
+                return true;
               },
               child: allGrammar.grammarList.isEmpty
                   ? Container(
                       color: themeConfig['backgroundColor'],
                       child: Center(
-                          child: Text("当前没有数据",
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  color: themeConfig['textColor']))),
+                          child: Text("当前没有数据", style: TextStyle(fontSize: 20, color: themeConfig['textColor']))),
                     )
                   : Center(
                       child: ListView.builder(
@@ -185,8 +159,7 @@ class _HomePageState extends State<HomePage>
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
-              backgroundColor:
-                  themeConfig['floatingActionButtonBackgroundColor'],
+              backgroundColor: themeConfig['floatingActionButtonBackgroundColor'],
               onPressed: () {
                 Navigator.push(
                     context,
@@ -199,9 +172,7 @@ class _HomePageState extends State<HomePage>
                     ));
               },
               tooltip: 'Add item',
-              child: Icon(Icons.add,
-                  color: themeConfig['floatingActionButtonIconColor'],
-                  size: 30),
+              child: Icon(Icons.add, color: themeConfig['floatingActionButtonIconColor'], size: 30),
             ),
           );
         } else {

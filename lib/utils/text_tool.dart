@@ -4,13 +4,8 @@ import 'package:jlptgrammar/utils/db_tool.dart';
 import 'package:jlptgrammar/common/global.dart';
 
 class TextTool {
-  GrammarItem insertDataGenerator(
-      TextEditingController t1,
-      TextEditingController t2,
-      TextEditingController t3,
-      TextEditingController t4,
-      TextEditingController t5,
-      String setLevel) {
+  GrammarItem insertDataGenerator(TextEditingController t1, TextEditingController t2, TextEditingController t3,
+      TextEditingController t4, TextEditingController t5, String setLevel) {
     GrammarItem temp = GrammarItem(
       level: setLevel,
       name: t1.text,
@@ -22,13 +17,8 @@ class TextTool {
     return temp;
   }
 
-  GrammarItem updateDataGenerator(
-      int id,
-      TextEditingController t1,
-      TextEditingController t2,
-      TextEditingController t3,
-      TextEditingController t4,
-      TextEditingController t5) {
+  GrammarItem updateDataGenerator(int id, TextEditingController t1, TextEditingController t2, TextEditingController t3,
+      TextEditingController t4, TextEditingController t5) {
     GrammarItem temp = GrammarItem(
       id: id,
       name: t1.text,

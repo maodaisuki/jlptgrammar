@@ -74,8 +74,7 @@ class _AboutPageState extends State<AboutPage> {
   }
 
   Future<bool> checkUpdate(String version) async {
-    final response = await http.get(Uri.parse(
-        'https://api.github.com/repos/maodaisuki/jlptgrammar/releases/latest'));
+    final response = await http.get(Uri.parse('https://api.github.com/repos/maodaisuki/jlptgrammar/releases/latest'));
 
     if (response.statusCode == 200) {
       final release = jsonDecode(response.body);
@@ -95,72 +94,37 @@ class _AboutPageState extends State<AboutPage> {
   }
 
   Future<void> showUpdateInfo(bool info) async {
-    ValueNotifier<int> downloadListener = ValueNotifier<int>(0);
     if (info) {
       // 有新版本
-      bool isConfirmDownload = false;
       await showDialog(
           barrierDismissible: false,
           context: context,
-          builder: (BuildContext context) {
-            return ValueListenableBuilder(
-                valueListenable: downloadListener,
-                builder: (BuildContext context, int value, Widget? child) {
-                  return AlertDialog(
-                    backgroundColor: themeConfig['backgroundColor'],
-                    shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(4))),
-                    title: Text(isConfirmDownload == false ? "发现新版本" : "下载中",
-                        style: TextStyle(color: themeConfig['textColor'])),
-                    // content: isConfirmDownload == false ? Text("$updateInfo\n\n立即更新？", style: TextStyle(fontSize: 18, color: themeConfig['textColor']))
-                    //   : Container(
-                    //     child:
-                    //       LinearProgressIndicator(color: isLightTheme ? themeConfig['themeColor'] : themeConfig['titleColor']),
-                    // ),
-                    content: Text("$updateInfo\n\n立即前往下载？",
-                        style: TextStyle(
-                            fontSize: 18, color: themeConfig['textColor'])),
-                    actions: <Widget>[
-                      MaterialButton(
-                          child: Text('取消',
-                              style: TextStyle(
-                                  color: themeConfig['textColor'],
-                                  fontSize: 18)),
-                          onPressed: () async {
-                            if (isConfirmDownload) {
-                              // 停止下载同时关闭
-
-                              isConfirmDownload = !isConfirmDownload;
-                            }
-                            Navigator.pop(context);
-                          }),
-                      Visibility(
-                        visible: !isConfirmDownload,
-                        child: MaterialButton(
-                            child: const Text('确认',
-                                style: TextStyle(
-                                  color: Colors.red,
-                                  fontSize: 18,
-                                )),
-                            onPressed: () async {
-                              // 开始下载
-                              // TODO 应用内更新
-                              String url = await getDownloadUrl(resInfo);
-                              openURL(Uri.parse(url));
-                              // String savePath = (await getTemporaryDirectory()).path;
-                              // String apkPath = "$savePath/app-release.apk";
-                              setState(() {
-                                isConfirmDownload = true;
-                                // downloadListener.value = 1;
-                              });
-                              print(url);
-                              Navigator.pop(context);
-                            }),
-                      ),
-                    ],
-                  );
-                });
-          });
+          builder: (_) => AlertDialog(
+                backgroundColor: themeConfig['backgroundColor'],
+                shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(4))),
+                title: Text("发现新版本", style: TextStyle(color: themeConfig['textColor'])),
+                content: Text("立即前往下载？", style: TextStyle(fontSize: 18, color: themeConfig['textColor'])),
+                actions: <Widget>[
+                  MaterialButton(
+                      child: Text('取消', style: TextStyle(color: themeConfig['textColor'], fontSize: 18)),
+                      onPressed: () async {
+                        // 取消跳转页面
+                        Navigator.pop(context);
+                      }),
+                  MaterialButton(
+                      child: const Text('确认',
+                          style: TextStyle(
+                            color: Colors.red,
+                            fontSize: 18,
+                          )),
+                      onPressed: () async {
+                        // 跳转页面
+                        String url = await getDownloadUrl(resInfo);
+                        openURL(Uri.parse(url));
+                        Navigator.pop(context);
+                      }),
+                ],
+              ));
     } else {
       // 没有新版本
       await showDialog(
@@ -168,18 +132,12 @@ class _AboutPageState extends State<AboutPage> {
           context: context,
           builder: (_) => AlertDialog(
                 backgroundColor: themeConfig['backgroundColor'],
-                shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(4))),
-                title: Text("检查更新",
-                    style: TextStyle(color: themeConfig['textColor'])),
-                content: Text("暂未发现新版本",
-                    style: TextStyle(
-                        fontSize: 18, color: themeConfig['textColor'])),
+                shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(4))),
+                title: Text("检查更新", style: TextStyle(color: themeConfig['textColor'])),
+                content: Text("暂未发现新版本", style: TextStyle(fontSize: 18, color: themeConfig['textColor'])),
                 actions: <Widget>[
                   MaterialButton(
-                      child: Text('确认',
-                          style: TextStyle(
-                              color: themeConfig['textColor'], fontSize: 18)),
+                      child: Text('确认', style: TextStyle(color: themeConfig['textColor'], fontSize: 18)),
                       onPressed: () async {
                         Navigator.pop(context);
                       }),
@@ -227,51 +185,36 @@ class _AboutPageState extends State<AboutPage> {
                   margin: EdgeInsets.only(top: 20),
                   child: Center(
                     child: Text('日本語文法',
-                        style: TextStyle(
-                            color: themeConfig['textColor'],
-                            fontSize: 20,
-                            fontWeight: FontWeight.w700)),
+                        style: TextStyle(color: themeConfig['textColor'], fontSize: 20, fontWeight: FontWeight.w700)),
                   ),
                 ),
                 Container(
                   margin: EdgeInsets.only(top: 10, bottom: 10),
                   child: Center(
                     child: Text("Version ${packageInfo.version} -release",
-                        style: TextStyle(
-                            color: themeConfig['textColor'], fontSize: 16)),
+                        style: TextStyle(color: themeConfig['textColor'], fontSize: 16)),
                   ),
                 ),
                 ListTile(
                   leading: Container(
                     margin: EdgeInsets.only(left: 15),
-                    child: Icon(Icons.emoji_emotions,
-                        color: themeConfig['drawerIconColor']),
+                    child: Icon(Icons.emoji_emotions, color: themeConfig['drawerIconColor']),
                   ),
-                  title: Text('日本語文法官方网站',
-                      style: TextStyle(
-                          fontSize: 20, color: themeConfig['textColor'])),
-                  subtitle: Text('软件官方网站',
-                      style: TextStyle(
-                          fontSize: 14, color: themeConfig['textColor'])),
+                  title: Text('日本語文法官方网站', style: TextStyle(fontSize: 20, color: themeConfig['textColor'])),
+                  subtitle: Text('软件官方网站', style: TextStyle(fontSize: 14, color: themeConfig['textColor'])),
                   minVerticalPadding: 10,
                   onTap: () {
                     print("打开官网");
-                    openURL(Uri.parse(
-                        'https://github.com/maodaisuki/jlptgrammar/'));
+                    openURL(Uri.parse('https://github.com/maodaisuki/jlptgrammar/'));
                   },
                 ),
                 ListTile(
                   leading: Container(
                     margin: EdgeInsets.only(left: 15),
-                    child: Icon(Icons.sticky_note_2_outlined,
-                        color: themeConfig['drawerIconColor']),
+                    child: Icon(Icons.sticky_note_2_outlined, color: themeConfig['drawerIconColor']),
                   ),
-                  title: Text('毎日のんびり日本語教師',
-                      style: TextStyle(
-                          fontSize: 20, color: themeConfig['textColor'])),
-                  subtitle: Text('提供了软件所使用的语法数据',
-                      style: TextStyle(
-                          fontSize: 14, color: themeConfig['textColor'])),
+                  title: Text('毎日のんびり日本語教師', style: TextStyle(fontSize: 20, color: themeConfig['textColor'])),
+                  subtitle: Text('提供了软件所使用的语法数据', style: TextStyle(fontSize: 14, color: themeConfig['textColor'])),
                   minVerticalPadding: 10,
                   onTap: () {
                     print("打开官网");
@@ -281,36 +224,18 @@ class _AboutPageState extends State<AboutPage> {
                 ListTile(
                   leading: Container(
                     margin: EdgeInsets.only(left: 15),
-                    child: Icon(Icons.rocket_launch,
-                        color: themeConfig['drawerIconColor']),
+                    child: Icon(Icons.rocket_launch, color: themeConfig['drawerIconColor']),
                   ),
-                  title: Text('检查更新',
-                      style: TextStyle(
-                          fontSize: 20, color: themeConfig['textColor'])),
-                  subtitle: Text('检查 Github 仓库有无新版本发布',
-                      style: TextStyle(
-                          fontSize: 14, color: themeConfig['textColor'])),
+                  title: Text('检查更新', style: TextStyle(fontSize: 20, color: themeConfig['textColor'])),
+                  subtitle:
+                      Text('检查 Github 仓库有无新版本发布', style: TextStyle(fontSize: 14, color: themeConfig['textColor'])),
                   minVerticalPadding: 10,
                   onTap: () async {
                     // 显示正在检查
                     showCheckingInfo();
-                    await showUpdateInfo(
-                        await checkUpdate(packageInfo.version.toString()));
+                    await showUpdateInfo(await checkUpdate(packageInfo.version.toString()));
                   },
                 ),
-                // TODO 添加开源相关
-                // ListTile(
-                //   leading: Container(
-                //     margin: EdgeInsets.only(left: 15),
-                //     child: Icon(Icons.rocket_launch, color: themeConfig['drawerIconColor']),
-                //   ),
-                //   title: Text('开源相关', style: TextStyle(fontSize: 20, color: themeConfig['textColor'])),
-                //   subtitle: Text('', style: TextStyle(fontSize: 14, color: themeConfig['textColor'])),
-                //   minVerticalPadding: 10,
-                //   onTap: () {
-                //
-                //   },
-                // ),
               ],
             ),
           ),

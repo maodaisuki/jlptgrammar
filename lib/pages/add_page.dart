@@ -7,11 +7,7 @@ class GrammarItemAddPage extends StatefulWidget {
   final String title;
   final List tempList;
   final String tag;
-  const GrammarItemAddPage(
-      {Key? key,
-      required this.title,
-      required this.tempList,
-      required this.tag})
+  const GrammarItemAddPage({Key? key, required this.title, required this.tempList, required this.tag})
       : super(key: key);
   @override
   State<GrammarItemAddPage> createState() => _GrammarItemAddPageState();
@@ -42,8 +38,7 @@ class _GrammarItemAddPageState extends State<GrammarItemAddPage> {
     return Scaffold(
       backgroundColor: themeConfig['backgroundColor'],
       appBar: AppBar(
-        title: Text(widget.title,
-            style: TextStyle(color: themeConfig['titleColor'])),
+        title: Text(widget.title, style: TextStyle(color: themeConfig['titleColor'])),
         backgroundColor: themeConfig['themeColor'],
         leading: Builder(builder: (context) {
           return IconButton(
@@ -58,19 +53,15 @@ class _GrammarItemAddPageState extends State<GrammarItemAddPage> {
           DropdownButton(
             style: TextStyle(color: themeConfig['textColor']),
             dropdownColor: themeConfig['backgroundColor'],
-            icon: Icon(Icons.arrow_drop_down_rounded,
-                color: themeConfig['iconColor']),
+            icon: Icon(Icons.arrow_drop_down_rounded, color: themeConfig['iconColor']),
             value: setLevel,
             items: levelArray
                 .map((String item) => DropdownMenuItem<String>(
                       key: Key(item),
                       value: item,
                       child: Text(item,
-                          style: TextStyle(
-                              // TODO 这里需要一种选择色
-                              color: item == setLevel
-                                  ? themeConfig['textColor']
-                                  : themeConfig['textColor'])),
+                          style:
+                              TextStyle(color: item == setLevel ? themeConfig['textColor'] : themeConfig['textColor'])),
                     ))
                 .toList(),
             // 自定义选中项显示
@@ -97,31 +88,21 @@ class _GrammarItemAddPageState extends State<GrammarItemAddPage> {
       body: ListView(
         children: [
           Container(
-            margin:
-                const EdgeInsets.only(left: 10, right: 10, top: 30, bottom: 10),
+            margin: const EdgeInsets.only(left: 10, right: 10, top: 30, bottom: 10),
             child: Column(
               children: [
                 Container(
-                  margin: const EdgeInsets.only(
-                      left: 0, right: 0, top: 0, bottom: 20),
+                  margin: const EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 20),
                   child: TextField(
                     controller: textEditingController1,
                     decoration: InputDecoration(
                         labelText: '文型',
-                        labelStyle: TextStyle(
-                            fontSize: double.parse(setFontSize),
-                            color: themeConfig['labelColor']),
-                        floatingLabelStyle: TextStyle(
-                            fontSize: 18,
-                            color: themeConfig['floatingLabelColor']),
+                        labelStyle: TextStyle(fontSize: double.parse(setFontSize), color: themeConfig['labelColor']),
+                        floatingLabelStyle: TextStyle(fontSize: 18, color: themeConfig['floatingLabelColor']),
                         enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: themeConfig['enabledBorderColor'],
-                                width: 1)),
+                            borderSide: BorderSide(color: themeConfig['enabledBorderColor'], width: 1)),
                         focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: themeConfig['focusedBorderColor'],
-                                width: 2))),
+                            borderSide: BorderSide(color: themeConfig['focusedBorderColor'], width: 2))),
                     maxLines: 1,
                     style: TextStyle(
                         fontSize: double.parse(setFontSize),
@@ -130,10 +111,7 @@ class _GrammarItemAddPageState extends State<GrammarItemAddPage> {
                   ),
                 ),
                 LayoutBuilder(builder: (context, size) {
-                  TextSpan text = const TextSpan(
-                      // text: yourTextController.text,
-                      // style: yourTextStyle,
-                      );
+                  TextSpan text = const TextSpan();
 
                   TextPainter tp = TextPainter(
                     text: text,
@@ -146,26 +124,17 @@ class _GrammarItemAddPageState extends State<GrammarItemAddPage> {
                   int maxLines = 10;
 
                   return Container(
-                    margin: const EdgeInsets.only(
-                        left: 0, right: 0, top: 0, bottom: 20),
+                    margin: const EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 20),
                     child: TextField(
                       controller: textEditingController2,
                       decoration: InputDecoration(
                           labelText: '接続',
-                          labelStyle: TextStyle(
-                              fontSize: double.parse(setFontSize),
-                              color: themeConfig['labelColor']),
-                          floatingLabelStyle: TextStyle(
-                              fontSize: 18,
-                              color: themeConfig['floatingLabelColor']),
+                          labelStyle: TextStyle(fontSize: double.parse(setFontSize), color: themeConfig['labelColor']),
+                          floatingLabelStyle: TextStyle(fontSize: 18, color: themeConfig['floatingLabelColor']),
                           enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: themeConfig['enabledBorderColor'],
-                                  width: 1)),
+                              borderSide: BorderSide(color: themeConfig['enabledBorderColor'], width: 1)),
                           focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: themeConfig['focusedBorderColor'],
-                                  width: 2))),
+                              borderSide: BorderSide(color: themeConfig['focusedBorderColor'], width: 2))),
                       maxLines: lines < maxLines ? null : maxLines,
                       style: TextStyle(
                           fontSize: double.parse(setFontSize),
@@ -175,10 +144,7 @@ class _GrammarItemAddPageState extends State<GrammarItemAddPage> {
                   );
                 }),
                 LayoutBuilder(builder: (context, size) {
-                  TextSpan text = const TextSpan(
-                      // text: yourTextController.text,
-                      // style: yourTextStyle,
-                      );
+                  TextSpan text = const TextSpan();
 
                   TextPainter tp = TextPainter(
                     text: text,
@@ -191,26 +157,17 @@ class _GrammarItemAddPageState extends State<GrammarItemAddPage> {
                   int maxLines = 10;
 
                   return Container(
-                    margin: const EdgeInsets.only(
-                        left: 0, right: 0, top: 0, bottom: 20),
+                    margin: const EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 20),
                     child: TextField(
                       controller: textEditingController3,
                       decoration: InputDecoration(
                           labelText: '意味',
-                          labelStyle: TextStyle(
-                              fontSize: double.parse(setFontSize),
-                              color: themeConfig['labelColor']),
-                          floatingLabelStyle: TextStyle(
-                              fontSize: 18,
-                              color: themeConfig['floatingLabelColor']),
+                          labelStyle: TextStyle(fontSize: double.parse(setFontSize), color: themeConfig['labelColor']),
+                          floatingLabelStyle: TextStyle(fontSize: 18, color: themeConfig['floatingLabelColor']),
                           enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: themeConfig['enabledBorderColor'],
-                                  width: 1)),
+                              borderSide: BorderSide(color: themeConfig['enabledBorderColor'], width: 1)),
                           focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: themeConfig['focusedBorderColor'],
-                                  width: 2))),
+                              borderSide: BorderSide(color: themeConfig['focusedBorderColor'], width: 2))),
                       maxLines: lines < maxLines ? null : maxLines,
                       style: TextStyle(
                           fontSize: double.parse(setFontSize),
@@ -220,10 +177,7 @@ class _GrammarItemAddPageState extends State<GrammarItemAddPage> {
                   );
                 }),
                 LayoutBuilder(builder: (context, size) {
-                  TextSpan text = const TextSpan(
-                      // text: yourTextController.text,
-                      // style: yourTextStyle,
-                      );
+                  TextSpan text = const TextSpan();
 
                   TextPainter tp = TextPainter(
                     text: text,
@@ -236,26 +190,17 @@ class _GrammarItemAddPageState extends State<GrammarItemAddPage> {
                   int maxLines = 10;
 
                   return Container(
-                    margin: const EdgeInsets.only(
-                        left: 0, right: 0, top: 0, bottom: 20),
+                    margin: const EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 20),
                     child: TextField(
                       controller: textEditingController4,
                       decoration: InputDecoration(
                           labelText: '例文',
-                          labelStyle: TextStyle(
-                              fontSize: double.parse(setFontSize),
-                              color: themeConfig['labelColor']),
-                          floatingLabelStyle: TextStyle(
-                              fontSize: 18,
-                              color: themeConfig['floatingLabelColor']),
+                          labelStyle: TextStyle(fontSize: double.parse(setFontSize), color: themeConfig['labelColor']),
+                          floatingLabelStyle: TextStyle(fontSize: 18, color: themeConfig['floatingLabelColor']),
                           enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: themeConfig['enabledBorderColor'],
-                                  width: 1)),
+                              borderSide: BorderSide(color: themeConfig['enabledBorderColor'], width: 1)),
                           focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: themeConfig['focusedBorderColor'],
-                                  width: 2))),
+                              borderSide: BorderSide(color: themeConfig['focusedBorderColor'], width: 2))),
                       maxLines: lines < maxLines ? null : maxLines,
                       style: TextStyle(
                           fontSize: double.parse(setFontSize),
@@ -265,10 +210,7 @@ class _GrammarItemAddPageState extends State<GrammarItemAddPage> {
                   );
                 }),
                 LayoutBuilder(builder: (context, size) {
-                  TextSpan text = const TextSpan(
-                      // text: TextController.text,
-                      // style: TextStyle,
-                      );
+                  TextSpan text = const TextSpan();
 
                   TextPainter tp = TextPainter(
                     text: text,
@@ -281,26 +223,17 @@ class _GrammarItemAddPageState extends State<GrammarItemAddPage> {
                   int maxLines = 10;
 
                   return Container(
-                    margin: const EdgeInsets.only(
-                        left: 0, right: 0, top: 0, bottom: 20),
+                    margin: const EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 20),
                     child: TextField(
                       controller: textEditingController5,
                       decoration: InputDecoration(
                           labelText: 'ノート',
-                          labelStyle: TextStyle(
-                              fontSize: double.parse(setFontSize),
-                              color: themeConfig['labelColor']),
-                          floatingLabelStyle: TextStyle(
-                              fontSize: 18,
-                              color: themeConfig['floatingLabelColor']),
+                          labelStyle: TextStyle(fontSize: double.parse(setFontSize), color: themeConfig['labelColor']),
+                          floatingLabelStyle: TextStyle(fontSize: 18, color: themeConfig['floatingLabelColor']),
                           enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: themeConfig['enabledBorderColor'],
-                                  width: 1)),
+                              borderSide: BorderSide(color: themeConfig['enabledBorderColor'], width: 1)),
                           focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: themeConfig['focusedBorderColor'],
-                                  width: 2))),
+                              borderSide: BorderSide(color: themeConfig['focusedBorderColor'], width: 2))),
                       maxLines: lines < maxLines ? null : maxLines,
                       style: TextStyle(
                           fontSize: double.parse(setFontSize),
@@ -312,9 +245,8 @@ class _GrammarItemAddPageState extends State<GrammarItemAddPage> {
                 MaterialButton(
                   onPressed: () {
                     if (textEditingController1.text.isEmpty) {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                          content: Text('请至少输入文型～'),
-                          duration: Duration(seconds: 1)));
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(const SnackBar(content: Text('请至少输入文型～'), duration: Duration(seconds: 1)));
                     } else {
                       // 条目写入数据库后刷新数据
                       TextTool t = TextTool();

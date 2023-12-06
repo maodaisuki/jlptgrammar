@@ -25,13 +25,10 @@ class _GrammarListItemState extends State<GrammarListItem> {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(
-                  builder: (context) => GrammarItemPage(
-                      list: widget.grammarList, index: widget.index)),
+              MaterialPageRoute(builder: (context) => GrammarItemPage(list: widget.grammarList, index: widget.index)),
             );
           },
-          trailing: Icon(Icons.keyboard_arrow_right,
-              color: themeConfig['drawerIconColor']),
+          trailing: Icon(Icons.keyboard_arrow_right, color: themeConfig['drawerIconColor']),
         ),
         Divider(
           height: 0.5,

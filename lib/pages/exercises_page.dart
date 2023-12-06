@@ -49,8 +49,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
                   child: Center(
                     child: Text(
                       quiz.name.toString(),
-                      style: TextStyle(
-                          fontSize: 25, color: themeConfig['textColor']),
+                      style: TextStyle(fontSize: 25, color: themeConfig['textColor']),
                     ),
                   ),
                 ),
@@ -78,9 +77,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
                                   quiz = qg.randomListItem();
                                 });
                               },
-                              child: Text('认识',
-                                  style: TextStyle(
-                                      fontSize: 20, color: Colors.white)),
+                              child: Text('认识', style: TextStyle(fontSize: 20, color: Colors.white)),
                             ),
                           )),
                       const Spacer(),
@@ -100,13 +97,9 @@ class _ExercisesPageState extends State<ExercisesPage> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => QuizAnswerPage(
-                                            list: grammar.grammarList,
-                                            index: grammar.grammarList
-                                                .indexOf(quiz))));
+                                            list: grammar.grammarList, index: grammar.grammarList.indexOf(quiz))));
                               },
-                              child: Text('忘记',
-                                  style: TextStyle(
-                                      fontSize: 20, color: Colors.white)),
+                              child: Text('忘记', style: TextStyle(fontSize: 20, color: Colors.white)),
                             ),
                           )),
                     ],

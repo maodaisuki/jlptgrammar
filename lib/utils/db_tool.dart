@@ -34,10 +34,8 @@ class DatabaseHelper {
       return;
     }
     // 项目数据库文件位置 /lib/assets/jlptgrammar.db
-    ByteData data =
-        await rootBundle.load(join("lib", "assets", "jlptgrammar.db"));
-    List<int> bytes =
-        data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+    ByteData data = await rootBundle.load(join("lib", "assets", "jlptgrammar.db"));
+    List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
     await File(path).writeAsBytes(bytes);
   }
 
@@ -46,8 +44,7 @@ class DatabaseHelper {
     var path = join(databasesPath, 'jlptgrammar.db');
     await copyDatabase(path); // 等待复制数据库完成
     // var database = await openDatabase(path);
-    var database = await openDatabase(path, version: 1,
-        onCreate: (Database db, int version) async {
+    var database = await openDatabase(path, version: 1, onCreate: (Database db, int version) async {
       await db.execute('''
             CREATE TABLE IF NOT EXISTS jlptgrammar (
               id INTEGER PRIMARY KEY NOT NULL,
@@ -71,14 +68,11 @@ class DatabaseHelper {
     await close();
     await deleteDatabase(path);
     // 从assets目录中复制原始的数据库文件
-    ByteData data =
-        await rootBundle.load(join("lib", "assets", "jlptgrammar.db"));
-    List<int> bytes =
-        data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+    ByteData data = await rootBundle.load(join("lib", "assets", "jlptgrammar.db"));
+    List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
     await File(path).writeAsBytes(bytes);
     // 重新打开数据库
-    var database = await openDatabase(path, version: 1,
-        onCreate: (Database db, int version) async {
+    var database = await openDatabase(path, version: 1, onCreate: (Database db, int version) async {
       await db.execute('''
           CREATE TABLE IF NOT EXISTS jlptgrammar (
             id INTEGER PRIMARY KEY NOT NULL,
@@ -97,26 +91,16 @@ class DatabaseHelper {
 
   Future<bool> checkDatabase(String path) async {
     String tableName = 'jlptgrammar';
-    List<String> columnNameList = [
-      'id',
-      'level',
-      'name',
-      'grammar',
-      'mean',
-      'example',
-      'notes'
-    ];
+    List<String> columnNameList = ['id', 'level', 'name', 'grammar', 'mean', 'example', 'notes'];
     Database db = await openDatabase(path);
-    List<Map<String, dynamic>> tables = await db.rawQuery(
-        'SELECT name FROM sqlite_master WHERE type="table" AND name="$tableName"');
+    List<Map<String, dynamic>> tables =
+        await db.rawQuery('SELECT name FROM sqlite_master WHERE type="table" AND name="$tableName"');
     if (tables.isNotEmpty) {
-      List<Map<String, dynamic>> columns =
-          await db.rawQuery('PRAGMA table_info($tableName)');
+      List<Map<String, dynamic>> columns = await db.rawQuery('PRAGMA table_info($tableName)');
       // for(var column in columns) {
       //   print(column['name']);
       // }
-      bool isColumnExists = columnNameList.every((columnName) =>
-          columns.any((column) => column['name'] == columnName));
+      bool isColumnExists = columnNameList.every((columnName) => columns.any((column) => column['name'] == columnName));
       // print("isColumnExists = $isColumnExists");
       // await db.close();
       if (isColumnExists) {
@@ -225,8 +209,7 @@ class DatabaseTool {
   // 更新数据
   Future<int> updateData(GrammarItem data) async {
     var dbClient = await dbHelper.dhGrammarDb;
-    var result = await dbClient.update('jlptgrammar', data.toMap(),
-        where: 'id = ?', whereArgs: [data.id]);
+    var result = await dbClient.update('jlptgrammar', data.toMap(), where: 'id = ?', whereArgs: [data.id]);
     grammar = Grammar();
     g.value = g.value + 1;
     print("更新了一条数据");
@@ -236,8 +219,7 @@ class DatabaseTool {
   // 删除数据
   Future<int> deleteData(int id) async {
     var dbClient = await dbHelper.dhGrammarDb;
-    var result =
-        await dbClient.delete('jlptgrammar', where: 'id = ?', whereArgs: [id]);
+    var result = await dbClient.delete('jlptgrammar', where: 'id = ?', whereArgs: [id]);
     grammar = Grammar();
     g.value = g.value - 1;
     print("删除了一条数据");
@@ -247,8 +229,7 @@ class DatabaseTool {
   // 获取特定 level
   Future<List<GrammarItem>> getLevelGrammarList(String tag, Database db) async {
     var dbClient = db;
-    var result = await dbClient
-        .rawQuery("SELECT * FROM jlptgrammar WHERE level == ?", [tag]);
+    var result = await dbClient.rawQuery("SELECT * FROM jlptgrammar WHERE level == ?", [tag]);
     return result.map((map) => GrammarItem.fromMap(map)).toList();
   }
 

@@ -79,8 +79,7 @@ class GrammarSearchDelegate extends SearchDelegate {
     tempResult = [];
     for (int i = 0; i < searchList.length; i++) {
       // 搜索条目名和释义
-      if (searchList[i].name.contains(query) ||
-          searchList[i].mean.contains(query)) {
+      if (searchList[i].name.contains(query) || searchList[i].mean.contains(query)) {
         print("搜索建议匹配成功");
         tempResult.add(searchList[i]);
       }
@@ -116,36 +115,10 @@ class GrammarSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    // searchResult = [];
-    // for (int i = 0; i < grammarList.length; i++) {
-    //   if (grammarList[i].name.contains(query)) {
-    //     print("搜索建议匹配成功");
-    //     searchResult.add(grammarList[i]);
-    //   }
-    // }
-    // if(searchResult.isEmpty) {
-    //   return const Center(
-    //     child: Text(
-    //       '没有匹配结果',
-    //       style: TextStyle(fontSize: 18),
-    //     ),
-    //   );
-    // }
-    // return Center(
-    //   child: ListView.builder(
-    //       itemCount: searchResult.length,
-    //       itemBuilder: (context, index) {
-    //         return GrammarListItem(
-    //           grammarList: searchResult,
-    //           index: index,
-    //         );
-    //       }),
-    // );
     return Container(
         color: themeConfig['backgroundColor'],
         child: Center(
-          child: Text("回车键搜索",
-              style: TextStyle(fontSize: 18, color: themeConfig['textColor'])),
+          child: Text("回车键搜索", style: TextStyle(fontSize: 18, color: themeConfig['textColor'])),
         ));
   }
 }

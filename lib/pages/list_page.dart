@@ -27,8 +27,7 @@ class _GrammarListPageState extends State<GrammarListPage> {
           return Scaffold(
             backgroundColor: themeConfig['backgroundColor'],
             appBar: AppBar(
-              title: Text(widget.title,
-                  style: TextStyle(color: themeConfig['titleColor'])),
+              title: Text(widget.title, style: TextStyle(color: themeConfig['titleColor'])),
               backgroundColor: themeConfig['themeColor'],
               leading: Builder(builder: (context) {
                 return IconButton(
@@ -42,10 +41,7 @@ class _GrammarListPageState extends State<GrammarListPage> {
               actions: <Widget>[
                 IconButton(
                   onPressed: () {
-                    showSearch(
-                        context: context,
-                        delegate:
-                            GrammarSearchDelegate(grammarList: widget.list));
+                    showSearch(context: context, delegate: GrammarSearchDelegate(grammarList: widget.list));
                   },
                   icon: const Icon(Icons.search),
                   color: themeConfig['iconColor'],
@@ -53,24 +49,19 @@ class _GrammarListPageState extends State<GrammarListPage> {
               ],
             ),
             body: widget.list.isEmpty
-                ? Center(
-                    child: Text("当前没有数据",
-                        style: TextStyle(
-                            fontSize: 20, color: themeConfig['textColor'])))
+                ? Center(child: Text("当前没有数据", style: TextStyle(fontSize: 20, color: themeConfig['textColor'])))
                 : Center(
                     child: ListView.builder(
                         itemCount: widget.list.length,
                         itemBuilder: (context, index) {
-                          return GrammarListItem(
-                              grammarList: widget.list, index: index);
+                          return GrammarListItem(grammarList: widget.list, index: index);
                         }),
                   ),
             floatingActionButton: FloatingActionButton(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
-              backgroundColor:
-                  themeConfig['floatingActionButtonBackgroundColor'],
+              backgroundColor: themeConfig['floatingActionButtonBackgroundColor'],
               onPressed: () {
                 Navigator.push(
                     context,
@@ -83,9 +74,7 @@ class _GrammarListPageState extends State<GrammarListPage> {
                     ));
               },
               tooltip: 'Add item',
-              child: Icon(Icons.add,
-                  color: themeConfig['floatingActionButtonIconColor'],
-                  size: 30),
+              child: Icon(Icons.add, color: themeConfig['floatingActionButtonIconColor'], size: 30),
             ),
           );
         });

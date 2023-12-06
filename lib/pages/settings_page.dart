@@ -21,8 +21,7 @@ class _SettingsPageState extends State<SettingsPage> {
           return Scaffold(
             backgroundColor: themeConfig['backgroundColor'],
             appBar: AppBar(
-              title: Text("设置",
-                  style: TextStyle(color: themeConfig['titleColor'])),
+              title: Text("设置", style: TextStyle(color: themeConfig['titleColor'])),
               backgroundColor: themeConfig['themeColor'],
               leading: IconButton(
                 icon: const Icon(Icons.arrow_back),
@@ -41,23 +40,18 @@ class _SettingsPageState extends State<SettingsPage> {
                       ListTile(
                         leading: Container(
                           margin: EdgeInsets.only(left: 15),
-                          child: Icon(Icons.mode_night_sharp,
-                              color: themeConfig['drawerIconColor']),
+                          child: Icon(Icons.mode_night_sharp, color: themeConfig['drawerIconColor']),
                         ),
-                        title: Text('夜间模式',
-                            style: TextStyle(
-                                fontSize: 20, color: themeConfig['textColor'])),
+                        title: Text('夜间模式', style: TextStyle(fontSize: 20, color: themeConfig['textColor'])),
                         subtitle: Text(isLightTheme == false ? 'On' : 'Off',
-                            style: TextStyle(
-                                fontSize: 14, color: themeConfig['textColor'])),
+                            style: TextStyle(fontSize: 14, color: themeConfig['textColor'])),
                         minVerticalPadding: 10,
                         trailing: Switch(
                             activeTrackColor: Color.fromRGBO(184, 150, 103, 1),
                             inactiveTrackColor: Colors.white,
                             value: !isLightTheme,
                             onChanged: (value) async {
-                              SharedPreferences prefs =
-                                  await SharedPreferences.getInstance();
+                              SharedPreferences prefs = await SharedPreferences.getInstance();
                               // 主题切换模式
                               setState(() {
                                 if (isLightTheme) {
@@ -74,31 +68,13 @@ class _SettingsPageState extends State<SettingsPage> {
                               });
                             }),
                       ),
-                      // TODO 语言切换
-                      // ListTile(
-                      //   leading: Container(
-                      //     margin: EdgeInsets.only(left: 15),
-                      //     child: Icon(Icons.language, color: themeConfig['drawerIconColor']),
-                      //   ),
-                      //   title: Text('语言设置', style: TextStyle(fontSize: 20, color: themeConfig['textColor'])),
-                      //   subtitle: Text('设置菜单显示语言', style: TextStyle(fontSize: 14, color: themeConfig['textColor'])),
-                      //   minVerticalPadding: 10,
-                      //   onTap: () {
-                      //
-                      //   },
-                      // ),
                       ListTile(
                         leading: Container(
                           margin: EdgeInsets.only(left: 15),
-                          child: Icon(Icons.data_object,
-                              color: themeConfig['drawerIconColor']),
+                          child: Icon(Icons.data_object, color: themeConfig['drawerIconColor']),
                         ),
-                        title: Text('数据管理',
-                            style: TextStyle(
-                                fontSize: 20, color: themeConfig['textColor'])),
-                        subtitle: Text('管理软件数据内容',
-                            style: TextStyle(
-                                fontSize: 14, color: themeConfig['textColor'])),
+                        title: Text('数据管理', style: TextStyle(fontSize: 20, color: themeConfig['textColor'])),
+                        subtitle: Text('管理软件数据内容', style: TextStyle(fontSize: 14, color: themeConfig['textColor'])),
                         minVerticalPadding: 10,
                         onTap: () {
                           Navigator.of(context).pushNamed('/dataManger');
@@ -107,15 +83,10 @@ class _SettingsPageState extends State<SettingsPage> {
                       ListTile(
                         leading: Container(
                           margin: EdgeInsets.only(left: 15),
-                          child: Icon(Icons.info,
-                              color: themeConfig['drawerIconColor']),
+                          child: Icon(Icons.info, color: themeConfig['drawerIconColor']),
                         ),
-                        title: Text('关于软件',
-                            style: TextStyle(
-                                fontSize: 20, color: themeConfig['textColor'])),
-                        subtitle: Text('软件相关信息',
-                            style: TextStyle(
-                                fontSize: 14, color: themeConfig['textColor'])),
+                        title: Text('关于软件', style: TextStyle(fontSize: 20, color: themeConfig['textColor'])),
+                        subtitle: Text('软件相关信息', style: TextStyle(fontSize: 14, color: themeConfig['textColor'])),
                         minVerticalPadding: 10,
                         onTap: () {
                           Navigator.of(context).pushNamed('/about');
