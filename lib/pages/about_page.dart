@@ -213,8 +213,8 @@ class _AboutPageState extends State<AboutPage> {
                     margin: EdgeInsets.only(left: 15),
                     child: Icon(Icons.sticky_note_2_outlined, color: themeConfig['drawerIconColor']),
                   ),
-                  title: Text('毎日のんびり日本語教師', style: TextStyle(fontSize: 20, color: themeConfig['textColor'])),
-                  subtitle: Text('提供了软件所使用的语法数据', style: TextStyle(fontSize: 14, color: themeConfig['textColor'])),
+                  title: Text('语法数据来源网站', style: TextStyle(fontSize: 20, color: themeConfig['textColor'])),
+                  subtitle: Text('© 毎日のんびり日本語教師 All Rights Reserved.', style: TextStyle(fontSize: 14, color: themeConfig['textColor'])),
                   minVerticalPadding: 10,
                   onTap: () {
                     print("打开官网");
