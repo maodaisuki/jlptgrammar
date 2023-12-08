@@ -53,8 +53,6 @@ class Grammar {
     databaseTool = DatabaseTool();
     databaseHelper = databaseTool.dbHelper;
     List<GrammarItem> data = await databaseTool.getAllData();
-    // TODO 内存泄漏 bug
-    // 稳定复现: 导出再立即导入
     grammardb = databaseHelper.grammarDatabase!;
     grammarList = data;
     listN0 = await databaseTool.getLevelGrammarList("N0", grammardb);
