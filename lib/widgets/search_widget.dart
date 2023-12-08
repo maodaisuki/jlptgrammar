@@ -70,7 +70,7 @@ class GrammarSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    if (searchList.isEmpty && tempResult.isEmpty) {
+    if (searchList.isEmpty || tempResult.isEmpty) {
       print("准备数据");
       tempResult = grammarList;
       searchList = grammarList;
@@ -84,6 +84,7 @@ class GrammarSearchDelegate extends SearchDelegate {
         tempResult.add(searchList[i]);
       }
     }
+    searchList = [];
     if (tempResult.isEmpty) {
       return Container(
         color: themeConfig['backgroundColor'],
